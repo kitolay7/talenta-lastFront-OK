@@ -1,0 +1,66 @@
+<app-menu-candidat></app-menu-candidat>
+<div class="container-fluid" id="account">
+    <div class="row" style="padding-top: 160px;">
+        <div class="account-body clearfix">
+            <div class="col-md-12 my-10" style="margin-left: 20px;">
+              <button
+                [routerLink]="['/candidat/profile']"
+                mat-raised-button
+                color="primary">
+                <i class="fa fa-chevron-left"></i>  Retour
+              </button>
+            </div>
+			<h1 
+				class="subheader" 
+				style="font-family: var(--ff-candara);margin: 25px auto;">
+				Mes candidatures déposées
+			</h1>
+            <div class="col-md-12 account-content" style="margin-top: 100px;">
+                <div class="row offre-list">
+                    <div 
+                    	class="col-md-4 col-sm-12 col-xs-12 offre" 
+                    	*ngFor="let d of OffreCandidat; let i= index">
+                        <div 
+                        	class="panel" 
+                        	data-aos="fade" 
+                        	data-aos-duration="1000" 
+                        	data-aos-delay="0">
+                            <div class="panel-heading">
+                                <h3 class="title">Offre N° {{i+1}}</h3>
+                            </div>
+                            <div 
+                            	class="panel-body"
+                        		(click)="goTo(d.offreId)">
+                                <p>Titre: 
+                                	<strong 
+                                		class="rose" 
+                                		[innerHTML]="d.offre.titre">
+                                	</strong>
+                                </p>
+                                <p>Poste: 
+                                	<strong class="rose">
+                                		{{d.offre.post}}
+                                	</strong>
+                                </p>
+                                <p>Pays: 
+                                	<strong 
+                                		class="rose">
+                                		{{d.offre.pays}}
+                                		</strong>
+                                	</p>
+                            </div>
+                            <div class="panel-footer">
+                                <button 
+                                	(click)="doTest(d.offreId)" 
+                                	class="va m-10" 
+                                	*ngIf="d.step === 0">
+                                	Faire le Test
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

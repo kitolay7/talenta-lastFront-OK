@@ -1,0 +1,99 @@
+<app-menu-candidat></app-menu-candidat>
+<div id="fiche-poste">
+	<div class="wave">
+		<svg viewBox="0 0 1440 320">
+  		<path fill="#0099ff" fill-opacity="1" d="M0,96L30,117.3C60,139,120,181,180,170.7C240,160,300,96,360,90.7C420,85,480,139,540,154.7C600,171,660,149,720,154.7C780,160,840,192,900,181.3C960,171,1020,117,1080,122.7C1140,128,1200,192,1260,192C1320,192,1380,128,1410,96L1440,64L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path>
+		</svg>
+	</div>
+  <div class="container-fluid" *ngIf="loading">
+    <div class="col-md-12 my-10" style="margin-left: 20px;">
+      <button
+        [routerLink]="['/candidat/profile']"
+        mat-raised-button
+        color="primary">
+        <i class="fa fa-chevron-left"></i>  Retour
+      </button>
+    </div>
+    <div class="col-md-8">
+      <div class="text-center title col-md-12">
+        <div class="col-md-12">
+          <h1>
+            <img 
+          		*ngIf="offreData.logoPath !== null" 
+              src="{{url +'/'+ offreData.logoPath}}">
+              <img 
+          		*ngIf="offreData.logoPath == null" 
+              src="assets/img/talenta_logo.jpg">
+            <!--
+          	<img 
+          		*ngIf="offreData.blobs[0] !== undefined && offreData.blobs[0]!== null" 
+              src="{{url +'uploads/'+ offreData.blobs[0].path}}">
+            -->
+          	<span 
+          		style="font-family: var(--ff-candara)" 
+          		[innerHTML]="offreData.titre"></span>
+          </h1>
+          <h3><span class="rose">Contrat {{offreData.post}}</span></h3>
+        </div>
+      </div>
+      <div class="content col-md-12">
+        <p class="texte">{{offreData.description}}</p>
+
+        <h4>Contexte du recrutement : </h4>
+        <p class="texte">{{offreData.contexte}}</p>
+        <h4>Mission : </h4>
+        <div class="texte" [innerHTML]="offreData.missions"></div>
+        <h4>Qualifications requises : </h4>
+        <div class="texte" [innerHTML]="offreData.qualification"></div>
+        <h4>Lieu de travail : <span class="rose">{{offreData.pays}}</span></h4>
+        <!--<h4>Logo Path : <span class="rose">{{offreData.logoPath}}</span></h4>-->
+      </div>
+
+    </div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="text-center my-10">
+          
+          <div 
+          	*ngIf="offreData.videoPath === null || offreData.videoPath ==='video_talenta.mp4'" 
+          	class="lz-color-defil wait d_f f_j_c_c f_a_i_c"
+          	>
+            <h3>TALENTA Sourcing ...</h3>
+          </div>
+          
+          <video 
+          	*ngIf="offreData.videoPath !== null && offreData.videoPath !=='video_talenta.mp4'" 
+          	controls 
+          	autoplay 
+          	class="img-responsive"
+            >
+            <source src="{{url +'/videos/'+offreData.videoPath}}">
+          </video>
+
+          <!--
+          <video 
+          	*ngIf="offreData.blobs[0] !== undefined && offreData.blobs[0]!== null" 
+          	controls 
+          	autoplay 
+          	class="img-responsive"
+            >
+            <source src="https://back.talenta.mg/uploads/videos/clone_talenta.mp4">
+          -->
+            <!--<source src="{{url + '#/uploads/videos/' + offreData.blobs[0].path}}">-->
+          <!--
+          </video>
+          -->  
+        </div>
+        <!--
+        <div class="text-center slide my-10">
+          <img src="{{url + '#/uploads/videos/' + offreData.blobs[0].path}}">
+        </div>
+      -->
+        <div class="content">
+          <h4>Messages : </h4>
+          <div class="texte" [innerHTML]="offreData.messages"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

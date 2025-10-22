@@ -1,0 +1,170 @@
+<div class="container-fluid">
+	<div class="row" style="padding-top: 80px;">
+		<div class="account-body">
+			<app-subheader [title]="title"></app-subheader>
+			<!--
+			<div class="forward_button">
+				<button
+					routerLink="/myaccount"
+					mat-raised-button
+					color="primary">
+					<i class="fa fa-chevron-left"></i> Retour
+				</button>
+			</div>
+			-->
+			<!-- <div class="col-md-12 my-10" style="margin-left: 20px;">
+				<button
+					routerLink="/myaccount"
+					mat-raised-button
+					color="primary">
+					<i class="fa fa-chevron-left"></i> Retour
+				</button>
+			</div>
+			<h1 class="subheader" style="font-family: var(--ff-candara)">La liste de mes
+				projets</h1> -->
+			<div class="col-md-12 account-content" style="margin-top:16px">
+				<mat-tab-group>
+					
+					<mat-tab label="Offre">
+						<div class="row">
+							<div class="col-md-3 col-sm-12 col-xs-12 offre">
+								<div
+									class="panel"
+									style="height: inherit;"
+									data-aos="fade"
+									data-aos-duration="1000"
+									data-aos-delay="0"
+									[routerLink]="['/ajout-offre']">
+									<div class="panel-heading">
+										<h3><i class="fa fa-plus"></i> Ajouter une nouvelle offre</h3>
+									</div>
+									<div class="panel-body">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-12 col-xs-12 offre" *ngFor="let offer of
+								offers">
+								<div *ngIf="offer.archived === false"
+									class="panel"
+									data-aos="fade"
+									data-aos-duration="1000"
+									data-aos-delay="0">
+									<div class="panel-heading">
+										<h3 [innerHTML]="offer.titre"></h3>
+									</div>
+									<div class="panel-body">
+										<p>Associé à: <strong class="rose" *ngIf="offer.quizInOffer.length > 0"
+												[innerHTML]="offer.quizInOffer[0]?.name"></strong>
+												<strong style="color:red" *ngIf="offer.quizInOffer.length === 0">
+													Aucun Test associé</strong>
+										</p>
+										<p>Dernière modification le: <strong class="rose">{{offer.updatedAt |
+												date:'shortDate':'UTC':'fr'}}</strong></p>
+										<p><strong>Statut: </strong>{{offer.publicationDate ? "publié le "+
+											(offer.updatedAt | date:'shortDate':'UTC':'fr') : "non publié" }}</p>
+										<!--
+										<p><strong>Peut être archivé: </strong>{{offer.canBeArchived}}</p>
+										-->
+										<div class="row">
+											<div class="col-md-6">
+												<mat-slide-toggle *ngIf="offer.quizInOffer.length > 0"
+													(change)="activateOffer(offer,offer.publier)"													
+													[(ngModel)]="offer.publier">Publier
+												</mat-slide-toggle>
+												<mat-slide-toggle *ngIf="offer.quizInOffer.length === 0" data-toggle="tooltip" title="Vous devez associer un test à cette offre pour pouvoir la publier"													
+													[disabled]="offer.quizInOffer.length === 0">Publier
+												</mat-slide-toggle>
+											</div>
+											<div class="col-md-6" style="color:white">
+												<button 
+													(click)="archiveOffre(offer.id, offer.quizInOffer[0]?.id)"
+													 type="button" class="btn btn-success" *ngIf="offer.canBeArchived">Archiver</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</mat-tab>
+
+					<mat-tab label="Test">
+						<div class="row">
+							<div class="col-md-3 col-sm-12 col-xs-12 offre">
+								<div
+									class="panel"
+									style="height: inherit;"
+									data-aos="fade"
+									data-aos-duration="1000"
+									data-aos-delay="0"
+									[routerLink]="['/create-test']">
+									<div class="panel-heading">
+										<h3><i class="fa fa-plus"></i> Créer un nouveau projet</h3>
+									</div>
+									<div class="panel-body">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-12 col-xs-12 offre" *ngFor="let infoQuiz of
+								infoQuizs;let index= index;">
+								<div *ngIf="infoQuiz.offre.archived === false"
+									class="panel"
+									data-aos="fade"
+									data-aos-duration="1000"
+									data-aos-delay="0">
+									<div class="panel-heading" style="display: flex; flex-direction: row;
+										justify-content: space-between;">
+										<div>
+											<h3 [innerHTML]="infoQuiz.quizz.name"></h3>
+										</div>
+										<div style="padding-top: 20px;">
+											<!--
+											<button (click)="archiveQuiz(infoQuiz.quizz.id)" type="button"> <i
+													class="fa fa-archive"></i></button>
+											-->
+										</div>
+									</div>
+									<div class="panel-body" data-toggle="tooltip" title="Vous pouvez éditer ce Test lorsque l'offre associée n'est pas publiée.">
+										<p>Associé à: <strong class="rose" [innerHTML]="infoQuiz.offre?.titre
+												?
+												infoQuiz.offre.titre : 'Aucune offre associée'"></strong></p>
+										<p>Dernière modification le: <strong class="rose">{{infoQuiz.quizz.updatedAt
+												|
+												date:'shortDate':'UTC':'fr'}}</strong></p>
+										<p><strong>Statut: </strong>{{infoQuiz.quizz.date_publication ?
+											"publié le "+ (infoQuiz.quizz.updatedAt |
+											date:'shortDate':'UTC':'fr') : "non publié"
+											}}</p>
+										<div class="row">
+											
+											<div class="col-md-6">
+											<!--
+												<mat-slide-toggle
+													[disabled]="!infoQuiz.offre.publier"
+													[(ngModel)]="infoQuiz.quizz.publier"
+													(change)="publierQuiz(infoQuiz,infoQuiz.quizz.publier)">Publier</mat-slide-toggle>
+											-->
+											</div>
+											
+											<div class="col-md-6" data-toggle="tooltip" title="Vous pouvez éditer ce Test lorsque l'offre associée n'est pas publiée.">
+												<button *ngIf="infoQuiz.offre.publier" 
+													type="button" class="btn btn-warning" disabled>
+													<span>Editer</span>
+												</button>	
+												<button *ngIf="infoQuiz.offre.publier === false"
+													type="button" class="btn btn-warning" enabled [routerLink]="['/project/'+infoQuiz.quizz.id+'/edit']"
+													[enabled]="infoQuiz.quizz.publier">
+													<span>Editer</span>
+												</button>												
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</mat-tab>
+
+				</mat-tab-group>
+			</div>
+		</div>
+	</div>
+</div>

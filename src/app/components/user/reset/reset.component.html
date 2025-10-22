@@ -1,0 +1,62 @@
+<div *ngIf="!loading" class="loader-div">
+	<mat-spinner></mat-spinner>
+</div>
+<div class="container-fluid" id="account">
+	<div class="row" style="padding-top: 70px;" *ngIf="loading">
+		<div class="account-body">
+			
+			<div 
+				class="m-auto"
+				style="margin-top: 100px;width: 82%;"
+				*ngIf="checked">
+				<h1 class="subheader">Réinitialisation de mot de passe</h1>
+				<form [formGroup]="form1" class="text-center">
+
+            <mat-form-field appearance="fill">
+              <mat-label>Nouveau mot de passe</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" autocomplete=off formControlName="newPwd">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Cacher le mot de passe'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="newPwd.touched && newPwd.invalid && newPwd.errors.required">
+                Champ Obligatoire.
+              </mat-error>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Réécrire le nouveau mot de passe</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" autocomplete=off formControlName="confirmPwd">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Cacher le mot de passe'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="confirmPwd.touched && confirmPwd.invalid && confirmPwd.errors.required">
+                Champ Obligatoire.
+              </mat-error>
+              <mat-error *ngIf="confirmPwd.valid && form1.invalid">
+                Les mots de passe ne se correspondent pas
+              </mat-error>
+            </mat-form-field>
+            <br>
+  				
+    				<button 
+              [disabled]="form1.invalid" 
+              mat-raised-button
+              color="primary"
+              (click)="valid()">
+              Réinitialiser
+            </button>
+  				
+  				</form>
+			</div>
+			<div 
+				class="m-auto"
+				style="margin-top: 100px;width: 82%;"
+				*ngIf="!checked">
+				<h1 class="subheader">Reverifiez votre boite email.</h1>
+			</div>
+		</div>
+	</div>
+</div>

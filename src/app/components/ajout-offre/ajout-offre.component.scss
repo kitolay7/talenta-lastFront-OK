@@ -1,0 +1,126 @@
+textarea,
+.field {
+    //margin: 10px;
+    //border-radius: 10px;
+    padding: 5px;
+}
+.input-file {
+    display: none;
+}
+label
+{
+	margin: 5px;
+	font-size: 2rem;
+}
+.logo {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+.upload-image
+{
+	margin-bottom: 20px;
+}
+.ajout-offre-body
+{
+	//padding-top: 70px;
+	.ajout-offre-subheader
+	{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 3% 0;
+		.col-sm-12
+		{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			h1
+			{
+				color: var(--c-orange);
+			}
+			img
+			{
+				height: 65px;
+				padding-right: 5%;
+			}
+		}
+		.col-md-2
+		{
+			display: flex;
+			justify-content: flex-end;
+			padding-right: 5%;
+			a
+			{
+				position: relative;
+				margin: 10px;
+				i
+				{
+					font-size: 4rem;
+					color: #000000b8;
+					text-shadow: 0 0 5px red;
+					cursor: pointer;
+					position: relative;
+				}
+				.badge
+				{
+					right: -10px;
+					position: absolute;
+					bottom: -10px;
+					background-color: #f00;
+				}
+			}
+		}
+  }
+	.ajout-offre-content
+	{
+		.col-md-12
+		{
+			display: flex;
+			flex-direction: column;
+		}
+		.validate
+		{
+			text-align: center;
+			button
+			{
+				font-size: 2rem;
+				margin: 5px auto;
+			}
+		}
+		.btn
+ 		{
+ 			white-space: normal;
+			background: var(--c-blue) !important;
+			border-color: var(--c-blue) !important;
+ 		}
+ 		.btn:hover
+ 		{
+			background: var(--c-blue-dark) !important;
+			border-color: var(--c-blue-dark) !important;
+ 		}
+	}
+}
+:host ::ng-deep .ck-editor__editable {
+    min-height: 100px;
+    max-height: 250px;
+}
+
+@media (max-width: 1900px) {
+	.ajout-offre-body
+	{
+		//padding-top: 100px;
+		.ajout-offre-subheader
+		{
+			flex-direction: column;
+			h1
+			{
+				text-align: center;
+			}
+			i
+			{
+				right: 0;
+			}
+		}
+	}
+}

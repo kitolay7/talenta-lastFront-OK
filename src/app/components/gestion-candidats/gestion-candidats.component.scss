@@ -1,0 +1,43 @@
+#account
+{
+	background-color: #fff;
+}
+
+.account-body
+{
+	.account-content
+	{
+		//min-height: 100vh;
+		display: flex;
+		flex-wrap: wrap;
+		.table-responsive
+		{
+			box-shadow: 2px 2px 20px -5px #0005;
+			table
+			{
+				tbody
+				{
+					tr
+					{
+						cursor: pointer;
+					}
+				}
+			}
+		}
+		
+	}
+}
+
+::ng-deep.titreO
+{ 
+	p, h1, h2, h3, h4, strong, i
+	{
+  		font-size: inherit !important;
+		line-height: inherit !important;
+		margin: inherit !important;
+		font-weight: normal;
+		color: inherit;
+	}
+}
+@media (max-width: 768px) {
+}

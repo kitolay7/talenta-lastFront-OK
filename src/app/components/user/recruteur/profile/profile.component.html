@@ -1,0 +1,119 @@
+<div class="profile-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <!--
+        <div class="col-md-4">
+          <div class="menu">
+            <!--
+            <ul>
+              <li>profile</li>
+              <li>mot de passe</li>
+            </ul>
+          
+          </div>
+        </div>
+        -->
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <div class="logo">
+                <div class="upload-image col-xs-12 text-center">
+                  <img
+                    [src]="blobUrl" alt="logo"
+                    class=logo>
+                  <div class="progress" *ngIf="progressImg> 0">
+                    <div
+                      class="progress-bar progress-bar-striped"
+                      role="progressbar"
+                      attr.aria-valuenow="{{ progressImg }}"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      [ngStyle]="{ width: progressImg + '%' }">
+                      {{ progressImg }} %
+                    </div>
+                  </div>
+                  <label for="fileAvatar" class="image4 btn btn-success"
+                    style="display: inherit">
+                    <i class="fa fa-briefcase"></i> Mettre à jour logo
+                    (.jpg, .png) Max : 5 Mo
+                  </label>
+                  <input
+                    id="fileAvatar"
+                    (change)="onSelectedImg($event)"
+                    multiple
+                    class="input-file"
+                    type="file"
+                    name="image_link_profile"
+                    accept=".jpg, .png"
+                    style="display:none">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="custom-card">
+            <div class="custom-card-title" align="center">
+              <h1>~~~</h1>
+            </div>
+
+            <form [formGroup]="formProfile">
+              <div class="custom-card-content">
+                <div class="form-group">
+                  <label for="inputUserName">Nom d'utilisateur</label>
+                  <input type="text" class="form-control" id="inputUserName"
+                    formControlName="username"
+                    placeholder="Nom d'utilisateur">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email</label>
+                  <input type="email" class="form-control"
+                    formControlName="email"
+                    id="exampleInputEmail1"
+                    placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <label for="examplePhone">Téléphone</label>
+                  <input type="phone" class="form-control"
+                    formControlName="phone"
+                    id="exampleInputPhone"
+                    placeholder="Telephone">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEntreprise">Nom d'entreprise</label>
+                  <input type="email" class="form-control"
+                    formControlName="enterprise"
+                    id="exampleInputEntreprise"
+                    placeholder="Nom de l'entreprise">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputCodePostal">Code Postal</label>
+                  <input type="text" class="form-control"
+                    formControlName="codePostale"
+                    id="exampleInputCodePostal"
+                    placeholder="Tana 101">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputMetier">Pays</label>
+                  <mat-select formControlName="pays" class="form-control"
+                    required>
+                    <mat-option *ngFor="let pays of countries" [value]="pays">{{pays}}</mat-option>
+                  </mat-select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Mot de passe</label>
+                  <input type="password" class="form-control"
+                    formControlName="password"
+                    id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div align="center">
+                <button type="submit" (click)="saveProfile()" class="btn
+                  btn-default">Sauvegarder</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div id="contact-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="margin-top: 70px;">
+                <div class="section-heading">
+                    <h4>Nous contacter</h4>
+                    <div class="line-dec"></div>
+                    <form method="post" [formGroup]="formContact">
+                        <div class="">
+                        	
+							<mat-form-field appearance="fill">
+								<mat-label>Nom</mat-label>
+								<mat-icon matPrefix>account_circle</mat-icon>
+								<input 
+									matInput 
+									required 
+									formControlName="name" 
+									placeholder="Nom">
+								<mat-error *ngIf="formContact.controls.name.errors?.required">
+									Champ obligatoire
+								</mat-error>
+							</mat-form-field>
+							<br>
+							<mat-form-field appearance="fill">
+								<mat-label>Email</mat-label>
+								<mat-icon matPrefix>mail</mat-icon>
+								<input 
+									matInput 
+									required 
+									formControlName="email" 
+									placeholder="Ex. pat@example.com">
+								<mat-error *ngIf="formContact.controls.email.errors?.email">
+									Entrez une adresse email valide!
+								</mat-error>
+								<mat-error *ngIf="formContact.controls.email.errors?.required">
+									Votre Email est <strong>requis</strong>
+								</mat-error>
+							</mat-form-field>
+							<br>
+							<mat-form-field appearance="fill">
+								<mat-label>Objet</mat-label>
+								<input 
+									matInput 
+									required 
+									formControlName="objet" 
+									placeholder="">
+								<mat-error *ngIf="formContact.controls.objet.errors?.required">
+									Champ obligatoire
+								</mat-error>
+							</mat-form-field>
+							<br>
+							<mat-form-field appearance="fill">
+  								<mat-label>Message</mat-label>
+  								<textarea 
+  									matInput
+  									required
+            						cdkTextareaAutosize
+            						#autosize="cdkTextareaAutosize"
+            						cdkAutosizeMinRows="6"
+            						cdkAutosizeMaxRows="8"
+            						formControlName="message"></textarea>
+								<mat-error *ngIf="formContact.controls.message.errors?.required">
+									Champ obligatoire
+								</mat-error>
+							</mat-form-field>
+							<br>
+							
+							<p 
+								align="center"
+								[ngClass]="{ 'validator': formContact.invalid }">
+								<a 
+									type="submit" 
+									class="btn btn-spec"
+									(click)="sendContact()">
+									Envoyer
+								</a>
+							</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

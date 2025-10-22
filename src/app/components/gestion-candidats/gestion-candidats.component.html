@@ -1,0 +1,64 @@
+<div *ngIf="!loading" class="loader-div">
+	<mat-spinner></mat-spinner>
+</div>
+<div class="container-fluid" id="account">
+	<div class="row" style="padding-top: 80px;" *ngIf="loading">
+		<div class="account-body">
+			<app-subheader [title]="title"></app-subheader>
+			<!--
+			<div class="forward_button">
+				<button
+					routerLink="/myaccount"
+					mat-raised-button
+					color="primary">
+					<i class="fa fa-chevron-left"></i> Retour
+				</button>
+			</div>
+			-->
+			<!-- <div class="col-md-12 my-10" style="margin-left: 20px;">
+				<button
+					routerLink="/myaccount"
+					mat-raised-button
+					color="primary">
+					<i class="fa fa-chevron-left"></i> Retour
+				</button>
+			</div>
+			<h1 class="subheader" style="font-family: var(--ff-lucida)">LA GESTION DES
+				CANDIDATURES</h1> -->
+			<div class="col-md-12 account-content" style="margin-top: 16px;">
+				<div class="col-md-8 col-sm-12">
+					<h3>Enregistrements trouvés : {{allCandidats.length}} candidats</h3>
+				</div>
+
+				<div class="table-responsive w-100">
+					<table class="table table-hover table-striped">
+						<thead>
+							<tr class="info">
+								<th>N°</th>
+								<th>Offre</th>
+								<th>Contrat</th>
+								<th>Date de dépot</th>
+								<th>Nom et Prénoms</th>
+								<th>Score</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="" *ngFor="let candidat of allCandidats; let id=index"
+								[routerLink]="['/detail_candidat/' + candidat.userId]">
+								<td>{{id + 1}}</td>
+								<td class="titreO" [innerHTML]="candidat.offre.titre"></td>
+								<td>{{candidat.offre.post}}</td>
+								<td>{{candidat.offre.publicationDate | date:'shortDate':'UTC':'fr'}}</td>
+								<td>{{candidat.user.profile.firstName + ' ' +
+									candidat.user.profile.lastName}}</td>
+								<td>{{candidat.note}}</td>
+								<td>{{candidat.decision}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

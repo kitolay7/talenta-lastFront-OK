@@ -1,0 +1,11 @@
+<div class="admin-panel">
+    <h2>Panel d'administration</h2>
+    <label for="feature-select">Activer les questionnaires :</label>
+    <select id="feature-select" [(ngModel)]="selectedMode">
+      <option value="audio">Audio seulement</option>
+      <option value="video">Vidéo seulement</option>
+      <option value="all">Tous</option>
+      <option value="none">Désactivé</option>
+    </select>
+    <button (click)="updateFeatures()">Appliquer</button>
+  </div>

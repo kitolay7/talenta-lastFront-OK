@@ -1,0 +1,163 @@
+.container-fluid
+{
+	//background-image: linear-gradient(25deg,#0ff, #0b2ca8, #5475f0);
+	padding: 150px 50px;
+	min-height: 100vh;
+	position: relative;
+	#quiz
+	{
+		position: relative;
+		box-shadow: 2px 2px 5px #5555;
+		padding: 20px;
+		background: #eee;
+		height: 100%;
+	}
+}
+
+.fondsF{
+	background: white;
+}
+
+.fonds
+{
+	position: fixed;
+	z-index: -2;
+	top: 0;
+	left: 0;
+	background: #89ffff;
+	width: 100%;
+	height: 100%;
+	.rond2
+	{
+		width: 700px;
+		height: 350px;
+		background: #0bb;
+		border-radius: 50%;
+		bottom: -100px;
+		position: fixed;
+		right: -200px;
+		transform: rotate(-25deg);
+	}
+	.rond1
+	{
+		width: 660px;
+		height: 300px;
+		background: #0bb;
+		border-radius: 50%;
+		top: -50px;
+		position: fixed;
+		left: -210px;
+		transform: rotate(-25deg);
+	}
+	.rond3
+	{
+		width: 700px;
+		height: 350px;
+		background: #0bb3;
+		border-radius: 50%;
+		top: 50px;
+		position: fixed;
+		left: -245px;
+		transform: rotate(-60deg);
+	}
+}
+.text-green
+{
+	color: #0f0;
+}
+.red {
+    background-color: red;
+    font-size: 100%;
+}
+.aide
+{
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+	font-size: 3rem;
+	z-index: 1000;
+	h4
+	{
+		font-size: 2rem;
+		cursor: pointer;
+	}
+}
+select
+{
+	.form-control
+	{
+		width: inherit;
+	}
+}
+.register
+{
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.green
+{
+	background: #0f0;
+	white-space: normal;
+  border: 1px solid #0e0;
+}
+.black
+{
+	background: #000;
+	white-space: normal;
+  border: 1px solid #000;
+}
+:host ::ng-deep .ck-editor__editable {
+    min-height: 100px;
+    max-height: 250px;
+}
+
+.home
+{
+	position: fixed;
+	right: 15px;
+	top: 90px;
+	width: 50px;
+	height: 50px;
+	text-decoration: none;
+	i
+	{
+		font-size: 4rem;
+		color: #000000b8;
+		text-shadow: 0 0 5px red;
+	}
+}
+.disconnect:hover
+{
+	i
+	{
+		text-shadow: 0 0 6px red;
+		transition: text-shadow 1s;
+	}
+}
+
+
+@keyframes zoominoutsinglefeatured {
+    0% {
+        transform: scale(1,1);
+    }
+    50% {
+        transform: scale(1.2,1.2);
+    }
+    100% {
+        transform: scale(1,1);
+    }
+}
+
+.cardcontainer {
+    animation: zoominoutsinglefeatured 1s infinite ;
+}
+.float-right
+{
+	float: right;
+}

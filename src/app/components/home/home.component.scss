@@ -1,0 +1,89 @@
+
+::ng-deep.cdk-overlay-container {
+    z-index: 1200 !important;
+}
+
+::ng-deep.slideClass,
+.modal.in .modal-dialog.slideClass
+{
+	width: 90%;
+	margin-top: 100px;
+	.modal-content
+	{
+		//margin-top: 10%;
+		border-radius: 0;
+		.modal-body
+		{
+			padding: 0;
+			
+	  		#myCarouselS {
+	  			padding: 0;
+	    		.carousel-inner {
+		      		.carousel-control {
+		        		display: flex;
+		        		align-items: center;
+		        		justify-content: center;
+		      		}
+	    		}
+	  		}
+		}
+	}
+}
+.closing {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #0005;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 50%;
+    left: -30px;
+    top: -10px;
+    box-shadow: 0 0 5px #000;
+    text-decoration: none;
+    transition: all 1s;
+}
+.closing:hover, .closing:focus, .closing:active {
+    color: white;
+    text-decoration: none;
+    background: #000a;
+}
+
+::ng-deep.tooltipClass
+{
+	transition: all 1s;
+	.tooltip-arrow:before,
+		.tooltip-arrow {
+			border-top-color: var(--c-turquoise-dark) !important;
+			transition: all 1s;
+		}
+	
+	.tooltip-inner
+	{
+	  	background-color: var(--c-turquoise-dark);
+	  	padding: 15px;
+	  	min-width: 350px;
+		transition: all 1s;
+	}
+	p
+	{
+	  	font-size: 1.5rem;
+	  	font-style: italic;
+	  	color: #ffe;
+	}
+	//transform: translate3d(200px, 123px, 0px) !important;
+}
+
+
+
+@media (max-width: 767px) {  
+
+	::ng-deep.slideClass,
+	.modal.in .modal-dialog.slideClass
+	{
+		margin-top: 100px;
+	}
+}

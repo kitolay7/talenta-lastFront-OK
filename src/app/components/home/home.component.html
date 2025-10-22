@@ -1,0 +1,1491 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+<div id="parentDiv" class="parallax-content baner-content container-fluid">
+  <div id="main-banner" class="section s1 container">
+    <div class="text-content text-center">
+      <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0"
+        data-aos-offset="0">TROUVEZ L'EMPLOI DE VOS
+        REVES</h1>
+      <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"
+        data-aos-offset="0">LANCEZ-VOUS EN TOUTE
+        SIMPLICITE</h2>
+      <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000"
+        data-aos-offset="0">PREPAREZ-VOUS A
+        RENCONTRER VOTRE FUTUR EMPLOYEUR</h3>
+    </div>
+    <div class="down hvr-wobble-vertical-infinite" data-aos="fade"
+      data-aos-duration="2000" data-aos-delay="0">
+      <a (click)="scrollTo('offre')">
+        <svg xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 100">
+          <path d="M 0 50 L 0 0 L 75 50 L 150 0 L 150 50 L 75 100 z"
+            style="fill:#fff;" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div id="offre" class="container page-section">
+      <div class="row">
+        <div class="col-md-4 col-xs-12" data-aos="zoom-in-up"
+          data-aos-duration="1000" data-aos-delay="0"
+          data-aos-offset="0">
+          <div class="service-item">
+            <div class="icon hvr-icon-sink" mat-raised-button>
+              <i class="fa fa-map-marker hvr-icon"></i>
+            </div>
+            <h4>QUEBEC</h4>
+            <div class="line-dec"></div>
+            <div class="primary-blue-button">
+              <a (click)="seeModal(offre, 'Quebec')">OFFRES D'EMPLOIS</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12" data-aos="zoom-in-up"
+          data-aos-duration="1000" data-aos-delay="250"
+          data-aos-offset="0">
+          <div class="service-item">
+            <div class="icon hvr-icon-sink">
+              <img src="assets/img/tana.png" style="width: 30px;">
+            </div>
+            <h4>ANTANANARIVO</h4>
+            <div class="line-dec"></div>
+            <div class="primary-blue-button">
+              <a (click)="seeModal(offre, 'Antananarivo')">OFFRES D'EMPLOIS</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12" data-aos="zoom-in-up"
+          data-aos-duration="1000" data-aos-delay="500"
+          data-aos-offset="0">
+          <div class="service-item">
+            <div class="icon hvr-icon-sink">
+              <i class="fa fa-address-card hvr-icon"></i>
+            </div>
+            <h4>CANDIDATURE SPONTANEE</h4>
+            <div class="line-dec"></div>
+            <div class="primary-blue-button">
+              <a (click)="openDeposer(deposer)">Déposez votre candidature</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="testimonial" class="page-section">
+      <div
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-delay="0"
+        data-aos-offset="0">
+        <div
+          class="title"
+          data-aos="zoom-in-up"
+          data-aos-duration="1000"
+          data-aos-delay="0"
+          data-aos-offset="0">
+          <h2 class="comment" style="font-family: var(--ff-candara)">
+            <span>TALENTA Sourcing, pour recruter</span>
+            <span class="slider-cont">
+              <span class="d_f f_c slide-text">
+                <span style="color: #fff">simplement </span>
+                <span style="color: #000">rapidement </span>
+                <span style="color: var(--c-orange-2)">efficacement</span>
+              </span>
+            </span>
+          </h2>
+        </div>
+        <a
+          class="btn btn-md btn-spec"
+          routerLink="/contact"
+          style="font-family: var(--ff-lucida)">
+          Contactez-nous
+        </a>
+        <!--<div class="bg-carousel" (click)="viewSlide(slide)">-->
+        <div class="bg-carousel">
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
+                <img src="assets/img/Capture1.png" width="100%" height="auto"
+                  class="" color="#555" background="#777">
+                <div class="carousel-caption">
+                  <h3>Talenta Sourcing</h3>
+                  <p>Au coeur du recrutement</p>
+                </div>
+              </div>
+
+              <div class="item">
+                <img src="assets/img/Capture2.png" width="100%" height="auto"
+                  class="" color="#555" background="#777">
+                <div class="carousel-caption">
+                  <h3>Talenta Sourcing</h3>
+                  <p>Services satisfaisantes</p>
+                </div>
+              </div>
+
+
+
+              <!-- Left and right controls -->
+              <a class="left carousel-control" href="#myCarousel" role="button"
+                data-slide="prev">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#myCarousel" role="button"
+                data-slide="next">
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="service" class="page-section">
+      <div class="">
+        <div class="text-content" data-aos="fade-up" data-aos-duration="500"
+          data-aos-delay="0" data-aos-offset="0">
+          <h3 class="comment" style="font-family: var(--ff-lucida)">NOS SERVICES
+            AUX RECRUTEURS</h3>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-xs-12" data-aos="fade-up"
+            data-aos-duration="1000" data-aos-delay="0">
+            <div class="service-item">
+              <div class="icon">
+                <i class="fa fa-podcast hvr-icon-sink-away"></i>
+              </div>
+              <h5 class="card-title-list">1- Diffusion des offres d'emplois</h5>
+              <p>Nous vous assistons dans la création et la multidiffusion de
+                vos offres d'emploi</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-xs-12" data-aos="fade-up"
+            data-aos-duration="1000" data-aos-delay="500">
+            <div class="service-item">
+              <div class="icon">
+                <i class="fa fa-check hvr-icon-sink-away"></i>
+              </div>
+              <h5 class="card-title-list">2- Promotion de la marque Employeur</h5>
+              <p>Nous vous mettons à disposition des espaces pour mettre en
+                valeur votre entreprise.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-xs-12" data-aos="fade-up"
+            data-aos-duration="1000" data-aos-delay="1000">
+            <div class="service-item">
+              <div class="icon">
+                <i class="fa fa-puzzle-piece hvr-icon-sink-away"></i>
+              </div>
+              <h5 class="card-title-list">3- Analyse des candidatures</h5>
+              <p>L'outil Talenta Sourcing vous permet de collaborer en interne à
+                plusieurs</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-xs-12" data-aos="fade-up"
+            data-aos-duration="1000" data-aos-delay="0">
+            <div class="service-item">
+              <div class="icon">
+                <i class="fa fa-search hvr-icon-sink-away"></i>
+              </div>
+              <h5 class="card-title-list">4- Séléction par des tests</h5>
+              <p>Après que les candidats aient effectué le test en ligne que
+                vous avez, vous-même, élaboré.</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-xs-12" data-aos="fade-up"
+            data-aos-duration="1000" data-aos-delay="500">
+            <div class="service-item">
+              <div class="icon">
+                <i class="fa fa-hand-peace-o hvr-icon-sink-away"></i>
+              </div>
+              <h5 class="card-title-list">5- Entretiens optimisés</h5>
+              <p>Une qualification automatique des candidats vous permet
+                d'organiser vos entretiens</p>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-xs-12" data-aos="fade-up"
+            data-aos-duration="1000" data-aos-delay="1000">
+            <div class="service-item">
+              <div class="icon">
+                <i class="fa fa-bitcoin hvr-icon-sink-away"></i>
+              </div>
+              <h5 class="card-title-list">BONUS: Stratégie recrutement</h5>
+              <p>Des rapports automatiques sont générés à chaque clôture d'un
+                recrutement</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL CONDITIONS DE CONFORMITE -->
+
+<ng-template #conformite>
+  <div class="modal-header">
+    <button type="button" style="margin-right: 10px;" class="close pull-right"
+      aria-label="Close"
+      (click)="closeConformite()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h2 class="text-center">Nos conditions de conformité</h2>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <p style="margin : 20px;text-align: justify;">
+          Code SARLU et ses clients et partenaires traitent des données personnelles telles que vos informations personnelles et votre adresse IP. Vous pouvez accepter ou non. Vous pouvez changer d'avis ou retirer votre consentement à tout moment en cliquant sur le lien dédié dans la Charte sur les données personnelles. Vos préférences s’appliqueront uniquement à notre site.
+          Vous pouvez à tout moment gérer vos consentements en cliquant <a href="javascript:Didomi.preferences.show()">sur ce lien</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+    <div class="btn-center" style="">
+      <a 
+        type="button"  
+        class="btn btn-spec"
+        (click)="openConformite(conformite)">
+        NOS CONDITIONS DE CONFORMITE
+      </a>
+      <!--
+      <a 
+        target="_blank" 
+        href="assets/docs/conformite-RGPD.docx" 
+        class="btn btn-spec">
+        NOS CONDITIONS DE CONFORMITE
+      </a>
+      -->
+    </div>
+
+    <div id="partenaires" class="container page-section">
+      <div class="text-content" data-aos="fade-up" data-aos-duration="500"
+        data-aos-delay="0" data-aos-offset="0">
+        <h3 class="comment" style="font-family: var(--ff-lucida)">NOS
+          PARTENAIRES</h3>
+      </div>
+
+      <div class="container">
+
+
+        <div class="bg-partenaire">
+
+          <carousel
+            [loop]="true"
+            [autoplay]="true"
+            [autoplayInterval]="3000"
+            [pauseOnHover]="true"
+            [cellWidth]="250"
+            [height]="250"
+            [margin]="50">
+            <div class="carousel-cell" *ngFor="let part of partenaires">
+              <!--                
+              <img
+                src="assets/img/{{part.img}}"
+                [tooltip]="popTemplate"
+                container="body"
+                containerClass="tooltipClass"
+                [adaptivePosition]="false"
+                placement="top"
+                class="tooltp"
+                (click)="goToPartenaire(part.link)">
+              -->
+              <img
+                src="assets/img/talenta_logo.jpg"
+                [tooltip]="popTemplate"
+                container="body"
+                containerClass="tooltipClass"
+                [adaptivePosition]="false"
+                placement="top"
+                class="tooltp"
+                style="border-radius: 5px;"
+                >
+
+              <ng-template #popTemplate>
+                <div>
+                  <h2>Talenta</h2>
+                  <!--<h2>{{part.name}}</h2>-->
+                  <p>{{part.desc}}</p>
+                </div>
+              </ng-template>
+            </div>
+          </carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #offre>
+    <div class="modal-header">
+      <button type="button" class="close pull-right" aria-label="Close"
+        (click)="modalOffre.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h2>Liste des offres disponibles à test {{lieu}}</h2>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="search_class">
+          <div class="col-md-3 col-sm-12 col-xs-12">
+            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+            <input
+              type="text"
+              [(ngModel)]="term"
+              class="form-control input"
+              placeholder="Recherche"
+              (change)="onSearchOffer()">
+          </div>
+          <div class="col-md-3 col-sm-12 col-xs-12">
+            <select
+              id="sel1"
+              class="form-control input"
+              [(ngModel)]="term2">
+              <option
+                *ngFor="let activity of secteurs"
+                [value]="activity">
+                {{activity}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="offre-item">
+            <div
+              class="panel"
+              *ngFor="let item of posts | filter:term | filter:term2 | paginate:
+              { itemsPerPage: 6, currentPage: p }">
+              <div class="panel-heading">
+                <p class="logo">
+                  <img *ngIf="item.creator.profile_photo_path !== null; else
+                    hasNotDefault" alt="test"
+                    src="{{url + item.creator.profile_photo_path}}" />
+                  <ng-template #hasNotDefault>
+                    <!--
+                    <img
+                      alt="DefautLogo"
+                      [attr.src]="defaultLogo" />
+                    -->
+                    <img
+                      alt="DefautLogo" src="assets/img/talenta_logo.jpg" />
+                  </ng-template>
+                  </p>
+                <!--
+                <img *ngIf="item.logoPath !== null; else hasNotDefault"
+                  alt="test"
+                  src="{{url + item.logoPath}}" />
+                <ng-template #hasNotDefault>
+                  <img
+                    alt="DefautLogo"
+                    [attr.src]="defaultLogo" />
+                </ng-template>
+              -->
+                <!-- <img src="{{(itemlogoPath !== '' && item.logoPath!==
+                  null) ? url + item.logoPath :
+                  'assets/img/logo_entreprise.jpg'}}" alt=""> 
+                <h3 [innerHTML]="item.titre"></h3>
+                -->
+              </div>
+              <div class="panel-body">
+                <p>
+                  Contrat:
+                  <strong class="rose">{{item.post}}</strong>
+                </p>
+                <p>
+                  Secteur:
+                  <strong class="rose">
+                    {{item.secteur}}
+                  </strong>
+                </p>
+                <p>
+                  Date de publication:
+                  <strong class="rose">
+                    {{item.publicationDate | date:'shortDate':'UTC':'fr'}}
+                  </strong>
+                </p>
+                <!--
+              <h4>{{item.contexte}}</h4>
+              -->
+                <div class="text-center" *ngIf="postul">
+                  <button
+                    *ngIf="!item.postuled"
+                    (click)="goTo('candidat/registration', item)"
+                    class="inter">
+                    Postuler
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <pagination-controls
+            class="modal-pagination text-center"
+            (pageChange)="p= $event"
+            directionLinks="true"
+            autoHide="true"
+            previousLabel="PRÉCÉDENT"
+            nextLabel="SUIVANT">
+          </pagination-controls>
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <button (click)="goTo()" class="btn btn-default">Voir plus</button>
+      </div>
+    </div>
+  </ng-template>
+
+
+  <ng-template #loginTemplate>
+    <div class="modal-header sign-header">
+      <button type="button" class="close pull-right" aria-label="Close"
+        (click)="modalRef2.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="row" style="cursor: pointer;">
+        <div class="col-md-6 {{newClass}}" (click)="newsCustomerBtn()">
+          <h2>Nouveau candidat</h2>
+        </div>
+        <div class="col-md-6 {{accountClass}}" (click)="newsCustomerBtn()">
+          <h2>J'ai déjà un compte</h2>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="signin" *ngIf="newsCustomer">
+        <h5>Bonjour</h5>
+        <h6>Connectez-vous avec votre compte</h6>
+        <form class="row">
+          <div class="col-md-12" style="background-color: white;">
+            <div class="field">
+              <input type="text" name="votreemail" id="votreemail"
+                [(ngModel)]="votreEmail" placeholder="">
+              <label for="votreemail" id="votreemail">Votre email</label>
+            </div>
+            <div class="field">
+              <span (click)="showPassLogin()">
+                <mat-icon>{{faLogin}}</mat-icon>
+              </span>
+              <input type="{{signe}}" name="mdp" id="mdp" [(ngModel)]="mdp"
+                placeholder="">
+              <label for="mdp" id="mdp">Votre mot de passe</label>
+            </div>
+            <p (click)="goTo('reset-mdp', 'params')">Mot de passe oublié ?</p>
+            <br>
+            <div class="checking">
+              <label class="control control-checkbox">Rester connecté
+                <input type="checkbox" id="beSellerID" name="filter" />
+                <div class="control_indicator"></div>
+              </label>
+            </div>
+            <a mat-raised-button color="primary">Connectez-vous avec votre
+              compte</a>
+          </div>
+        </form>
+      </div>
+      <div class="signin" *ngIf="!newsCustomer">
+        <h5>Bonjour</h5>
+        <h6>Inscrivez-vous et connectez-vous avec votre compte</h6>
+        <form class="row" [formGroup]="formRegister">
+          <!--               <div class="col-md-6 col-md-6 col-sm-6 col-lg-6 text-center " (click)="selectSexe()"><a
+                      class="btn {{MselectSexe}}">M</a> </div>
+              <div class="col-md-6 col-md-6 col-sm-6 col-lg-6 text-center " (click)="selectSexe()"><a
+                      class="btn {{FselectSexe}}">Mme</a></div> -->
+          <div class="col-md-12" style="background-color: white;">
+            <div class="form-group"
+              [ngClass]="{'has-error': formRegister.controls.prenom.errors &&
+              formRegister.controls.prenom.dirty, 'has-success':
+              formRegister.controls.prenom.valid &&
+              formRegister.controls.prenom.dirty }">
+              <div class="field">
+                <input type="text" name="prenom" id="prenom" placeholder=""
+                  formControlName="prenom"
+                  autocomplete=off>
+                <label for="prenom" id="prenom">Prénom*</label>
+              </div>
+              <ul class="help-block">
+                <li *ngIf="formRegister.controls.prenom.errors?.required &&
+                  formRegister.controls.prenom.dirty">
+                  Les champs marqués d’une * sont obligatoires</li>
+              </ul>
+            </div>
+            <div class="form-group"
+              [ngClass]="{'has-error': formRegister.controls.nom.errors &&
+              formRegister.controls.nom.dirty, 'has-success':
+              formRegister.controls.nom.valid && formRegister.controls.nom.dirty
+              }">
+              <div class="field">
+                <input type="text" name="nom" id="nom" placeholder=""
+                  formControlName="nom"
+                  autocomplete=off>
+                <label for="nom" id="nom">Nom*</label>
+              </div>
+              <ul class="help-block">
+                <li *ngIf="formRegister.controls.nom.errors?.required &&
+                  formRegister.controls.nom.dirty">
+                  Les champs marqués d’une * sont obligatoires</li>
+              </ul>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error':
+              (formRegister.controls.email.errors &&
+              formRegister.controls.email.dirty) || (!checkMail &&
+              formRegister.controls.email.dirty), 'has-success':
+              formRegister.controls.email.valid &&
+              formRegister.controls.email.dirty && checkMail }">
+              <div class="field">
+                <input type="text" name="uremail" id="uremail" placeholder=""
+                  formControlName="email"
+                  autocomplete=off>
+                <label for="uremail" id="uremail">Votre email*</label>
+              </div>
+              <ul class="help-block">
+                <li *ngIf="formRegister.controls.email.errors?.required &&
+                  formRegister.controls.email.dirty">
+                  Les champs marqués d’une * sont obligatoires</li>
+                <li *ngIf="formRegister.controls.email.errors?.checkMail &&
+                  formRegister.controls.email.dirty">
+                  Veuillez insérer un mail valide</li>
+              </ul>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error':
+              (formRegister.controls.password.errors &&
+              formRegister.controls.password.dirty) || (!checkPw &&
+              formRegister.controls.password.dirty),
+              'has-success': formRegister.controls.password.valid &&
+              formRegister.controls.password.dirty && checkPw }">
+              <div class="field">
+                <span (click)="showPassLogin()">
+                  <mat-icon>{{faLogin}}</mat-icon>
+                </span>
+                <input type="{{signe}}" name="mdpregister" id="mdpregister"
+                  placeholder="" formControlName="password"
+                  autocomplete=off>
+                <label for="mdpregister" id="mdpregister">Votre mot de passe*</label>
+              </div>
+              <ul class="help-block">
+                <li *ngIf="formRegister.controls.password.errors?.required &&
+                  formRegister.controls.password.dirty">
+                  Les champs marqués d’une * sont obligatoires</li>
+                <li *ngIf="formRegister.controls.password.errors?.checkPw &&
+                  formRegister.controls.password.dirty">
+                  Le mot de passe doit contenir Majuscule, miniscule, chiffre et
+                  minimum 8 caractères.</li>
+              </ul>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error':
+              (formRegister.controls.confpassword.errors &&
+              formRegister.controls.confpassword.dirty) || (!checkPw &&
+              formRegister.controls.confpassword.dirty) || (!checkCpw &&
+              formRegister.controls.confpassword.dirty),
+              'has-success': formRegister.controls.confpassword.valid &&
+              formRegister.controls.confpassword.dirty && checkPw && checkCpw
+              }">
+              <div class="field">
+                <span (click)="showPassLogin()">
+                  <mat-icon>{{faLogin}}</mat-icon>
+                </span>
+                <input type="{{signe}}" name="mdpregister" id="mdpregister"
+                  placeholder="" autocomplete=off
+                  formControlName="confpassword">
+                <label for="mdpregister" id="mdpregister">Confirmez votre mot de
+                  passe*</label>
+              </div>
+              <ul class="help-block">
+                <li
+                  *ngIf="formRegister.controls.confpassword.errors?.required &&
+                  formRegister.controls.confpassword.dirty">
+                  Les champs marqués d’une * sont obligatoires</li>
+                <li
+                  *ngIf="formRegister.controls.confpassword.errors?.checkPw &&
+                  formRegister.controls.confpassword.dirty">
+                  Le mot de passe doit contenir Majuscule, miniscule, chiffre</li>
+                <li
+                  *ngIf="formRegister.controls.confpassword.errors?.checkCpw &&
+                  formRegister.controls.confpassword.dirty">
+                  Le mot de passe que vous avez entré n'est pas le même.</li>
+              </ul>
+            </div>
+
+
+
+            <div>
+              <p style="text-align: justify;font-size: 12px;float: inherit;">Le
+                mot de passe doit contenir
+                Majuscule, miniscule, chiffre</p>
+              <h6 style="text-align: justify;">Les champs marqués d’une * sont
+                obligatoires</h6>
+              <div class="checking">
+                <label class="control control-checkbox">J'accepte les conditions
+                  générales et la
+                  <span style="text-decoration: underline;">politique de
+                    confidentialité</span>
+                  <input type="checkbox" id="cgu" name="cgu" [checked]=true
+                    readonly />
+                  <div class="control_indicator"></div>
+                </label>
+              </div>
+            </div>
+            <a mat-raised-button color="primary"
+              [disabled]="formRegister.invalid">Créer mon compte</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+
+
+  <ng-template #postuler>
+    <div class="modal-header">
+      <button type="button" style="margin-right: 10px;" class="close pull-right"
+        aria-label="Close"
+        (click)="modalPostuler.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h2>Formulaire pour la candidature</h2>
+    </div>
+    <div class="modal-body" style="font-family: SFCompactDisplay-Medium;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="formul">
+              <form class="">
+                <table class="" cellspacing="0">
+                  <tr class="parent-row">
+                    <td>
+                      <tr>
+                        <mat-form-field class="">
+                          <mat-label>Votre Nom</mat-label>
+                          <input matInput [formControl]="nameFormControl"
+                            [errorStateMatcher]="matcher"
+                            placeholder="Ex. David Dupont">
+                          <mat-error
+                            *ngIf="nameFormControl.hasError('required')">
+                            Votre nom est <strong>requis</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </tr>
+
+                      <tr>
+                        <mat-form-field class="">
+                          <mat-label>Email</mat-label>
+                          <input matInput [formControl]="emailFormControl"
+                            [errorStateMatcher]="matcher"
+                            placeholder="Ex. pat@example.com">
+                          <mat-error *ngIf="emailFormControl.hasError('email')
+                            && !emailFormControl.hasError('required')">
+                            Entrez une adresse email valide!
+                          </mat-error>
+                          <mat-error
+                            *ngIf="emailFormControl.hasError('required')">
+                            Votre Email est <strong>requis</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </tr>
+
+                      <tr>
+                        <mat-form-field class="example-full-width">
+                          <mat-label>Votre Objet</mat-label>
+                          <input matInput placeholder="Ex: Assistant
+                            administratif">
+                        </mat-form-field>
+                      </tr>
+                    </td>
+
+                    <td>
+                      <mat-form-field class="">
+                        <mat-label>Votre message</mat-label>
+                        <textarea matInput rows="12" cols="40"
+                          placeholder="Votre message"></textarea>
+                      </mat-form-field>
+                    </td>
+
+                  </tr>
+                  <tr class="parent-row upload">
+                    <div class="btn btn-primary">
+                      <i class="fa fa-paperclip" aria-hidden="true"></i>
+                      <span>Choisir un fichier</span>
+                      <input type="file" accept=".pdf, .doc, .docx, .odt">
+                    </div>
+                  </tr>
+                  <tr class="parent-row envoyer">
+                    <a type="submit" mat-raised-button color="primary">Envoyer</a>
+                  </tr>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </ng-template>
+
+
+  <!--MODAL DEPOSER-->
+
+  <ng-template #deposer>
+    <div class="modal-header">
+      <button type="button" style="margin-right: 10px;" class="close pull-right"
+        aria-label="Close"
+        (click)="modalDeposer.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h2 class="text-center">Formulaire pour la candidature spontanée</h2>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="formulaire">
+              <!--<form class="">-->
+              <div
+                class="formDeposer"
+                [ngClass]="{ 'readonly': canSend }">
+                <h3>Informations générales</h3>
+                <p class="text-danger">
+                  <i class="fa fa-warning text-danger"></i>
+                  (* : Champ obligatoire)
+                </p>
+                <mat-form-field class="">
+                  <mat-label>Prénom</mat-label>
+                  <input
+                    matInput
+                    required
+                    placeholder=""
+                    [(ngModel)]="firstName">
+                  <mat-error *ngIf="firstName ===''">
+                    Champ obligatoire
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="">
+                  <mat-label>Nom</mat-label>
+                  <input
+                    matInput
+                    required
+                    placeholder=""
+                    [(ngModel)]="lastName">
+                  <mat-error *ngIf="lastName ===''">
+                    Champ obligatoire
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Date de naissance</mat-label>
+                  <input
+                    matInput
+                    required
+                    [matDatepicker]="picker"
+                    [(ngModel)]="birthday">
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker">
+                  </mat-datepicker-toggle>
+                  <mat-datepicker
+                    #picker>
+                  </mat-datepicker>
+                  <mat-error *ngIf="birthday ===''">
+                    Champ obligatoire
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="">
+                  <mat-label>Email</mat-label>
+                  <input
+                    matInput
+                    required
+                    placeholder="Ex. pat@example.com"
+                    [(ngModel)]="email">
+                  <mat-error *ngIf="false">
+                    Entrez une adresse email valide!
+                  </mat-error>
+                  <mat-error *ngIf="email ===''">
+                    Votre Email est <strong>requis</strong>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="">
+                  <mat-label>Téléphone</mat-label>
+                  <input
+                    matInput
+                    required
+                    placeholder=""
+                    [(ngModel)]="numTel">
+                  <mat-error *ngIf="numTel ===''">
+                    Champ obligatoire
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="">
+                  <mat-label>ID Skype</mat-label>
+                  <input
+                    matInput
+                    placeholder=""
+                    [(ngModel)]="idSkype">
+                </mat-form-field>
+                <mat-form-field class="">
+                  <mat-label>ID WhatsApp</mat-label>
+                  <input
+                    matInput
+                    placeholder=""
+                    [(ngModel)]="idWhatsapp">
+                </mat-form-field>
+                <p>Voyage hors du pays d'origine
+                  <mat-radio-group
+                    [(ngModel)]="originCountry">
+                    <mat-radio-button matInput value="true">Oui</mat-radio-button>
+                    <mat-radio-button matInput value="false">Non</mat-radio-button>
+                  </mat-radio-group>
+                </p>
+
+                <h3>Localisation</h3>
+
+                <mat-form-field>
+                  <mat-label>Pays actuel</mat-label>
+                  <mat-select
+                    required
+                    [(ngModel)]="actualCountry">
+                    <mat-option
+                      *ngFor="let pays of countries"
+                      value="{{pays.name}}">
+                      {{pays.name}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="actualCountry ===''">
+                    Choisissez une option valide.
+                  </mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Ville actuel</mat-label>
+                  <input
+                    matInput
+                    required
+                    placeholder=""
+                    [(ngModel)]="actualCity">
+                  <mat-error *ngIf="actualCity ===''">
+                    Champ obligatoire
+                  </mat-error>
+                </mat-form-field>
+
+                <h3>Profil du candidat</h3>
+
+                <p>Importer votre CV en cliquant ci-dessous</p>
+                <div class="progress" *ngIf="progressFile> 0">
+                  <div
+                    class="progress-bar progress-bar-striped"
+                    role="progressbar"
+                    attr.aria-valuenow="{{ progressFile }}"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    [ngStyle]="{ width: progressFile + '%' }">
+                    {{ progressFile }} %
+                  </div>
+                </div>
+                <div *ngIf="cv">
+                  <p style="font-size: 1rem;">Fihier chargé : {{ cvU.name }}</p>
+                </div>
+                <label
+                  for="file"
+                  class="btn btn-primary">
+                  <i class="fa fa-paperclip"></i>
+                  Importer votre CV (.pdf, .docx, .doc, .odt)
+                </label>
+                <input
+                  id="file"
+                  (change)="onSelectedFile($event)"
+                  class="input-file"
+                  style="display: none"
+                  type="file"
+                  accept=".pdf, .docx, .doc, .odt">
+
+                <h4>Compétences</h4>
+
+                <mat-form-field class="">
+                  <mat-chip-list #chipList aria-label="Competence selection">
+                    <mat-chip *ngFor="let competence of competences"
+                      [selectable]="selectable" [removable]="removable"
+                      (removed)="remove(competence)">
+                      {{competence}}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                      placeholder="Une liste est proposée mais vous pouvez
+                      également faire une saisie complète (5 max.)"
+                      required
+                      #competenceInput
+                      [formControl]="competenceCtrl"
+                      [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      (matChipInputTokenEnd)="add($event)">
+                  </mat-chip-list>
+                  <mat-autocomplete #auto="matAutocomplete"
+                    (optionSelected)="selected($event)">
+                    <mat-option *ngFor="let competence of filteredCompetences |
+                      async" [value]="competence">
+                      {{competence}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <mat-error *ngIf="competences === []">
+                    Champ obligatoire
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Secteur d'activité </mat-label>
+                  <mat-select
+                    [(ngModel)]="secteur">
+                    <mat-option
+                      *ngFor="let activity of secteurs"
+                      [value]="activity">
+                      {{activity}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="secteur ===''">
+                    Champ obligatoire
+                  </mat-error>
+                </mat-form-field>
+
+                <h3>Tous vos détails éducatifs *</h3>
+
+                <div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading">Institut / Ecole</div>
+                    <div class="panel-body">
+                      <form #educForm>
+                        <div class="form-group">
+                          <label for="eductitre">Nom, Adresse, Pays de
+                            l'Institut
+                            / Ecole</label>
+                          <input type="text" class="form-control" id="eductitre"
+                            #eductitre>
+                        </div>
+                        <div class="form-group">
+                          <label for="educspecialisation">Spécialisation</label>
+                          <input type="text" class="form-control"
+                            id="educspecialisation" #educspecialisation>
+                        </div>
+                        <div class="form-group">
+                          <label for="educdiplome">Diplôme</label>
+                          <input type="text" class="form-control"
+                            id="educdiplome"
+                            #educdiplome>
+                        </div>
+                        <div class="form-group">
+                          <label for="educduree" class="control-label col-md-2">Durée
+                            : </label>
+                          <input type="date" id="educduree" #educstartDate> à
+                          <input type="date" id="educduree" #educendDate>
+                        </div>
+
+
+                        <div
+                          class="plus"
+                          (click)="insertionEduc(eductitre, educspecialisation,
+                          educdiplome, educstartDate, educendDate)">
+                          <i class="fa fa-plus" type="submit"
+                            aria-hidden="true">
+                          </i>
+                          Ajouter
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+
+                  <table id="educTable" class="table table-bordered
+                    table-condensed table-striped">
+                    <tbody>
+                      <tr *ngFor="let educ of educations; let i=index">
+                        <td><span class="thead">Nom, Adresse, Pays de
+                            l'Institut
+                            / École: </span>{{educ.titre}}</td>
+                        <td><span class="thead">Spécialisation: </span>{{educ.specialisation}}</td>
+                        <td><span class="thead">Diplôme: </span>{{educ.diplome}}</td>
+                        <td><span class="thead">Durée: </span>{{educ.startDate}}
+                          - {{educ.endDate}}</td>
+                        <td><span class="thead">Action: </span>
+                          <button
+                            type="button"
+                            class="btn btn-danger"
+                            (click)="deleteEduc(i)">Effacer</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>
+                  Tous vos détails d'exprérience (du plus récent au plus
+                  ancien)*
+                </h3>
+
+                <div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading">Profession / Titre</div>
+                    <div class="panel-body">
+                      <form #profForm>
+                        <div class="form-group">
+                          <label for="titre">Titre</label>
+                          <input type="text" class="form-control" id="titre"
+                            #titre>
+                        </div>
+                        <div class="form-group">
+                          <label for="nom_soc">Nom, Adresse, Pays de la Société</label>
+                          <input type="text" class="form-control" id="nom_soc"
+                            #nom_soc>
+                        </div>
+                        <div class="form-group">
+                          <label for="resume">Résumé</label>
+                          <textarea row="10" column="40" class="form-control"
+                            id="resume" #resume></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label for="duree" class="control-label col-md-2">Durée
+                            : </label>
+                          <input type="date" id="duree" #startDate> à <input
+                            type="date" id="duree" #endDate>
+                        </div>
+
+
+                        <div
+                          class="plus"
+                          (click)="insertionProf(titre, nom_soc, resume,
+                          startDate, endDate)">
+                          <i class="fa fa-plus" type="submit"
+                            aria-hidden="true">
+                          </i>
+                          Ajouter
+                        </div>
+
+                      </form>
+
+                    </div>
+
+                  </div>
+
+
+                  <table id="productTable" class="table table-bordered
+                    table-condensed table-striped">
+                    <tbody>
+                      <tr *ngFor="let prof of profession; let i= index">
+                        <td><span class="thead">Titre: </span>{{prof.titre}}</td>
+                        <td><span class="thead">Nom, Adresse, Pays de la
+                            Société:
+                          </span>{{prof.nomSociete}}</td>
+                        <td><span class="thead">Résumé: </span>{{prof.resume}}</td>
+                        <td><span class="thead">Durée: </span>
+                          {{prof.startDate | date:'shortDate':'UTC':'fr'}} -
+                          {{prof.endDate | date:'shortDate':'UTC':'fr'}}
+                        </td>
+                        <td><span class="thead">Action: </span>
+                          <button
+                            type="button"
+                            class="btn btn-danger"
+                            (click)="deleteProf(i)">Effacer</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+
+                </div>
+
+              </div>
+
+              <div class="btn-deposer"
+                *ngIf="!canSend">
+                <a
+                  type="button"
+                  mat-raised-button
+                  color="primary"
+                  (click)="validPDF()">
+                  Valider
+                </a>
+              </div>
+
+              <div class="btn-deposer"
+                *ngIf="canSend">
+                <a
+                  type="button"
+                  mat-raised-button
+                  color="primary"
+                  (click)="deposerCand()">
+                  Je dépose ma candidature
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </ng-template>
+
+
+  <ng-template #slide>
+    <div class="modal-body">
+      <div class="row">
+        <a class="closing" (click)="slideModal.hide()">X</a>
+        <div class="bg-slide">
+
+          <div id="myCarouselS" class="carousel slide" data-ride="carousel"
+            data-interval="10000">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#myCarouselS" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarouselS" data-slide-to="1"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
+                <img src="assets/img/Capture1.jpg" width="100%" height="auto"
+                  class="" color="#555" background="#777">
+                <div class="carousel-caption">
+                  <h3>Talenta</h3>
+                  <p>Au coeur du recrutement</p>
+                </div>
+              </div>
+
+              <div class="item">
+                <img src="assets/img/Capture2.jpg" width="100%" height="auto"
+                  class="" color="#555" background="#777">
+                <div class="carousel-caption">
+                  <h3>Code</h3>
+                  <p>Services satisfaisantes</p>
+                </div>
+              </div>
+
+              <!-- 
+            <div class="item active" *ngFor="let txt of slider">
+              <img src="assets/img/{{txt.img}}" width="100%" height="auto" class="" color="#555" background="#777" text="First slide">
+              <div class="carousel-caption">
+                <h3>{{txt.name}}</h3>
+                <p>{{txt.text}}</p>
+              </div>
+            </div>
+-->
+              <!-- Left and right controls -->
+              <a class="left carousel-control" href="#myCarouselS" role="button"
+                data-slide="prev">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#myCarouselS"
+                role="button" data-slide="next">
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+
+  <!--MODAL LOGIN GENERAL-->
+
+  <ng-template bsModal #template [config]="{backdrop: 'static'}">
+    <div class="modal-header sign-header">
+      <button type="button" class="close pull-right" aria-label="Close"
+        (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Connexion</h2>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div>
+
+        <tabset #staticTabs [justified]="true">
+
+          <tab heading="Déjà client ?">
+            <h5>Connectez-vous</h5>
+            <form class="" [formGroup]="formLoginRecruteur">
+
+              <mat-form-field appearance="fill">
+                <mat-label>Identifiant / Email</mat-label>
+                <mat-icon matSuffix>mail</mat-icon>
+                <input matInput placeholder="" formControlName="mailControl"
+                  autocomplete=off>
+
+              </mat-form-field>
+              <br>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Mot de passe</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'"
+                  autocomplete=off formControlName="pwControl">
+                <button mat-icon-button matSuffix (click)="hide= !hide"
+                  [attr.aria-label]="'Cacher le mot de passe'"
+                  [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+              <br>
+
+              <div>
+                <mat-checkbox>Se souvenir de vous</mat-checkbox>
+              </div>
+              <br>
+              <p align="right">Vous avez oublié votre <a type="button"
+                  (click)="selectTab(2, staticTabs)">mot de
+                  passe</a>?</p>
+              <p align="center" (click)="loginAccount()"><a type="submit"
+                  [disabled]="formLoginRecruteur.invalid"
+                  mat-raised-button color="primary">
+                  <mat-icon matPrefix>lock</mat-icon> Continuer
+                </a></p>
+              <p align="right"><a type="button" (click)="selectTab(1,
+                  staticTabs)">Pas encore de compte? Créez-le ici.</a>
+              </p>
+            </form>
+          </tab>
+
+
+          <tab heading="Nouveau client ?">
+            <h5>Créez votre compte</h5>
+            <form class="" [formGroup]="formRegisterRecruteur">
+
+              <mat-form-field appearance="fill">
+                <mat-label>Pseudo *</mat-label>
+                <mat-icon matPrefix>account_circle</mat-icon>
+                <input matInput formControlName="pseudoFC" placeholder="">
+                <mat-error
+                  *ngIf="formRegisterRecruteur.controls.pseudoFC.errors?.required
+                  && formRegisterRecruteur.controls.pseudoFC.dirty">
+                  Il faut entrer votre pseudo.
+                </mat-error>
+                <br>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Email *</mat-label>
+                <mat-icon matPrefix>mail</mat-icon>
+                <input matInput formControlName="emailFC" placeholder="Ex.
+                  pat@example.com">
+                <mat-error
+                  *ngIf="!formRegisterRecruteur.controls.emailFC.errors?.required
+                  && formRegisterRecruteur.controls.emailFC.errors?.checkMail">
+                  Entrez une adresse email valide!
+                </mat-error>
+                <mat-error
+                  *ngIf="formRegisterRecruteur.controls.emailFC.errors?.required
+                  && formRegisterRecruteur.controls.emailFC.dirty">
+                  Votre Email est <strong>requis</strong>
+                </mat-error>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>Mot de passe</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'"
+                  formControlName="mdpFC">
+                <button mat-icon-button matSuffix (click)="hide= !hide"
+                  [attr.aria-label]="'Cacher le mot de passe'"
+                  [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error
+                  *ngIf="formRegisterRecruteur.controls.mdpFC.errors?.required
+                  && formRegisterRecruteur.controls.mdpFC.dirty">
+                  Votre Mot de passe est <strong>requis</strong>
+                </mat-error>
+                <mat-error
+                  *ngIf="formRegisterRecruteur.controls.mdpFC.errors?.pattern">
+                  Le mot de passe doit contenir Majuscule, miniscule, chiffre et
+                  minimum 8 caractères.
+                </mat-error>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>Confirmation de passe</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'"
+                  formControlName="confirmFC" (change)="onChangeCpw()">
+                <button mat-icon-button matSuffix (click)="hide= !hide"
+                  [attr.aria-label]="'Cacher le mot de passe'"
+                  [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error
+                  *ngIf="formRegisterRecruteur.controls.confirmFC.errors?.required
+                  && formRegisterRecruteur.controls.confirmFC.dirty">
+                  Il faut confirmer votre Mot de passe.
+                </mat-error>
+                <mat-error
+                  *ngIf="formRegisterRecruteur.controls.mdpFC.errors?.pattern">
+                  Le mot de passe doit contenir Majuscule, miniscule, chiffre et
+                  minimum 8 caractères.
+                </mat-error>
+                <mat-error *ngIf="checkCpwNew">
+                  Le mot de passe que vous avez entré n'est pas le même.
+                </mat-error>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>Tél. professionnel *</mat-label>
+                <mat-icon matPrefix>phone</mat-icon>
+                <input matInput formControlName="telFC"
+                  [errorStateMatcher]="matcher" placeholder="">
+                <mat-error
+                  *ngIf="formRegisterRecruteur.controls.telFC.errors?.required
+                  && formRegisterRecruteur.controls.telFC.dirty">
+                  Votre numero de téléphone professionnel est <strong>requis</strong>
+                </mat-error>
+                <mat-error
+                  *ngIf="!formRegisterRecruteur.controls.telFC.errors?.required
+                  && formRegisterRecruteur.controls.telFC.errors?.checkTel">
+                  Entrez une numero de téléphone valide valide!
+                </mat-error>
+              </mat-form-field>
+              <br>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Nom d'entreprise *</mat-label>
+                <mat-icon matPrefix>business</mat-icon>
+                <input matInput formControlName="enterpriseFC" placeholder="">
+                <mat-error
+                  *ngIf="formRegisterRecruteur.controls.enterpriseFC.errors?.required
+                  && formRegisterRecruteur.controls.enterpriseFC.dirty">
+                  Il faut entrer le nom de votre entreprise.
+                </mat-error>
+              </mat-form-field>
+              <br>
+
+
+              <mat-form-field appearance="fill">
+                <mat-label>Code Postal *</mat-label>
+                <mat-icon matPrefix>flag</mat-icon>
+                <input matInput formControlName="codeFC"
+                  [errorStateMatcher]="matcher" #postalCode maxlength="5"
+                  placeholder="Ex. 94105">
+                <mat-error
+                  *ngIf="formRegisterRecruteur.controls.codeFC.errors?.required
+                  && formRegisterRecruteur.controls.codeFC.dirty">
+                  Le code postal de votre pays
+                </mat-error>
+                <mat-error
+                  *ngIf="!formRegisterRecruteur.controls.codeFC.errors?.required">
+                  Entrez un code valide valide!
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Pays </mat-label>
+                <mat-select formControlName="paysFC" required>
+                  <mat-option *ngFor="let pays of country" [value]="pays">{{pays}}</mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="formRegisterRecruteur.controls.paysFC.errors?.required
+                  && formRegisterRecruteur.controls.paysFC.dirty">
+                  Choisissez une option valide.</mat-error>
+
+              </mat-form-field>
+              <br>
+              <p>* J'accepte de recevoir les communications Talenta Sourcing par
+                e-mail : </p>
+              <mat-radio-group formControlName="commFC">
+                <mat-radio-button matInput value="true" required>Oui</mat-radio-button>
+                <mat-radio-button matInput value="false" required>Non</mat-radio-button>
+              </mat-radio-group>
+
+              <br>
+
+              <div>
+                <p>Ces données (obligatoires lorsque signalées par un
+                  astérisque) permettent à Talenta Sourcing de créer
+                  et
+                  gérer votre compte et de personnaliser nos services. Avec
+                  votre accord vous pourrez recevoir des
+                  communications Talenta Sourcing par e-mail. Vous disposez d’un
+                  droit d’accès, de rectification,
+                  d’opposition et de suppression par mail à
+                  serviceclientele@talentasourcing.fr . </p>
+                <p>
+                  <mat-checkbox formControlName="acceptFC"><span> * J'ai lu et
+                      j'accepte les <a href="">conditions
+                        d'utilisation</a>,
+                      la <a href="">notice sur les données personelles</a> et l'<a
+                        href="">utilisation des cookies</a> de
+                      Talenta Sourcing.</span>
+                  </mat-checkbox>
+                  <mat-error
+                    *ngIf="formRegisterRecruteur.controls.acceptFC.errors?.requiredTrue
+                    && formRegisterRecruteur.controls.acceptFC.dirty">
+                    Vous devez accepter ces conditions d'abord.</mat-error>
+                </p>
+              </div>
+              <br>
+
+              <p align="center">
+                <a type="submit" mat-raised-button color="primary"
+                  (click)="createAccountNew(staticTabs)"
+                  [disabled]="formRegisterRecruteur.invalid">
+                  <mat-icon matPrefix>lock</mat-icon> Continuer
+                </a>
+              </p>
+              <p align="right">
+                <a type="button" (click)="selectTab(0, staticTabs)">Vous avez
+                  déjà un compte? Connectez-vous.</a>
+              </p>
+            </form>
+          </tab>
+
+
+
+          <tab heading="Mot de passe oublié ?">
+            <h5>Mot de passe oublié ?</h5>
+            <p>Veuillez indiquer l’adresse email associée à votre compte.</p>
+            <form class="" [formGroup]="formForgetRecruteur">
+
+              <mat-form-field appearance="fill">
+                <mat-label>Adresse email</mat-label>
+                <mat-icon matSuffix>mail</mat-icon>
+                <input matInput placeholder=""
+                  formControlName="forgetFormControl">
+                <mat-error
+                  *ngIf="formForgetRecruteur.controls.forgetFormControl.errors?.required
+                  && formForgetRecruteur.controls.forgetFormControl.dirty">
+                  Cette champ est <strong>requise</strong>
+                </mat-error>
+              </mat-form-field>
+              <br>
+              <p align="center">
+                <a
+                  type="submit"
+                  mat-raised-button
+                  color="primary"
+                  align="right"
+                  (click)="sendForgot()">
+                  <mat-icon matPrefix>lock</mat-icon>
+                  Envoyer
+                </a>
+              </p>
+              <p align="center">Appelez-nous au 034 36 311 46.</p>
+            </form>
+          </tab>
+        </tabset>
+      </div>
+
+    </div>
+  </ng-template>

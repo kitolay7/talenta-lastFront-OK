@@ -1,0 +1,69 @@
+<div *ngIf="!loading" class="loader-div">
+	<mat-spinner></mat-spinner>
+</div>
+<div class="container-fluid" id="account">
+	<div class="row" style="padding-top: 70px;" *ngIf="loading">
+		<div class="account-body">
+			
+        	<app-subheader></app-subheader>
+			<h1 class="subheader" style="font-family: var(--ff-candara)">Les candidats qui ont postulé directement</h1>
+			<div class="col-md-12 account-content">
+				<div class="secteur">
+					<h3>Secteurs d'activités : </h3>
+					<span 
+						*ngFor="let secteur of allsecteurs; let id=index"
+						class="item">
+						<u 
+							[ngStyle]="{ 'font-size': 'calc(14px + ' + secteur[1] + 'px)' }"
+							(click)="detail(id)">
+							{{secteur[0]}} 
+						</u> ({{secteur[1]}})&nbsp;|&nbsp;
+					</span>
+				</div>
+			</div>
+			<div class="col-md-12 account-content" *ngIf="showTable">
+				<div class="col-md-12 col-sm-12">
+					<h3>Enregistrements trouvés dans le secteur "{{activeSecteur}}": 
+					{{nbCandidat}} candidats</h3>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table table-hover table-striped">
+						<thead>
+							<tr class="info">
+								<th>N°</th>
+								<th>Nom et Prénoms</th>
+								<th>Compétence</th>
+								<th>Traité</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr 
+								*ngFor="let candidat of allCandidats | filter: activeSecteur; let id=index"
+								>
+								<td [routerLink]="['/detail_spontaneous/' + candidat.id]">
+									{{id + 1}}
+								</td>
+								<td [routerLink]="['/detail_spontaneous/' + candidat.id]">
+									{{candidat.lastName + ' ' + candidat.firstName}}
+								</td>
+								<td [routerLink]="['/detail_spontaneous/' + candidat.id]">
+									<span 
+										*ngFor="let comp of candidat.competences">
+										{{comp.name}}, 
+									</span>
+								</td>
+								<td>{{(candidat.traiter) ? 'Oui' : 'Non' }}
+									<mat-slide-toggle 
+										(change)="status(candidat.id, candidat.traiter)" 
+										[(ngModel)]="candidat.traiter">
+									</mat-slide-toggle>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

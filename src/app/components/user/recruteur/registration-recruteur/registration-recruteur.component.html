@@ -1,0 +1,272 @@
+<div class="container-fluid" style="padding-top: 100px;padding-bottom: 100px;">
+	<div class="row">
+		<h1 style="font-family: var(--ff-candara)">Bienvenue sur TALENTA</h1>
+		<div class="col-md-6">
+			<h2>Connectez-vous</h2>
+			<form class="" [formGroup]="formLogin">
+
+				<mat-form-field appearance="fill">
+					<mat-label>Identifiant / Email</mat-label>
+					<mat-icon matSuffix>mail</mat-icon>
+					<input matInput placeholder="" formControlName="mailControl" autocomplete=off>
+					<mat-error
+						*ngIf="!formLogin.controls.mailControl.errors?.required && formLogin.controls.mailControl.errors?.email">
+						Entrez une adresse email valide!
+					</mat-error>
+					<mat-error
+						*ngIf="formLogin.controls.mailControl.errors?.required && formLogin.controls.mailControl.dirty">
+						Votre Email est <strong>requis</strong>
+					</mat-error>
+				</mat-form-field>
+				<br>
+
+				<mat-form-field appearance="fill">
+					<mat-label>Mot de passe</mat-label>
+					<input matInput [type]="hide ? 'password' : 'text'" autocomplete=off formControlName="pwControl">
+					<button mat-icon-button matSuffix (click)="hide = !hide"
+						[attr.aria-label]="'Cacher le mot de passe'" [attr.aria-pressed]="hide">
+						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+					</button>
+					<mat-error
+						*ngIf="formLogin.controls.pwControl.errors?.required && formLogin.controls.pwControl.dirty">
+						Votre mot de passe est requis!
+					</mat-error>
+				</mat-form-field>
+				<br>
+
+				<div>
+					<mat-checkbox>Se souvenir de vous</mat-checkbox>
+				</div>
+            	<p align="right">
+            		Vous avez oublié votre 
+            		<a 
+            			type="button"
+            			(click)="openForgot(forgot)">
+                		mot de passe
+                	</a>?
+                </p>
+				<br>
+
+				<p 
+					align="center"
+					[ngClass]="{ 'validator': formLogin.invalid }">
+					<a 
+						type="submit" 
+						(click)="loginAccount()"
+						mat-raised-button color="primary">
+						<mat-icon matPrefix>lock</mat-icon> Continuer
+					</a></p>
+			</form>
+		</div>
+		<div class="col-md-6" style="border-left:1px solid">
+			<h2>Créez votre compte</h2>
+
+			<form action="" method="POST" [formGroup]="formRegister">
+
+
+				<mat-form-field appearance="fill">
+					<mat-label>Pseudo</mat-label>
+					<mat-icon matPrefix>account_circle</mat-icon>
+					<input matInput required formControlName="pseudoFC" placeholder="">
+					<mat-error *ngIf="formRegister.controls.pseudoFC.errors?.checkMail">
+						Il faut entrer votre pseudo.
+					</mat-error>
+				</mat-form-field>
+				<br>
+				<mat-form-field appearance="fill">
+					<mat-label>Nom</mat-label>
+					<mat-icon matPrefix>account_circle</mat-icon>
+					<input matInput required formControlName="lastName" placeholder="">
+				</mat-form-field>
+				<br>
+				<mat-form-field appearance="fill">
+					<mat-label>Prénoms</mat-label>
+					<mat-icon matPrefix>account_circle</mat-icon>
+					<input matInput required formControlName="firstName" placeholder="">
+				</mat-form-field>
+				<br>
+				<mat-form-field appearance="fill">
+					<mat-label>Email</mat-label>
+					<mat-icon matPrefix>mail</mat-icon>
+					<input matInput required formControlName="email" placeholder="Ex. pat@example.com">
+					<mat-error *ngIf="formRegister.controls.email.errors?.checkMail">
+						Entrez une adresse email valide!
+					</mat-error>
+					<mat-error *ngIf="formRegister.controls.email.errors?.required">
+						Votre Email est <strong>requis</strong>
+					</mat-error>
+				</mat-form-field>
+				<br>
+				<mat-form-field appearance="fill">
+					<mat-label>Mot de passe</mat-label>
+					<input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+					<button mat-icon-button matSuffix (click)="hide= !hide" [attr.aria-label]="'Cacher le mot de passe'"
+						[attr.aria-pressed]="hide">
+						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+					</button>
+					<mat-error *ngIf="formRegister.controls.password.errors?.required">
+						Votre Mot de passe est <strong>requis</strong>
+					</mat-error>
+					<mat-error *ngIf="formRegister.controls.password.touched &&
+                		formRegister.controls.password.invalid">
+						Le mot de passe doit contenir Majuscule, miniscule, chiffre et
+						minimum 8 caractères.
+					</mat-error>
+				</mat-form-field>
+				<br>
+				<mat-form-field appearance="fill">
+					<mat-label>Confirmation de passe</mat-label>
+					<input matInput required [type]="hide ? 'password' : 'text'" formControlName="confirmpassword">
+					<button mat-icon-button matSuffix (click)="hide= !hide" [attr.aria-label]="'Cacher le mot de passe'"
+						[attr.aria-pressed]="hide">
+						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+					</button>
+					<mat-error *ngIf="formRegister.controls.confirmpassword.errors?.required">
+						Il faut confirmer votre Mot de passe.
+					</mat-error>
+					<mat-error *ngIf="formRegister.controls.confirmpassword.errors?.confirmedValidator">
+						Le mot de passe que vous avez entré n'est pas le même.
+					</mat-error>
+				</mat-form-field>
+				<br>
+				<mat-form-field appearance="fill">
+					<mat-label>Tél. professionnel</mat-label>
+					<mat-icon matPrefix>phone</mat-icon>
+					<input matInput required formControlName="numTel" placeholder="">
+					<mat-error *ngIf="formRegister.controls.numTel.errors?.required">
+						Votre numero de téléphone professionnel est <strong>requis</strong>
+					</mat-error>
+				</mat-form-field>
+				<br>
+
+				<mat-form-field appearance="fill">
+					<mat-label>Nom d'entreprise</mat-label>
+					<mat-icon matPrefix>business</mat-icon>
+					<input matInput required formControlName="enterpriseFC" placeholder="">
+					<mat-error *ngIf="formRegister.controls.enterpriseFC.errors?.required">
+						Il faut entrer le nom de votre entreprise.
+					</mat-error>
+				</mat-form-field>
+				<br>
+
+
+				<mat-form-field appearance="fill">
+					<mat-label>Code Postal</mat-label>
+					<mat-icon matPrefix>flag</mat-icon>
+					<input matInput formControlName="codeFC" maxlength="5" required placeholder="Ex. 94105">
+					<mat-error *ngIf="formRegister.controls.codeFC.errors?.required">
+						Entrez un code valide valide!
+					</mat-error>
+				</mat-form-field>
+
+				<mat-form-field appearance="fill">
+					<mat-label>Pays </mat-label>
+					<input matInput formControlName="country" required placeholder="Ex. Madagascar">
+					<mat-error *ngIf="formRegister.controls.country.errors?.required">
+						Choisissez une option valide.
+					</mat-error>
+				</mat-form-field>
+				<br>
+				<p>* J'accepte de recevoir les communications Talenta Sourcing par
+					e-mail : </p>
+				<mat-radio-group formControlName="commFC">
+					<mat-radio-button matInput value="true" required>Oui</mat-radio-button>
+					<mat-radio-button matInput value="false" required>Non</mat-radio-button>
+				</mat-radio-group>
+
+				<br>
+
+				<div>
+					<p>Ces données (obligatoires lorsque signalées par un astérisque)
+						permettent à Talenta Sourcing de créer
+						et
+						gérer votre compte et de personnaliser nos services. Avec votre
+						accord vous pourrez recevoir des
+						communications Talenta Sourcing par e-mail. Vous disposez d’un
+						droit d’accès, de rectification,
+						d’opposition et de suppression par mail à
+						serviceclientele@talentasourcing.fr . </p>
+					<p>
+						<mat-checkbox formControlName="acceptFC"><span> * J'ai lu et
+								j'accepte les <a target="_blank" href="assets/docs/L2014-038.pdf">conditions
+									d'utilisation,
+								la notice sur les données personelles et l'utilisation des
+									cookies</a> de
+								Talenta Sourcing.</span>
+						</mat-checkbox>
+						<mat-error *ngIf="formRegister.controls.acceptFC.errors?.required">
+							Vous devez accepter ces conditions d'abord.</mat-error>
+					</p>
+				</div>
+				<br>
+				<p 
+					align="center"
+					[ngClass]="{ 'validator': formRegister.invalid }">
+					<a 
+						type="submit" 
+						mat-raised-button 
+						color="primary"
+						(click)="createUser()">
+						<mat-icon matPrefix>lock</mat-icon> Continuer
+					</a>
+				</p>
+
+			</form>
+		</div>
+	</div>
+</div>
+
+<!--MODAL LOGIN GENERAL-->
+
+<ng-template #forgot [config]="{backdrop: 'static'}">
+  <div class="modal-header sign-header">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalForgot.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Connexion</h2>
+      </div>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div>
+
+      <tabset #staticTabs [justified]="true">
+
+        <tab heading="Mot de passe oublié ?">
+          <p>Veuillez indiquer l’adresse email associée à votre compte.</p>
+          <form class="" [formGroup]="formForgetRecruteur">
+
+            <mat-form-field appearance="fill">
+              <mat-label>Adresse email</mat-label>
+              <mat-icon matSuffix>mail</mat-icon>
+              <input matInput placeholder=""
+                formControlName="forgetFormControl">
+              <mat-error
+                *ngIf="formForgetRecruteur.controls.forgetFormControl.errors?.required
+                && formForgetRecruteur.controls.forgetFormControl.dirty">
+                Cette champ est <strong>requise</strong>
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <p 
+            	align="center"
+            	[ngClass]="{ 'validator': formForgetRecruteur.invalid }">
+            	<a 
+            		type="submit" 
+            		mat-raised-button 
+            		color="primary"
+            		(click)="sendForgot()">
+                	<mat-icon matPrefix>lock</mat-icon> 
+                	Envoyer
+              	</a>
+            </p>
+            <p align="center">Appelez-nous au 000 00 000 00.</p>
+          </form>
+        </tab>
+      </tabset>
+    </div>
+
+  </div>
+</ng-template>

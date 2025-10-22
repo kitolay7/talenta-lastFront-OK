@@ -1,0 +1,43 @@
+<form [formGroup]="form1">
+    <div class="form-group">
+      <label>Votre mot de passe actuel</label>
+      <input
+        formControlName="oldPwd"
+        id="oldPwd"
+        type="password" 
+        class="form-control" />
+      <div class="alert alert-danger" *ngIf="oldPwd.touched && oldPwd.invalid">
+        <div *ngIf="oldPwd.errors.required">Champs Obligatoire</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Nouveau Password</label>
+       <input 
+        formControlName="newPwd" 
+        id="newPwd"
+        type="password"  
+        class="form-control" />
+      <div class="alert alert-danger" *ngIf="newPwd.touched && newPwd.invalid">
+        <div *ngIf="newPwd.errors.required">Champs Obligatoire.</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Confirmer Password</label>
+       <input 
+        formControlName="confirmPwd" 
+        id="confirmPwd"
+        type="password"  
+        class="form-control" />
+      <div class="alert alert-danger" *ngIf="confirmPwd.touched && confirmPwd.invalid">
+        <div *ngIf="confirmPwd.errors.required">Champs Obligatoire</div>
+      </div>
+      <div class="alert alert-danger" *ngIf="confirmPwd.valid && form1.invalid">
+      Mot de passe ne correspond pas
+      </div>
+    </div>
+  
+    <button [disabled]="form1.invalid" class="btn btn-primary" (click)="valid()">Modifier</button>
+  
+  </form>

@@ -1,0 +1,19 @@
+
+.account-body
+{
+	.account-content
+	{
+		min-height: 100vh;
+		.offre-image
+		{
+			margin: 15px 0;
+			img
+			{
+				height: 200px;
+			}
+		}
+	}
+}
+
+@media (max-width: 768px) {
+}

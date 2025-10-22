@@ -1,0 +1,224 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div id="postulation" class="container-fluid" style="margin-top: 80px;">
+	<div class="postulation">
+		<app-subheader [title]="title"></app-subheader>
+		<div class="forward_total">
+			<div class="forward_button">
+				<button
+					[routerLink]="['/detail_offer/'+offreId]"
+					mat-raised-button
+					color="primary">
+					<i class="fa fa-chevron-left"></i> Retour
+				</button>
+			</div>
+			<div class="pointTotal" style="margin-right: 60px;"><b><u>TOTAL DES POINTS</u> : </b>
+				<b>{{totalPoint}}</b></div>
+		</div>
+		<!-- <div class="col-md-12 my-10" style="margin-left: 20px;">
+			<button
+				[routerLink]="['/detail_offer/'+offreId]"
+				mat-raised-button
+				color="primary">
+				<i class="fa fa-chevron-left"></i> Retour
+			</button>
+		</div>
+		<h1 class="subheader" style="font-family: var(--ff-candara)">Etat des
+			candidatures</h1> -->
+		<div class="d_f f_r f_j_c_b">
+			<button
+				class="btn btn-primary m-10 forward_button"
+				(click)="sendMailSelected()">
+				Envoyer un e-mail au candidat
+			</button>
+			<button
+				class="btn btn-default m-10" style="margin-right: 60px;"
+				(click)="extraire()">
+				Extraire (.csv)
+			</button>
+		</div>
+
+		<div class="tableFixHead" style="width: inherit;">
+			<table class="table table-striped table-hover table-bordered">
+				<thead class="thead-light">
+					<tr>
+						<th>
+							<mat-checkbox [(ngModel)]="selectAll"
+								(change)="toggleSelectAll(selectAll)">
+								Selectionner
+							</mat-checkbox>
+						</th>
+						<th>Candidat</th>
+						<th>Poste</th>
+						<th>Publication</th>
+						<th>Date de Test</th>
+						<th>Test</th>
+						<th>Etape</th>
+						<th>Points</th>
+						<th>Décision</th>
+						<th>Observation</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let postulation of postulations; let index=index;">
+						<td>
+							<div>
+								<mat-checkbox [(ngModel)]="postulation.selected"
+									(change)="toggle(postulation.selected)"></mat-checkbox>
+							</div>
+						</td>
+						<td>
+							<h4
+								class="text-center"
+								data-toggle="tooltip"
+								title="Double cliquer pour envoyer un e-mail"
+								(dblclick)="sendMailModal(send, index, postulation)">
+								{{postulation.user.profile.firstName}}&nbsp;
+								<span style="color: #555">
+									{{postulation.user.profile.lastName}}
+								</span>
+							</h4>
+						</td>
+						<td>
+							<h4>
+								<span class="rose" [innerHTML]="postulation.offre.titre">
+								</span>
+							</h4>
+							<small>({{postulation.offre.post}})</small>
+						</td>
+						<td>
+							<span class="rose">
+								{{postulation.offre.publicationDate | date:'shortDate':'UTC':'fr'}}
+							</span>
+						</td>
+						<td>
+							<span class="rose">
+								{{postulation.testDate | date:'shortDate':'UTC':'fr'}}
+							</span>
+						</td>
+						<td>
+							<span class="color5">
+								{{getTestEvolution(postulation.testPassed)}}
+							</span>
+						</td>
+						<td>
+							<span class="rose">
+								{{postulation.step}}
+							</span>
+						</td>
+						<td>
+							<span class="rose" style="font-size: 2rem">
+								{{postulation.note}}
+								<span class="rose" style="font-size: 10px;vertical-align: super;">
+									/{{totalPoint}}
+								</span>
+								<!-- <span class="rose" style="font-size: 10px;vertical-align: super;">
+									/{{postulation.totalPoint}}
+								</span> -->
+							</span>
+							<a routerLink="{{'/postulation/users/'+ postulation.userId
+								+'/offres/'+offreId+'/details'
+								}}"
+								class="btn btn-default"
+								style="position: relative">
+								<span
+									class="notif alerte"
+									data-toggle="tooltip"
+									title="Notation manuelle requise"
+									*ngIf="manualNotation && !postulation.noted_main">
+								</span>
+								<span
+									class="notif finish"
+									data-toggle="tooltip"
+									title="Notation manuelle effectuée"
+									*ngIf="manualNotation && postulation.noted_main">
+								</span>
+								Details {{postulation.main_noted}}
+							</a>
+						</td>
+						<td>
+							<span class="color5" style="padding: 0 10px;font-size: 2rem">
+								{{getDecision(postulation)}}
+							</span>
+						</td>
+						<td>
+							<textarea
+								name="rq"
+								id="rq"
+								cols="20"
+								rows="3"
+								placeholder="Observations"
+								class="form-control"
+								[(ngModel)]="postulation.observation">
+								{{postulation.observation}}
+							</textarea>
+							<button
+								class="btn btn-primary m-10"
+								(click)="observationIsChanged(index)">
+								Editer
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+<ng-template #send>
+	<div class="modal-header">
+		<button
+			type="button"
+			class="close pull-right"
+			aria-label="Close"
+			(click)="modalSendMail.hide()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<h2>Envoyer un e-mail à {{fullname}}</h2>
+		<form method="post" [formGroup]="formContact">
+			<div class="">
+				<mat-form-field appearance="fill">
+					<mat-label>Objet</mat-label>
+					<input
+						matInput
+						required
+						formControlName="objet"
+						placeholder="">
+					<mat-error *ngIf="formContact.controls.objet.errors?.required">
+						Champ obligatoire
+					</mat-error>
+				</mat-form-field>
+				<br>
+				<mat-form-field appearance="fill">
+					<mat-label>Message</mat-label>
+					<textarea
+						matInput
+						required
+						cdkTextareaAutosize
+						#autosize="cdkTextareaAutosize"
+						cdkAutosizeMinRows="6"
+						cdkAutosizeMaxRows="8"
+						formControlName="message">
+					</textarea>
+					<mat-error *ngIf="formContact.controls.message.errors?.required">
+						Champ obligatoire
+					</mat-error>
+				</mat-form-field>
+				<br>
+
+				<p
+					align="center"
+					[ngClass]="{ 'validator': formContact.invalid }">
+					<a
+						type="submit"
+						class="btn btn-spec"
+						(click)="sendContact()">
+						Envoyer
+					</a>
+				</p>
+			</div>
+		</form>
+	</div>
+</ng-template>

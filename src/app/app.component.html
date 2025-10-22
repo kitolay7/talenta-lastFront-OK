@@ -1,0 +1,53 @@
+<div *ngIf="isLogin" style="height: 100%;">
+  <!--<app-header></app-header>-->
+  <app-header-admin-auth *ngIf="isAdminRoute"></app-header-admin-auth>
+
+  <!-- Admin connecté -->
+  <app-header-admin *ngIf="isAdminRoute && !isAdminLoginRoute"></app-header-admin>
+
+  <!-- Site public -->
+  <app-header *ngIf="!isAdminRoute"></app-header>
+  
+  <div style="display:flex;flex-direction:column;justify-content:
+    space-between;height:100%">
+    <div class="root">
+      <router-outlet></router-outlet>
+    </div>
+
+    <app-footer></app-footer>
+  </div>
+
+</div>
+<div *ngIf="!isLogin">
+  <div class="container">
+    <div class="row">
+      <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <!-- Tabs Titles -->
+
+          <!-- Icon -->
+          <div class="fadeIn first">
+            <h1>Bienvenue Sur Talenta Sourcing</h1>
+            <h4 style="padding: 5%;
+              color: red;
+              border: 1px solid;
+              margin: 4%;">Ce site est en phase de test. Merci de vous connecter</h4>
+          </div>
+
+          <!-- Login Form -->
+          <form>
+            <form>
+              <input type="text" id="login" class="fadeIn second" name="email"
+                [(ngModel)]="email" placeholder="Email">
+              <input type="password" id="password" class="fadeIn third"
+                name="login" [(ngModel)]="password" placeholder="Mot de passe">
+              <input type="submit" class="fadeIn fourth" (click)="a()" value="Se
+                connecter">
+            </form>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

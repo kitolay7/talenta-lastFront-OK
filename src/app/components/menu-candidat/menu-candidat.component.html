@@ -1,0 +1,287 @@
+<div class="text-center menu-candidat">
+  <a 
+  	class="btn btn-info my-10" 
+  	(click)="openModal(offre)"
+  	>
+  	<i class="fa fa-edit"></i>
+  	<span class="hider"> Editer</span>
+  </a>
+  <a 
+  	class="btn btn-info my-10" 
+  	(click)="openModal(pw)"
+  	>
+  	<i class="fa fa-unlock"></i>
+  	<span class="hider"> Modifier votre mot de passe</span>
+</a>
+  <a 
+  	class="btn btn-info my-10" 
+  	(click)="goTo()"
+  	*ngIf="haveOffer"
+  	>
+  	<i class="fa fa-clipboard"></i>
+  	<span class="hider"> Fiche de poste</span>
+  </a>
+  <a 
+  	class="btn btn-info my-10" 
+  	(click)="postuler()"
+  	*ngIf="canTest"
+  	>
+  	<i class="fa fa-file-text"></i>
+  	<span class="hider"> Faire le test</span>
+  </a>
+  <a 
+  	class="btn btn-info my-10" 
+  	(click)="testLater()"
+  	*ngIf="canTest"
+  	>
+  	<i class="fa fa-file-text"></i>
+  	<span class="hider"> Je fais le test plus tard</span>
+  </a>
+  <a 
+  	class="btn btn-info my-10" 
+    [routerLink]="['/offreCandidat/']"
+  	>
+  	<i class="fa fa-list"></i>
+  	<span class="hider"> Mes candidatures déposées</span>
+  </a>
+</div>
+
+
+
+<ng-template #pw>
+  <div class="modal-header">
+    <button 
+      type="button" 
+      class="close pull-right" 
+      aria-label="Close" 
+      (click)="modalDeposer1.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <h2>Modification de votre mot de passe</h2>
+ <div class="modal-body">
+  <app-edit-pass></app-edit-pass>
+ </div>
+</ng-template>
+
+<ng-template #offre>
+  <div class="modal-header">
+    <button 
+      type="button" 
+      class="close pull-right" 
+      aria-label="Close" 
+      (click)="modalDeposer1.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <h2>Modification du profil</h2>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div >
+          <div class="row">
+            <div class="col-md-3">
+              <label for="lastName">Nom* :</label>
+            </div>
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                name="lastName"
+                id="lastName"
+                placeholder="Saisie"
+                [(ngModel)]="lastName"
+                
+                />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div >
+          <div class="row">
+            <div class="col-md-3">
+              <label for="lastname">Pr&eacute;nom* :</label>
+            </div>
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                id="firstname"
+                name="firstname"
+                placeholder="Saisie"
+                [(ngModel)]="firstname"
+                
+                />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div >
+          <div class="row">
+            <div class="col-md-3">
+              <label for="city">Ville de r&eacute;sidence actuelle* :</label>
+            </div>
+            <div class="col-md-9">
+              <input
+              name="city"
+              id="city"
+              class="form-control"
+              required="required"
+              [(ngModel)]="city"
+              
+              />
+  
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div >
+          <div class="row">
+            <div class="col-md-3">
+              <label for="state">Pays* :</label>
+            </div>
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                id="state"
+                name="inputState"
+                placeholder="Saisie"
+                [(ngModel)]="country"
+                
+                />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div >
+          <div class="row">
+            <div class="col-md-3">
+              <label for="telephone">Num&eacute;ro de t&eacute;l&eacute;phone* :</label>
+            </div>
+            <div class="col-md-9">
+              <input
+                type="tel"
+                class="form-control"
+                id="telephone"
+                name="telephone"
+                placeholder="Saisie"
+                [(ngModel)]="numTel"
+                
+                />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div >
+          <div class="row">
+            <div class="col-md-3">
+              <label for="job">M&eacute;tier actuel* :</label>
+            </div>
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                id="job"
+                name="job"
+                placeholder="Ex : Téléconseiller/sans emploi"
+                [(ngModel)]="currentJob"
+                
+                />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div >
+          <div class="row">
+            <div class="col-md-3">
+              <label for="experience">
+                Nombre années expérience au métier actuel* :
+              </label>
+            </div>
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                id="experience"
+                name="experience"
+                placeholder="Ex : 6 mois/5 ans"
+                [(ngModel)]="experienceYear"
+                
+                />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div >
+          <div class="row">
+            <div class="col-md-3">
+              <label for="level">Niveau d’études* :</label>
+            </div>
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                id="level"
+                name="level"
+                placeholder="Ex : Terminale/ 2 ème année universitaire"
+                [(ngModel)]="studiesLevel"
+                
+                />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div >
+          <div class="row">
+            <div class="col-md-3">
+              <label for="diplome">Diplômes* :</label>
+            </div>
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                id="diplome"
+                name="diplome"
+                placeholder="Ex : BAE/ Licence/Master 2"
+                [(ngModel)]="diplomas"
+                
+                />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div >
+          <div class="row">
+            <div class="col-md-3">
+              <label for="specialisation">Spécialisation Diplôme :</label>
+            </div>
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                id="specialisation"
+                name="specialisation"
+                placeholder="Ex : Ouvrage métallique"
+                [(ngModel)]="diplomasSpecialities"
+                />
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="text-center">
+		<button (click)="updateProfile()" class="btn btn-primary">Valider</button>
+	</div>
+  </div>
+
+</ng-template>

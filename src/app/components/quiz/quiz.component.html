@@ -1,0 +1,211 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div class="container-fluid" style='padding-top: 100px;'>
+	<!--
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="position: absolute;left: 0;bottom: 0;">
+		<path fill="#0099ff" fill-opacity="1" d="M0,96L120,90.7C240,85,480,75,720,96C960,117,1200,171,1320,197.3L1440,224L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+	</svg>
+-->
+	<div id="quiz" class="clearfix">
+		<button *ngIf="!isStart ;else
+			start_template_on_started"
+			(click)="demarrer()"
+			class="btn btn-success m-auto">
+			Démarrer 
+		</button>
+		<ng-template #start_template_on_started>
+			<!--<span>Ce test a été démarré</span>-->
+		</ng-template>
+		<h2 class="text-center font-weight-normal">TEST</h2>
+		<h3 *ngIf="message">{{message}}</h3>
+
+		<div *ngIf="mode=='quiz' && isStart">
+			<div *ngFor="let question of filteredQuestions;" class="col-md-12">
+
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="">Test page {{pager.index + 1}} sur {{pager.count}}.</h3>
+						<p class="text-red" *ngIf="question.TypeQuestionId === 2">
+							Cette partie est chronométrée à {{question.timer}} maximums
+							({{question.point}} pts)
+						</p>
+						<p class="text-red" *ngIf="question.TypeQuestionId === 5">
+							Vous avez la possibilité de faire 3 essais avant d’enregistrer
+							({{question.point}} pts)
+						</p>
+						<p class="text-red" *ngIf="question.TypeQuestionId === 8">
+							Cette partie est chronométrée à {{question.timer}} maximums
+							({{question.point}} pts)
+						</p>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<h3 class="font-weight-normal">
+						{{pager.index + 1}}.
+						<span [innerHTML]="question.enunciate"></span>
+						<span *ngIf="question.TypeQuestionId === 2 && question.options.length ===
+							1"> (Une seule réponse)</span>
+						<span *ngIf="question.TypeQuestionId === 2 && question.options.length> 1">
+							(Plusieurs réponses)</span>
+					</h3>
+					<div
+						class="row text-left options w-100"
+						data-aos="zoom-in"
+						cdkDropList
+						(cdkDropListDropped)="drop($event)">
+						<div
+							class="w-100"
+							*ngFor="let option of question.options">
+							<div class="option" *ngIf="question.TypeQuestionId === 1">
+								<mat-radio-group aria-label="Selectionnez Vrai ou Faux"
+									[(ngModel)]="option.selected">
+									<mat-radio-button value="true">Vrai</mat-radio-button>
+									<br>
+									<mat-radio-button value="false">Faux</mat-radio-button>
+								</mat-radio-group>
+							</div>
+							<div class="option" *ngIf="question.TypeQuestionId === 2">
+								<label class="font-weight-normal" [attr.for]="option.id">
+									<input
+										id="{{option.id}}"
+										type="checkbox"
+										class="checkbox"
+										[(ngModel)]="option.selected"
+										(change)="onSelect(question, option);"
+										/>
+									{{option.name}}
+								</label>
+								<br>
+							</div>
+							<div class="option row" *ngIf="question.TypeQuestionId === 3" cdkDrag>
+								<br>
+								<h3>Glissez déposez pour répondre</h3>
+								<input
+									name="{{option.name}}"
+									id="{{option.id}}"
+									(blur)="onSelect(question, option);"
+									[(ngModel)]="option.name"
+									class="m-10 btn btn-default"
+									style="cursor: grab;"
+									readonly/>
+							</div>
+						</div>
+						<div class="option w-100" *ngIf="question.TypeQuestionId === 4" cdkDrag>
+							<ckeditor
+								name="essai"
+								id="essai"
+								[config]="configEssai"
+								[editor]="EditorEssai"
+								[(ngModel)]="question.responses.responseRedaction"
+								(ready)="onReady($event)"
+								class="col-sm-12 m-10"></ckeditor>
+						</div>
+						<div class="option w-100" *ngIf="question.TypeQuestionId === 5">
+							<div class="col-md-12 col-sm-12 text-center d_f f_c f_a_i_c">
+								<h1 class="register"><i class="fa fa-microphone"></i></h1>
+								<p class="btn btn-success black">
+									Cliquez ici pour vous enregistrer et déposer votre enregistrement</p>
+								<app-record [isAudio]="true" (blobEvent)="setBlob($event)"></app-record>
+							</div>
+						</div>
+
+						<div class="option w-100" *ngIf="question.TypeQuestionId === 6">
+							<div class="col-md-12 col-sm-12 text-center d_f f_c f_a_i_c">
+								<h1 class="register"><i class="fa fa-microphone"></i></h1>
+								<p class="btn btn-success black">
+									Cliquez ici pour vous enregistrer et déposer votre enregistrement</p>
+								<app-record [isAudio]="false" (blobEvent)="setBlob($event)"></app-record>
+							</div>
+						</div>
+					</div>
+
+					<div class="row text-center my-10">
+						<button class="btn btn-primary" (click)="goTo(pager.index + 1);">Suivant</button>
+					</div>
+				</div>
+
+				<div class="aide">
+					<div class="text-center">
+						<h4 class="badge badge-info"><i class="fa fa-question-circle"></i> En quoi
+							je peux t’aider ?</h4>
+						<div>
+						</div>
+					</div>
+					<!--           <div class="text-center">
+              <button class="btn btn-default" *ngIf="config.allowBack" (click)="goTo(0);">First</button>
+              <button class="btn btn-default" *ngIf="config.allowBack" (click)="goTo(pager.index - 1);">Prev</button>
+             
+        
+              <button class="btn btn-default" *ngIf="config.allowBack" (click)="goTo(pager.count - 1);">Last</button>
+              <pagination *ngIf="config.showPager" direction-links="false" total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+            </div> -->
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="row text-center" *ngIf="mode=='result'">
+			<div class="col-4 cursor-pointer" *ngFor="let question of quiz.questions;
+				let index= index;">
+				<div (click)="goTo(index)" class="p-3 mb-2 {{ isAnswered(question) ==
+					'Answered'? 'bg-info': 'bg-warning' }}">
+					{{index + 1}}. {{ isAnswered(question) }}</div>
+			</div>
+		</div> -->
+		<div class="result" *ngIf="mode=='result'">
+			<h1 class="text-center">
+				FELICITATIONS ! Vous avez terminé le test de présélection.
+				Nous vous contacterons par e-mail pour la suite de votre candidature,
+				<br>
+				A très bientôt !
+				<br>
+				<button
+					[routerLink]="'/candidat/profile'"
+					class="btn btn-success my-10">
+					Quitter
+				</button>
+			</h1>
+			<!-- 			<h2>Quiz Result</h2>
+			<div *ngFor="let question of quiz.questions; let index= index">
+				<div class="result-question" data-aos="zoom-in">
+					<h5>{{index + 1}}. {{question.enunciate}}</h5>
+					<div class="row">
+						<div class="col-6" *ngFor="let Option of question.options">
+							<input id="{{Option.id}}" type="checkbox" disabled="disabled"
+								[(ngModel)]="Option.selected" />
+							{{Option.name}}
+						</div>
+					</div>
+					<div class="p-1 m-2 alert {{ isCorrect(question) === 'correct'?
+						'alert-success': 'alert-danger'}}">Your answer
+						is {{isCorrect(question)}}.</div>
+				</div>
+			</div>
+			<h4 class="alert alert-info text-center">You may close this window now.</h4> -->
+		</div>
+		<!-- <hr /> -->
+		<!-- <div *ngIf="mode=='result'" class="text-center"> -->
+		<!--           <button class="btn btn-warning" (click)="mode = 'quiz'">Quiz</button>
+            <button class="btn btn-info" (click)="mode = 'review'">Review</button> -->
+		<!-- <button class="btn btn-success" (click)="validate();">Valider le test</button> -->
+		<!-- </div> -->
+
+		<div *ngIf="config.duration" style="position: absolute;right: 10px;top: 30px;"
+			class="clearfix">
+			<div class="text-center clearfix" *ngIf="mode!=='result'">
+				<h1 class="text-primary">
+					<i class="fa fa-hourglass-half"></i>
+				</h1>
+				<p class="label label-success {{color}}">Time: {{ellapsedTime}} /
+					{{duration}}</p>
+			</div>
+		</div>
+	</div>
+</div>
+<!--<div class="fonds">-->
+<div [ngClass]="mode=='result' ? 'fonds' : 'fondsF'">
+	<div class="rond2">
+	</div>
+	<div class="rond1">
+	</div>
+	<div class="rond3">
+	</div>
+</div>

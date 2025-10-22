@@ -1,0 +1,271 @@
+<app-menu-candidat></app-menu-candidat>
+
+<div *ngIf="!spinner" style='padding-top: 100px;padding-bottom: 100px;top: 50%;position: fixed;z-index: 2;left: 50%;' >
+  <mat-spinner ></mat-spinner>
+</div>
+
+<div class="container" style='padding-top: 200px;padding-bottom: 100px;' *ngIf="spinner">
+  <p>
+    Hello, ravi de faire votre connaissance ! 
+    <strong>
+    	{{nomSociete ? (nomSociete + ' se fait ') : 'Nous nous faisons '}}
+    </strong>
+    plaisir de vous connaître un peu plus à travers ces quelques questions.
+    <br />
+    <span class="text-blue-dark">Avant de poursuivre, nous voudrions vous informer de notre politique de conformité sur le traitement et le stockage des données personnelles que vous acceptez dès que vous effectuez nos tests.
+    </span>
+  </p>
+  <div class="btn-center" style="margin-bottom: 25px;">
+    <a 
+    	type="button"  
+      class="btn btn-spec"
+      (click)="openConformite()">
+      NOS CONDITIONS DE CONFORMITE
+    </a>
+    <!--
+    <a 
+    	target="_blank" 
+    	href="assets/docs/conformite-RGPD.docx" 
+    	class="btn btn-spec">
+      NOS CONDITIONS DE CONFORMITE
+    </a>
+    -->
+  </div>
+  <form>
+    <div class="form-group">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="lastName">Email:</label>
+          </div>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              name="email"
+              placeholder="email"
+              [(ngModel)]="email"
+            	readonly
+              />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="lastName">Nom* :</label>
+          </div>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              name="lastName"
+              id="lastName"
+              placeholder="Saisie"
+              [(ngModel)]="lastName"
+              readonly
+              />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="lastname">Pr&eacute;nom* :</label>
+          </div>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              id="firstname"
+              name="firstname"
+              placeholder="Saisie"
+              [(ngModel)]="firstname"
+              readonly
+              />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="city">Ville de r&eacute;sidence actuelle* :</label>
+          </div>
+          <div class="col-md-8">
+            <input
+            name="city"
+            id="city"
+            class="form-control"
+            required="required"
+            [(ngModel)]="city"
+            readonly
+            />
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="state">Pays* :</label>
+          </div>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              id="state"
+              name="inputState"
+              placeholder="Saisie"
+              [(ngModel)]="country"
+              readonly
+              />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="telephone">Num&eacute;ro de t&eacute;l&eacute;phone* :</label>
+          </div>
+          <div class="col-md-8">
+            <input
+              type="tel"
+              class="form-control"
+              id="telephone"
+              name="telephone"
+              placeholder="Saisie"
+              [(ngModel)]="numTel"
+              readonly
+              />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="job">M&eacute;tier actuel* :</label>
+          </div>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              id="job"
+              name="job"
+              placeholder="Ex : Téléconseiller/sans emploi"
+              [(ngModel)]="currentJob"
+              readonly
+              />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="experience">
+              Nombre années expérience au métier actuel* :
+            </label>
+          </div>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              id="experience"
+              name="experience"
+              placeholder="Ex : 6 mois/5 ans"
+              [(ngModel)]="experienceYear"
+              readonly
+              />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="level">Niveau d’études* :</label>
+          </div>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              id="level"
+              name="level"
+              placeholder="Ex : Terminale/ 2 ème année universitaire"
+              [(ngModel)]="studiesLevel"
+              readonly
+              />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="diplome">Diplômes* :</label>
+          </div>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              id="diplome"
+              name="diplome"
+              placeholder="Ex : BAE/ Licence/Master 2"
+              [(ngModel)]="diplomas"
+              readonly
+              />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="specialisation">Spécialisation Diplôme :</label>
+          </div>
+          <div class="col-md-8">
+            <input
+              type="text"
+              class="form-control"
+              id="specialisation"
+              name="specialisation"
+              placeholder="Ex : Ouvrage métallique"
+              [(ngModel)]="diplomasSpecialities"
+              readonly
+              />
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <p>
+    Maintenant, vous allez effectuer un quiz de présélection. Vous avez besoin
+    d’environ <strong>30 minutes</strong>, d’une connexion internet, d’un
+    casque et d’un microphone.
+  </p>
+  <div class="row">
+      <p class="text-center">
+        Si vous n’êtes pas encore prêt, aucun souci. 
+        Vous pouvez toujours revenir sur cette page plus tard
+        <br />
+        <span class="text-blue-dark"> mais d’abord, cliquez sur le bouton 
+        "Je fais le test plus tard" en haut</span>
+      </p>
+  </div>
+</div>

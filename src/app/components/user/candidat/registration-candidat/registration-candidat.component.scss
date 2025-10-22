@@ -1,0 +1,16 @@
+.form-control {
+    //width: 50%;
+}
+button{
+    margin: 5% auto;
+    display: block;
+}
+h2,h1 {
+    text-align: center;
+}
+
+::ng-deep .modal-dialog.forgotClass,
+.forgotClass
+{
+	margin-top: 100px;
+}

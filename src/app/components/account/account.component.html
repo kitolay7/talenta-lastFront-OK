@@ -1,0 +1,45 @@
+<div *ngIf="!loading" class="loader-div">
+	<mat-spinner></mat-spinner>
+</div>
+<div class="container-fluid" id="account">
+	<div class="row" style="padding-top: 70px;" *ngIf="loading">
+		<div class="account-body">
+			<app-subheader [title]="title"></app-subheader>
+			<!-- <h1 class="subheader" style="font-family: var(--ff-lucida)">BIENVENUE SUR
+				VOTRE INTERFACE</h1> -->
+			<div class="col-md-12 account-content" *ngIf="!isAdmin">
+				<div
+					class="d_f f_r f_j_c_b col-sm-12"
+					*ngFor="let field of fieldList">
+					<div class="panel panel-default" (click)="goTo(field.link)">
+						<div class="panel-heading">{{field.title}}</div>
+						<div class="panel-body">
+							<div
+								class="img"
+								style="background-image: url('../../../assets/img/{{field.image}}');">
+							</div>
+							<p>{{field.desc}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12 account-content" *ngIf="isAdmin">
+				<div
+					class="d_f f_r f_j_c_b col-sm-12"
+					*ngFor="let field of fieldListAdmin">
+					<div class="panel panel-default" (click)="goTo(field.link)">
+						<div class="panel-heading">{{field.title}}</div>
+						<div class="panel-body">
+							<div
+								class="img"
+								style="background-image: url('../../../assets/img/{{field.image}}');">
+							</div>
+							<p>{{field.desc}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

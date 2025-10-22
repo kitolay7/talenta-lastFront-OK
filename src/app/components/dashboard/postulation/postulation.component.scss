@@ -1,0 +1,93 @@
+#postulation
+{
+	min-height: 100vh;
+	position: relative;
+}
+.tableFixHead
+{ 
+	overflow-y: auto;
+	height: 65vh; 
+	background: #fff;
+	box-shadow: 2px 2px 20px -5px #0005;
+	width: 85%;
+	margin: 0 auto;
+	table  
+	{ 
+		border-collapse: collapse;
+		width: 100%; 
+		thead th 
+		{ 
+			position: sticky;
+			top: 0;
+			text-align: center;
+		}
+		th, td 
+		{
+			vertical-align: middle;
+			text-align: center;
+		}
+		th
+		{ 
+			background:#eee;
+		}
+		tbody
+		{
+			td
+			{
+      			div 
+      			{
+      				span
+      				{
+  						p, h1, h2, h3, h4
+  						{
+  							font-size: 24px;
+  							line-height: 1;
+  							margin: 0;
+  							color: #000;
+  						}
+  					}
+      			}
+      			.notif
+      			{
+      				width: 10px;
+      				height: 10px;
+      				display: block;
+      				border-radius: 50%;
+      				position: absolute;
+      				right: -7px;
+      				top: -7px;
+      				cursor: pointer;
+      			}
+            .alerte {
+                animation: bounceNotif 0.5s infinite alternate;
+                background: var(--c-red);
+                box-shadow: 0px 0px 8px var(--c-red);
+            }
+            .finish {
+                background: var(--clr-vert);
+                box-shadow: 0px 0px 8px var(--clr-vert);
+            }
+			    }
+      	}
+	}
+}
+@keyframes bounceNotif {
+    from {
+    	transform: scale(1);
+    	opacity: .2;
+    }
+    to {
+    	transform: scale(1.1);
+    	opacity: 1;
+    }
+}
+
+.sendClass
+{
+  margin-top: 100px;
+}
+
+::ng-deep.modal-dialog.sendClass,
+{
+  margin-top: 100px;
+}

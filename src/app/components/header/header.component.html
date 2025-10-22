@@ -1,0 +1,1001 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div id="header" class="header container-fluid">
+  <div class="container-fluid">
+    <nav class="navbar navbar-inverse fixed-top" role="navigation">
+      <div class="navbar-header">
+        <button
+          type="button"
+          id="nav-toggle"
+          class="navbar-toggle"
+          data-toggle="collapse"
+          data-target="#main-nav"
+          (click)="toggleMenu()">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars" *ngIf="isMenuCollapsed"></i>
+          <i class="fa fa-times" *ngIf="!isMenuCollapsed"></i>
+        </button>
+        <a
+          [routerLink]="'.'"
+          class="navbar-brand"
+          [tooltip]="telTalenta"
+          container="body"
+          containerClass="tltp"
+          [adaptivePosition]="false"
+          placement="right">
+          <!-- <em>Talenta</em> -->
+          <img src="assets/img/logo-trans.png" height="40">
+          Sourcing
+        </a>
+        <ng-template #telTalenta>
+          <div>
+            <i class="fa fa-phone"></i>
+            <em>(261) 34 36 311 46</em>
+          </div>
+        </ng-template>
+
+      </div>
+      <!--/.navbar-header-->
+      <div
+        id="main-nav"
+        class="collapse navbar-collapse"
+        [ngClass]="{ 'disable': isMenuCollapsed && isSmallScreen,
+        'able': !isMenuCollapsed && isSmallScreen }">
+        <ul class="nav navbar-nav d_f f_r f_j_c_b">
+          <li
+            class="hvr-shadow-radial">
+            <a
+              (click)="clickAbout()"
+              class="nav-link">
+              Qui sommes-nous
+            </a>
+          </li>
+          <li
+            class="dpdn hvr-shadow-radial"
+            [ngClass]="{ 'active': isDropdowned }">
+            <a
+              (click)="clickOffre()"
+              class="nav-link white-color dpdn-item"
+              [ngClass]="{ 'active': currentSection === 'offre' && isHome }"
+              data-id="offre">
+              Offres d'emploi
+            </a>
+            <ul class="dpdn-menu">
+              <li>
+                <a
+                  class="nav-link dpdn-item hvr-shadow-radial"
+                  (click)="seeModal1(offre,'Quebec')">
+                  Quebec
+                </a>
+              </li>
+              <li>
+                <a
+                  class="nav-link dpdn-item hvr-shadow-radial"
+                  (click)="seeModal1(offre,'Antananarivo')">
+                  Antananarivo
+                </a>
+              </li>
+              <li>
+                <a
+                  class="nav-link dpdn-item hvr-shadow-radial"
+                  (click)="openDeposer(deposer)">
+                  Candidature spontanée
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="hvr-shadow-radial">
+            <a
+              (click)="clickTestimonial()"
+              class="nav-link testimonial"
+              [ngClass]="{ 'active': currentSection === 'testimonial' &&
+              isHome }"
+              data-id="testimonial">
+              Notre Produit
+            </a></li>
+          <li class="hvr-shadow-radial">
+            <a
+              (click)="clickService()"
+              class="nav-link service"
+              [ngClass]="{ 'active': currentSection === 'service' &&
+              isHome }">
+              Nos services aux recruteurs
+            </a>
+          </li>
+          <li
+            class="dpdn hvr-shadow-radial"
+            [ngClass]="{ 'active': isDropdowned1 }">
+            <a
+              (click)="clickRecrutement()"
+              class="dpdn-item white-color" id="menu_list">
+              {{(!isCandidat)
+              ? ((isTalenta)
+              ? 'Espace Talenta'
+              : 'Espace recruteur')
+              : 'Mon compte'}}
+            </a>
+            <ul class="dpdn-menu {{sousMenu}}">
+              <li *ngFor="let menu of menuList">
+                <a
+                  (click)="goToURL(menu, template)"
+                  class="nav-link dpdn-item hvr-shadow-radial">
+                  <mat-icon matPrefix>{{menu.mat}}</mat-icon>
+                  <span>{{menu.name}}</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+      <!--/.navbar-collapse-->
+    </nav>
+    <!--/.navbar-->
+  </div>
+  <!--/.container-->
+</div>
+<!--/.header-->
+<div
+  *ngIf="!isRecruteur && !isCandidat && !isTalenta"
+  data-toggle="tooltip"
+  data-placement="left"
+  title="Espace candidat"
+  class="connect"
+  id="connect_candidat">
+  <a
+    class="d_f f_r f_a_i_c"
+    [routerLink]="'/candidat/registration'">
+    <span class="glyphicon glyphicon-log-in" style="font-size:18px"></span>
+    <span style="padding-left: 20px;">Se connecter</span>
+  </a>
+</div>
+<ng-template #candidat>
+  <div>
+    <span>Espace candidat</span>
+  </div>
+</ng-template>
+
+
+
+
+<!--MODAL OFFRE-->
+
+
+<ng-template #offre>
+  <div class="modal-header">
+    <button type="button" class="close pull-right" aria-label="Close"
+      (click)="closeOffre()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h2>Liste des offres disponibles à {{lieu}}</h2>
+  </div>
+
+  <div class="modal-body">
+    <div class="row">
+      <div class="search_class">
+        <div class="col-md-3 col-sm-12 col-xs-12">
+          <span class="glyphicon glyphicon-search form-control-feedback"></span>
+          <input type="text" [(ngModel)]="term" class="form-control input"
+            placeholder="Recherche">
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+          <select
+            id="sel1"
+            class="form-control input"
+            [(ngModel)]="term2">
+            <option
+              *ngFor="let activity of secteurs"
+              [value]="activity">
+              {{activity}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="offre-item">
+          <div
+            class="panel"
+            *ngFor="let item of posts | filter:term | filter:term2 | paginate: {
+            itemsPerPage: 3, currentPage: p }">
+            <div class="panel-heading">
+                <p class="logo">
+                <img *ngIf="item.creator.profile_photo_path !== null; else
+                  hasNotDefault" alt="test"
+                  src="{{url + item.creator.profile_photo_path}}" />
+                <ng-template #hasNotDefault>
+                  <!--
+                  <img
+                    alt="DefautLogo"
+                    [attr.src]="defaultLogo" />
+                  -->
+                  <img
+                    alt="DefautLogo" src="assets/img/talenta_logo.jpg" />
+                </ng-template>
+                </p>
+            
+
+              <!-- <img src="{{(item.logoPath !== undefined && item.logoPath!== null)
+                ? url + item.logoPath : 'assets/img/comp_avatar.png'}}"
+                alt=""> -->
+           
+              <!--<h3 style="line-height:65px;">{{item.titre}}</h3>-->
+              
+              <!--<h3 [innerHTML]="item.titre"></h3>-->
+            
+            </div>
+            
+            <div class="panel-body">
+              
+              <div style="width: 100%;height:50px">
+                <b><h3 class="titre text-center" [innerHTML]="item.titre"></h3></b>
+              </div>
+              <p>
+                Contrat:
+                <strong class="rose">{{item.post}}</strong>
+              </p>
+              <p>
+                Secteur:
+                <strong class="rose">
+                  {{item.secteur}}
+                </strong>
+              </p>
+              <p>
+                Date de publication:
+                <strong class="rose">
+                  {{item.publicationDate | date:'shortDate':'UTC':'fr'}}
+                </strong>
+              </p>
+              <!--
+              <h4>{{item.contexte}}</h4>
+              -->
+              <div style="width:100px;height:50px">
+              </div>
+              <div class="btnP text-center" *ngIf="postul">
+                <button
+                  *ngIf="!item.postuled else already_postuled"
+                  (click)="goTo('candidat/registration', item)"
+                  class="inter">
+                  Postuler
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!--
+        <pagination-controls
+          class="modal-pagination text-center"
+          (pageChange)="p= $event"
+          directionLinks="true"
+          autoHide="true"
+          previousLabel="PRÉCÉDENT"
+          nextLabel="SUIVANT">
+        </pagination-controls>
+      -->
+      </div>
+    </div>
+    <div class="col-md-12 text-center">
+      <pagination-controls
+          class="modal-pagination text-center"
+          (pageChange)="p= $event"
+          directionLinks="true"
+          autoHide="true"
+          previousLabel="PRÉCÉDENT"
+          nextLabel="SUIVANT">
+        </pagination-controls>
+      <!--<button (click)="goTo()" class="btn btn-default">Voir plus</button>-->
+    </div>
+  </div>
+
+</ng-template>
+
+
+<!--MODAL DEPOSER-->
+
+<ng-template #deposer>
+  <div class="modal-header">
+    <button type="button" style="margin-right: 10px;" class="close pull-right"
+      aria-label="Close"
+      (click)="modalDeposer1.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h2 class="text-center">Formulaire pour la candidature spontanée</h2>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="formulaire">
+            <!--<form class="">-->
+            <div
+              class="formDeposer"
+              [ngClass]="{ 'readonly': canSend }">
+              <h3>Informations générales</h3>
+              <p class="text-danger">
+                <i class="fa fa-warning text-danger"></i>
+                (* : Champ obligatoire)
+              </p>
+              <mat-form-field class="">
+                <mat-label>Prénom</mat-label>
+                <input
+                  matInput
+                  required
+                  placeholder=""
+                  [(ngModel)]="firstName">
+                <mat-error *ngIf="firstName ===''">
+                  Champ obligatoire
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="">
+                <mat-label>Nom</mat-label>
+                <input
+                  matInput
+                  required
+                  placeholder=""
+                  [(ngModel)]="lastName">
+                <mat-error *ngIf="lastName ===''">
+                  Champ obligatoire
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Date de naissance</mat-label>
+                <input
+                  matInput
+                  required
+                  [matDatepicker]="picker"
+                  [(ngModel)]="birthday">
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker">
+                </mat-datepicker-toggle>
+                <mat-datepicker
+                  #picker>
+                </mat-datepicker>
+                <mat-error *ngIf="birthday ===''">
+                  Champ obligatoire
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  required
+                  placeholder="Ex. pat@example.com"
+                  [(ngModel)]="email">
+                <mat-error *ngIf="false">
+                  Entrez une adresse email valide!
+                </mat-error>
+                <mat-error *ngIf="email ===''">
+                  Votre Email est <strong>requis</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="">
+                <mat-label>Téléphone</mat-label>
+                <input
+                  matInput
+                  required
+                  placeholder=""
+                  [(ngModel)]="numTel">
+                <mat-error *ngIf="numTel ===''">
+                  Champ obligatoire
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="">
+                <mat-label>ID Skype</mat-label>
+                <input
+                  matInput
+                  placeholder=""
+                  [(ngModel)]="idSkype">
+              </mat-form-field>
+              <mat-form-field class="">
+                <mat-label>ID WhatsApp</mat-label>
+                <input
+                  matInput
+                  placeholder=""
+                  [(ngModel)]="idWhatsapp">
+              </mat-form-field>
+              <p>Voyage hors du pays d'origine
+                <mat-radio-group
+                  [(ngModel)]="originCountry">
+                  <mat-radio-button matInput value="true">Oui</mat-radio-button>
+                  <mat-radio-button matInput value="false">Non</mat-radio-button>
+                </mat-radio-group>
+              </p>
+
+              <h3>Localisation</h3>
+
+              <mat-form-field>
+                <mat-label>Pays actuel</mat-label>
+                <mat-select
+                  required
+                  [(ngModel)]="actualCountry">
+                  <mat-option
+                    *ngFor="let pays of countries"
+                    value="{{pays.name}}">
+                    {{pays.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="actualCountry ===''">
+                  Choisissez une option valide.
+                </mat-error>
+
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Ville actuel</mat-label>
+                <input
+                  matInput
+                  required
+                  placeholder=""
+                  [(ngModel)]="actualCity">
+                <mat-error *ngIf="actualCity ===''">
+                  Champ obligatoire
+                </mat-error>
+              </mat-form-field>
+
+              <h3>Profil du candidat</h3>
+
+              <p>Importer votre CV en cliquant ci-dessous</p>
+              <div class="progress" *ngIf="progressFile> 0">
+                <div
+                  class="progress-bar progress-bar-striped"
+                  role="progressbar"
+                  attr.aria-valuenow="{{ progressFile }}"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  [ngStyle]="{ width: progressFile + '%' }">
+                  {{ progressFile }} %
+                </div>
+              </div>
+              <div *ngIf="cv">
+                <p style="font-size: 1rem;">Fihier chargé : {{ cvU.name }}</p>
+              </div>
+              <label
+                for="file"
+                class="btn btn-primary">
+                <i class="fa fa-paperclip"></i>
+                Importer votre CV (.pdf, .docx, .doc, .odt)
+              </label>
+              <input
+                id="file"
+                (change)="onSelectedFile($event)"
+                class="input-file"
+                style="display: none"
+                type="file"
+                accept=".pdf, .docx, .doc, .odt">
+
+              <h4>Compétences</h4>
+
+              <mat-form-field class="">
+                <mat-chip-list #chipList aria-label="Competence selection">
+                  <mat-chip *ngFor="let competence of competences"
+                    [selectable]="selectable" [removable]="removable"
+                    (removed)="remove(competence)">
+                    {{competence}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input
+                    placeholder="Une liste est proposée mais vous pouvez
+                    également faire une saisie complète (5 max.)"
+                    required
+                    #competenceInput
+                    [formControl]="competenceCtrl"
+                    [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+                <mat-autocomplete #auto="matAutocomplete"
+                  (optionSelected)="selected($event)">
+                  <mat-option *ngFor="let competence of filteredCompetences |
+                    async" [value]="competence">
+                    {{competence}}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="competences === []">
+                  Champ obligatoire
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Secteur d'activité </mat-label>
+                <mat-select
+                  [(ngModel)]="secteur">
+                  <mat-option
+                    *ngFor="let activity of secteurs"
+                    [value]="activity">
+                    {{activity}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="secteur ===''">
+                  Champ obligatoire
+                </mat-error>
+              </mat-form-field>
+
+              <h3>Tous vos détails éducatifs *</h3>
+
+              <p class="text-danger">
+                (Veuillez cliquer sur Ajouter lorsque les champs sont remplis)
+              </p>
+
+              <div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">Institut / Ecole</div>
+                  <div class="panel-body">
+                    <form #educForm>
+                      <div class="form-group">
+                        <label for="eductitre">Nom, Adresse, Pays de l'Institut
+                          / Ecole</label>
+                        <input type="text" class="form-control" id="eductitre"
+                          #eductitre>
+                      </div>
+                      <div class="form-group">
+                        <label for="educspecialisation">Spécialisation</label>
+                        <input type="text" class="form-control"
+                          id="educspecialisation" #educspecialisation>
+                      </div>
+                      <div class="form-group">
+                        <label for="educdiplome">Diplôme</label>
+                        <input type="text" class="form-control" id="educdiplome"
+                          #educdiplome>
+                      </div>
+                      <div class="form-group">
+                        <label for="educduree" class="control-label col-md-2">Durée
+                          : </label>
+                        <input type="date" id="educduree" #educstartDate> à
+                        <input type="date" id="educduree" #educendDate>
+                      </div>
+
+
+                      <div
+                        class="plus"
+                        (click)="insertionEduc(eductitre, educspecialisation,
+                        educdiplome, educstartDate, educendDate)">
+                        <i class="fa fa-plus" type="submit" aria-hidden="true">
+                        </i>
+                        Ajouter
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <table id="educTable" class="table table-bordered
+                  table-condensed table-striped">
+                  <tbody>
+                    <tr *ngFor="let educ of educations; let i=index">
+                      <td><span class="thead">Nom, Adresse, Pays de l'Institut
+                          / École: </span>{{educ.titre}}</td>
+                      <td><span class="thead">Spécialisation: </span>{{educ.specialisation}}</td>
+                      <td><span class="thead">Diplôme: </span>{{educ.diplome}}</td>
+                      <td><span class="thead">Durée: </span>{{educ.startDate}}
+                        - {{educ.endDate}}</td>
+                      <td><span class="thead">Action: </span>
+                        <button
+                          type="button"
+                          class="btn btn-danger"
+                          (click)="deleteEduc(i)">Effacer</button>
+                      </td>
+                      <!--
+                        <button type="button" class="btn btn-default">Modifier</button>
+                      -->
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>
+                Tous vos détails d'exprérience (du plus récent au plus ancien)*
+              </h3>
+
+              <p class="text-danger">
+                (Veuillez cliquer sur Ajouter lorsque les champs sont remplis)
+              </p>
+
+              <div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">Profession / Titre</div>
+                  <div class="panel-body">
+                    <form #profForm>
+                      <div class="form-group">
+                        <label for="titre">Titre</label>
+                        <input type="text" class="form-control" id="titre"
+                          #titre>
+                      </div>
+                      <div class="form-group">
+                        <label for="nom_soc">Nom, Adresse, Pays de la Société</label>
+                        <input type="text" class="form-control" id="nom_soc"
+                          #nom_soc>
+                      </div>
+                      <div class="form-group">
+                        <label for="resume">Résumé</label>
+                        <textarea row="10" column="40" class="form-control"
+                          id="resume" #resume></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="duree" class="control-label col-md-2">Durée
+                          : </label>
+                        <input type="date" id="duree" #startDate> à <input
+                          type="date" id="duree" #endDate>
+                      </div>
+
+
+                      <div
+                        class="plus"
+                        (click)="insertionProf(titre, nom_soc, resume,
+                        startDate, endDate)">
+                        <i class="fa fa-plus" type="submit" aria-hidden="true">
+                        </i>
+                        Ajouter
+                      </div>
+
+                    </form>
+
+                  </div>
+
+                </div>
+
+
+                <table id="productTable" class="table table-bordered
+                  table-condensed table-striped">
+                  <tbody>
+                    <tr *ngFor="let prof of profession; let i= index">
+                      <td><span class="thead">Titre: </span>{{prof.titre}}</td>
+                      <td><span class="thead">Nom, Adresse, Pays de la Société:
+                        </span>{{prof.nomSociete}}</td>
+                      <td><span class="thead">Résumé: </span>{{prof.resume}}</td>
+                      <td><span class="thead">Durée: </span>
+                        {{prof.startDate | date:'shortDate':'UTC':'fr'}} -
+                        {{prof.endDate | date:'shortDate':'UTC':'fr'}}
+                      </td>
+                      <td><span class="thead">Action: </span>
+                        <button
+                          type="button"
+                          class="btn btn-danger"
+                          (click)="deleteProf(i)">Effacer</button>
+                      </td>
+                      <!--
+                      <td><span class="thead">Action: </span>
+                        <button type="button" class="btn btn-default">Modifier</button>
+                        <button type="button" class="btn btn-default">Effacer</button>
+                      </td>
+                      -->
+                    </tr>
+                  </tbody>
+                </table>
+
+
+
+              </div>
+
+            </div>
+
+            <div class="btn-deposer"
+              *ngIf="!canSend">
+              <a
+                type="button"
+                mat-raised-button
+                color="primary"
+                (click)="validPDF()">
+                Valider
+              </a>
+            </div>
+
+            <div class="btn-deposer"
+              *ngIf="canSend">
+              <a
+                type="button"
+                mat-raised-button
+                color="primary"
+                (click)="deposerCand()">
+                Je dépose ma candidature
+              </a>
+            </div>
+
+          </div>
+          <!--</form>-->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ng-template>
+
+
+
+<!--MODAL LOGIN POSTULER-->
+<!--MODAL LOGIN GENERAL-->
+
+<ng-template bsModal #template [config]="{backdrop: 'static'}">
+  <div class="modal-header sign-header">
+    <button type="button" class="close pull-right" aria-label="Close"
+      (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Connexion</h2>
+      </div>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div>
+
+      <tabset #staticTabs [justified]="true">
+
+        <tab heading="Déjà client ?">
+          <h5>Connectez-vous</h5>
+          <form class="" [formGroup]="formLoginRecruteur">
+
+            <mat-form-field appearance="fill">
+              <mat-label>Identifiant / Email</mat-label>
+              <mat-icon matSuffix>mail</mat-icon>
+              <input matInput placeholder="" formControlName="mailControl"
+                autocomplete=off>
+
+            </mat-form-field>
+            <br>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Mot de passe</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'"
+                autocomplete=off formControlName="pwControl">
+              <button mat-icon-button matSuffix (click)="hide= !hide"
+                [attr.aria-label]="'Cacher le mot de passe'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+            <br>
+
+            <div>
+              <mat-checkbox>Se souvenir de vous</mat-checkbox>
+            </div>
+            <br>
+            <p align="right">Vous avez oublié votre <a type="button"
+                (click)="selectTab(2, staticTabs)">mot de
+                passe</a>?</p>
+            <p align="center"
+              [ngClass]="{ 'validator': formLoginRecruteur.invalid }">
+              <a type="submit"
+                mat-raised-button color="primary"
+                (click)="loginAccount()">
+                <mat-icon matPrefix>lock</mat-icon> Continuer
+              </a></p>
+            <p align="right"><a type="button" (click)="selectTab(1,
+                staticTabs)">Pas encore de compte? Créez-le ici.</a>
+            </p>
+          </form>
+        </tab>
+
+
+        <tab heading="Nouveau client ?">
+          <h5>Créez votre compte</h5>
+          <form class="" [formGroup]="formRegisterRecruteur">
+
+            <mat-form-field appearance="fill">
+              <mat-label>Pseudo *</mat-label>
+              <mat-icon matPrefix>account_circle</mat-icon>
+              <input matInput formControlName="pseudoFC" placeholder="">
+              <mat-error
+                *ngIf="formRegisterRecruteur.controls.pseudoFC.errors?.required
+                && formRegisterRecruteur.controls.pseudoFC.dirty">
+                Il faut entrer votre pseudo.
+              </mat-error>
+              <br>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Email *</mat-label>
+              <mat-icon matPrefix>mail</mat-icon>
+              <input matInput formControlName="emailFC" placeholder="Ex.
+                pat@example.com">
+              <mat-error
+                *ngIf="!formRegisterRecruteur.controls.emailFC.errors?.required
+                && formRegisterRecruteur.controls.emailFC.errors?.checkMail">
+                Entrez une adresse email valide!
+              </mat-error>
+              <mat-error
+                *ngIf="formRegisterRecruteur.controls.emailFC.errors?.required
+                && formRegisterRecruteur.controls.emailFC.dirty">
+                Votre Email est <strong>requis</strong>
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+              <mat-label>Mot de passe</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'"
+                formControlName="mdpFC">
+              <button mat-icon-button matSuffix (click)="hide= !hide"
+                [attr.aria-label]="'Cacher le mot de passe'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error
+                *ngIf="formRegisterRecruteur.controls.mdpFC.errors?.required &&
+                formRegisterRecruteur.controls.mdpFC.dirty">
+                Votre Mot de passe est <strong>requis</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="formRegisterRecruteur.controls.mdpFC.errors?.pattern">
+                Le mot de passe doit contenir Majuscule, miniscule, chiffre et
+                minimum 8 caractères.
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+              <mat-label>Confirmation de passe</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'"
+                formControlName="confirmFC" (change)="onChangeCpw()">
+              <button mat-icon-button matSuffix (click)="hide= !hide"
+                [attr.aria-label]="'Cacher le mot de passe'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error
+                *ngIf="formRegisterRecruteur.controls.confirmFC.errors?.required
+                && formRegisterRecruteur.controls.confirmFC.dirty">
+                Il faut confirmer votre Mot de passe.
+              </mat-error>
+              <mat-error
+                *ngIf="formRegisterRecruteur.controls.mdpFC.errors?.pattern">
+                Le mot de passe doit contenir Majuscule, miniscule, chiffre et
+                minimum 8 caractères.
+              </mat-error>
+              <mat-error *ngIf="checkCpw">
+                Le mot de passe que vous avez entré n'est pas le même.
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+              <mat-label>Tél. professionnel *</mat-label>
+              <mat-icon matPrefix>phone</mat-icon>
+              <input matInput formControlName="telFC"
+                [errorStateMatcher]="matcher" placeholder="">
+              <mat-error
+                *ngIf="formRegisterRecruteur.controls.telFC.errors?.required &&
+                formRegisterRecruteur.controls.telFC.dirty">
+                Votre numero de téléphone professionnel est <strong>requis</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="!formRegisterRecruteur.controls.telFC.errors?.required &&
+                formRegisterRecruteur.controls.telFC.errors?.checkTel">
+                Entrez une numero de téléphone valide valide!
+              </mat-error>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Nom d'entreprise *</mat-label>
+              <mat-icon matPrefix>business</mat-icon>
+              <input matInput formControlName="enterpriseFC" placeholder="">
+              <mat-error
+                *ngIf="formRegisterRecruteur.controls.enterpriseFC.errors?.required
+                && formRegisterRecruteur.controls.enterpriseFC.dirty">
+                Il faut entrer le nom de votre entreprise.
+              </mat-error>
+            </mat-form-field>
+            <br>
+
+
+            <mat-form-field appearance="fill">
+              <mat-label>Code Postal *</mat-label>
+              <mat-icon matPrefix>flag</mat-icon>
+              <input matInput formControlName="codeFC"
+                [errorStateMatcher]="matcher" #postalCode maxlength="5"
+                placeholder="Ex. 94105">
+              <mat-error
+                *ngIf="formRegisterRecruteur.controls.codeFC.errors?.required &&
+                formRegisterRecruteur.controls.codeFC.dirty">
+                Le code postal de votre pays
+              </mat-error>
+              <mat-error
+                *ngIf="!formRegisterRecruteur.controls.codeFC.errors?.required">
+                Entrez un code valide valide!
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Pays </mat-label>
+              <mat-select formControlName="paysFC" required>
+                <mat-option *ngFor="let pays of country" [value]="pays">{{pays}}</mat-option>
+              </mat-select>
+              <mat-error
+                *ngIf="formRegisterRecruteur.controls.paysFC.errors?.required &&
+                formRegisterRecruteur.controls.paysFC.dirty">
+                Choisissez une option valide.</mat-error>
+
+            </mat-form-field>
+            <br>
+            <p>* J'accepte de recevoir les communications Talenta Sourcing par
+              e-mail : </p>
+            <mat-radio-group formControlName="commFC">
+              <mat-radio-button matInput value="true" required>Oui</mat-radio-button>
+              <mat-radio-button matInput value="false" required>Non</mat-radio-button>
+            </mat-radio-group>
+
+            <br>
+
+            <div>
+              <p>Ces données (obligatoires lorsque signalées par un astérisque)
+                permettent à Talenta Sourcing de créer
+                et
+                gérer votre compte et de personnaliser nos services. Avec votre
+                accord vous pourrez recevoir des
+                communications Talenta Sourcing par e-mail. Vous disposez d’un
+                droit d’accès, de rectification,
+                d’opposition et de suppression par mail à
+                serviceclientele@talentasourcing.fr . </p>
+              <p>
+                <mat-checkbox formControlName="acceptFC"><span> * J'ai lu et
+                    j'accepte les <a target="_blank"
+                      href="assets/docs/L2014-038.pdf">conditions
+                      d'utilisation,
+                      la notice sur les données personelles et l'utilisation des
+                      cookies</a> de
+                    Talenta Sourcing.</span>
+                </mat-checkbox>
+                <mat-error
+                  *ngIf="formRegisterRecruteur.controls.acceptFC.errors?.requiredTrue
+                  && formRegisterRecruteur.controls.acceptFC.dirty">
+                  Vous devez accepter ces conditions d'abord.</mat-error>
+              </p>
+            </div>
+            <br>
+
+            <p
+              align="center"
+              [ngClass]="{ 'validator': formRegisterRecruteur.invalid }">
+              <a
+                type="submit"
+                mat-raised-button
+                color="primary"
+                (click)="createAccount(staticTabs)">
+                <mat-icon matPrefix>lock</mat-icon> Continuer
+              </a>
+            </p>
+            <p align="right">
+              <a type="button" (click)="selectTab(0, staticTabs)">Vous avez déjà
+                un compte? Connectez-vous.</a>
+            </p>
+          </form>
+        </tab>
+
+
+
+        <tab heading="Mot de passe oublié ?">
+          <h5>Mot de passe oublié ?</h5>
+          <p>Veuillez indiquer l’adresse email associée à votre compte.</p>
+          <form class="" [formGroup]="formForgetRecruteur">
+
+            <mat-form-field appearance="fill">
+              <mat-label>Adresse email</mat-label>
+              <mat-icon matSuffix>mail</mat-icon>
+              <input matInput placeholder=""
+                formControlName="forgetFormControl">
+              <mat-error
+                *ngIf="formForgetRecruteur.controls.forgetFormControl.errors?.required
+                && formForgetRecruteur.controls.forgetFormControl.dirty">
+                Ce champ est <strong>requis</strong>
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <p
+              align="center"
+              [ngClass]="{ 'validator': formForgetRecruteur.invalid }">
+              <a
+                type="submit"
+                mat-raised-button
+                color="primary"
+                (click)="sendForgot()">
+                <mat-icon matPrefix>lock</mat-icon>
+                Envoyer
+              </a>
+            </p>
+            <p align="center">Appelez-nous au 034 36 311 46.</p>
+          </form>
+        </tab>
+      </tabset>
+    </div>
+
+  </div>
+</ng-template>

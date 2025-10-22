@@ -1,0 +1,113 @@
+<div id="detail">
+	<div class="wave">
+		<svg viewBox="0 0 1440 320">
+			<path fill="#0099ff" fill-opacity="1"
+				d="M0,96L30,117.3C60,139,120,181,180,170.7C240,160,300,96,360,90.7C420,85,480,139,540,154.7C600,171,660,149,720,154.7C780,160,840,192,900,181.3C960,171,1020,117,1080,122.7C1140,128,1200,192,1260,192C1320,192,1380,128,1410,96L1440,64L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path>
+		</svg>
+	</div>
+	<div
+		*ngIf="!loading"
+		class="loader-div">
+		<mat-spinner></mat-spinner>
+	</div>
+	<div class="container-fluid account-body" *ngIf="loading">
+		<app-subheader [title]="title"></app-subheader>
+		<div class="forward_button">
+			<button
+				routerLink="/listingArchiver"
+				mat-raised-button
+				color="primary">
+				<i class="fa fa-chevron-left"></i> Retour
+			</button>
+		</div>
+		<!-- <div class="col-md-12 my-10" style="margin-left: 20px;">
+			<button
+				routerLink="/listingArchiver"
+				mat-raised-button
+				color="primary">
+				<i class="fa fa-chevron-left"></i> Retour
+			</button>
+		</div>
+		<h1 class="subheader" style="font-family: var(--ff-candara)">Details du
+			dossier</h1> -->
+		<div class="col-md-8">
+			<div class="text-center title col-md-12">
+				<div class="col-md-12">
+					<h1>Titre du test : <span class="rose">{{dataInfo.titre}}</span></h1>
+				</div>
+			</div>
+			<div class="content col-md-12">
+				<p class="texte">{{dataInfo.fiche}}</p>
+				<h4>Auteur : </h4>
+				<p class="texte">{{dataInfo.auteur}}</p>
+			</div>
+
+		</div>
+		<div class="col-md-4">
+			<div class="row">
+				<div
+					class="panel"
+					data-aos="fade"
+					data-aos-duration="1000"
+					data-aos-delay="0">
+					<div class="panel-heading">
+						<!--<h3 class="title" [innerHTML]="dataInfo.offres[0].id"></h3>-->
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<!-- <div class="row col-md-12 col-xs-12">
+								<h4 class="col-sm-12 col-xs-12">
+									Offre archivé :
+									<span class="label label-info">
+									{{(dataInfo.offres[0].archived) ? 'Oui' : 'Non'}}
+									</span>
+								</h4>
+								<mat-slide-toggle
+									(change)="archiver(dataInfo.offres[0].id,dataInfo.offres[0].archived)"
+									[(ngModel)]="dataInfo.offres[0].archived">
+									{{dataInfo.offres[0].archived ? "archive activé" : "archive inactive"}}
+								</mat-slide-toggle>
+							</div> -->
+							<div class="row col-md-12 col-xs-12">
+								<h4 class="col-sm-12 col-xs-12">Réactiver l'offre
+									<span class="label label-info">
+										
+									</span>
+								</h4>
+								<mat-slide-toggle
+									(change)="republishedOffer(dataInfo.offres[0].id, dataInfo.id, 1)"
+									>
+									
+								</mat-slide-toggle>
+								<!--
+								<mat-slide-toggle
+									(change)="publier(dataInfo.offres[0].id,dataInfo.offres[0].publier)"
+									[(ngModel)]="dataInfo.offres[0].publier">
+									{{dataInfo.offres[0].publier ? "Offre activé" : "Offre inactive"}}
+								</mat-slide-toggle>
+								-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-center">
+					<div class="content col-md-12">
+						<h4>Remarque : </h4>
+						<input type="text" name="remarque" [(ngModel)]="dataInfo.remarque">
+					</div>
+					<div class="col-md-12 text-center">
+						<button
+							(click)="remarque(dataInfo.remarque)"
+							mat-raised-button
+							color="primary"
+							class="my-10">
+							Ajout Remarque
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+<div style="width: 80%;margin: 10px auto;text-align: center;">
+  <button class="start-button" *ngIf="!isRecording && !blobUrl"
+    (click)="startRecording()"><i
+      class="fa fa-microphone"></i> Enregistrer</button>
+  <button class="stop-button" *ngIf="isRecording && !blobUrl"
+    (click)="stopRecording()"><i
+      class="fa fa-stop-circle"></i> Arrêter</button>
+  <button class="cancel-button" *ngIf="!isRecording && blobUrl"
+    (click)="clearRecordedData()"><i
+      class="fa fa-trash"></i> Effacer l'enregistrement</button>
+  <div *ngIf="isRecording && !blobUrl">
+    <h2><span class="label label-default"><i class="fa fa-hourglass-o"></i>
+        {{recordedTime}}</span></h2>
+  </div>
+  <div *ngIf="isAudio;else isNotAudio">
+    <audio *ngIf="!isRecording && blobUrl" controls>
+      <source [src]="blobUrl" type="audio/webm">
+    </audio>
+  </div>
+  <ng-template #isNotAudio>
+    <video *ngIf="!isRecording && blobUrl" controls>
+      <source [src]="blobUrl" type="video/mp4">
+    </video>
+  </ng-template>
+</div>

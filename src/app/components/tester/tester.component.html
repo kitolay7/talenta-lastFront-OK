@@ -1,0 +1,25 @@
+<app-menu-candidat></app-menu-candidat>
+<div id="tester">
+  <div class="container">
+    <div class="row">
+      <h3>Consigne générale :</h3>
+      <p>
+        Prenez le temps de bien lire les consignes. Le délai de réponse de
+        quelques questions peut être chronométré.
+      </p>
+      <p>
+        Une fois que vous cliquez sur « PAGE SUIVANTE » en bas de page, vous
+        avancez dans le test et il n’est pas possible de revenir sur la page
+        précédente. En même temps, vous déclenchez le chronomètre de l’exercice
+        suivant s’il est chronométré.
+      </p>
+      <p class="text-red">
+        Si vous rencontrez des problèmes techniques, cliquez sur « En quoi je
+        peux t’aider » en bas à droite de chaque page.
+      </p>
+      <div class="btn-center">
+        <button class="btn btn-info" [routerLink]="['/quiz/' + idOffer]">PAGE SUIVANTE</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,904 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div class="container-fluid" id="create-test">
+  <div class="row" style="padding-top: 70px;">
+    <div class="create-test-body">
+      <app-subheader [title]="title"></app-subheader>
+      <div class="forward_button">
+        <button
+          routerLink="/projet"
+          mat-raised-button
+          color="primary">
+          <i class="fa fa-chevron-left"></i> Retour
+        </button>
+      </div>
+      <!-- <div class="col-md-12 my-10" style="margin-left: 20px;">
+        <button
+          [routerLink]="['/projet']"
+          mat-raised-button
+          color="primary">
+          <i class="fa fa-chevron-left"></i> Retour
+        </button>
+      </div>
+      <h1
+        class="subheader"
+        style="font-family: var(--ff-lucida)">
+        AU CŒUR D’UN RECRUTEMENT DE QUALITE
+      </h1> -->
+      <div class="create-test-title clearfix">
+        <h1>Faire la présélection dans le processus de recrutement n’a jamais
+          été
+          aussi simple</h1>
+      </div>
+
+      <div class="create-test-info">
+        <form class="row" [formGroup]="addquestion">
+          <div class="col-lg-12">
+            <mat-form-field class="col-sm-12 col-xs-12">
+              <!-- <input type="text"
+                placeholder="Pick one"
+                aria-label="Offer"
+                matInput
+                [formControl]="myControlFreeOffers"
+                [matAutocomplete]="auto"
+                >
+              <mat-autocomplete #auto="matAutocomplete" formControlName="offer">
+                <mat-option *ngFor="let option of filteredOptionsOffers |
+                  async"
+                  [value]="option.titre"
+                  [innerHTML]="option.titre">
+                </mat-option>
+              </mat-autocomplete> -->
+              <mat-label>Choisir l'offre auquel ajouter ce test : </mat-label>
+              <mat-select formControlName="offer">
+                <mat-option *ngFor="let offre of offres"
+                  [value]="offre.id" [innerHTML]="offre.titre">
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <div class="questionType col-lg-12">
+              <h2>Choisissez le type de question :</h2>
+              <div class="boutons">
+                <a class="btn btn-lg btn-primary" (click)="addForm(1)">Vrai ou
+                  Faux</a>
+                <a class="btn btn-lg btn-primary" (click)="addForm(2)">Choix
+                  multiples à
+                  une seule ou
+                  plusieurs bonnes réponses</a>
+                <a class="btn btn-lg btn-primary" (click)="addForm(3)">A
+                  classement
+                  hiérarchique</a>
+                <a class="btn btn-lg btn-primary" (click)="addForm(4)">Rédaction</a>
+                <a class="btn btn-lg btn-primary" (click)="addForm(5)">Audio</a>
+                <a class="btn btn-lg btn-primary" (click)="addForm(6)">Vidéo</a>
+              </div>
+            </div>
+
+
+            <div class="col-md-12 info-section">
+              <h2 id="truefalse">Vrai ou Faux</h2>
+              <form class="row" [formGroup]="addtruefalse">
+                <div class="col-md-12"
+                  formArrayName="itemRowsTrueFalse">
+                  <div *ngFor="let itemrow of
+                    addtruefalse.controls.itemRowsTrueFalse['controls']; let
+                    i=index" [formGroupName]="i" class="question_field"
+                    style="padding: 24px;">
+                    <div class="row text-left options"
+                      data-aos="zoom-in">
+                      <div class="">
+                        <h3>Question Vrai ou Faux N° {{i+1}}.</h3>
+                      </div>
+                      <div class="question col-md-12">
+                        <div class="field">
+                          <label for="question_name" id="question_name{{i+1}}"
+                            class="control-label">Enoncé de la
+                            question</label>
+                          <textarea name="question_name" id="question_name"
+                            rows="3" cols="40"
+                            class="form-control" formControlName="question_name"
+                            placeholder="Enoncé par question"
+                            required>
+                          </textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-8 col-xs-12">
+                        <div class="option">
+                          <mat-radio-group aria-label="Choisissez la bonne
+                            réponse :"
+                            formControlName="rep1"
+                            required>
+                            <mat-radio-button
+                              (change)="selecteitem(item)"
+                              *ngFor="let item of trueorFalse"
+                              value="{{item.value}}"
+                              [checked]="itemrow.controls.rep1.value ===
+                              item.value">
+                              {{item.name}}
+                            </mat-radio-button>
+                          </mat-radio-group>
+                        </div>
+                      </div>
+
+                      <div class="col-md-3 col-xs-12">
+                        <div class="option">
+                          <label for="timing"
+                            id="timing{{i}}">Durée pour cette question :
+                          </label>
+                          <input type="number" name="timing" id="timing"
+                            class=""
+                            placeholder="Ex: 5"
+                            formControlName="timing"
+                            required>
+
+                          <select
+                            class=""
+                            id="unit"
+                            formControlName="unit"
+                            required>
+                            <option value="s" selected>seconde(s)</option>
+                            <option value="mn">minute(s)</option>
+                          </select>
+
+                          <label class="font-weight-normal" for="point"
+                            id="point{{i}}">Point pour cette question :
+                          </label>
+                          <input type="number" name="point" id="point"
+                            class="form-control"
+                            placeholder="Ex: 5" maxlength="2"
+                            formControlName="point"
+                            required>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <a class="btn btn-danger"
+                          (click)="deleteRowTrueFalseForm(i)">Supprimer</a>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="plus">
+                    <i class="fa fa-plus" (click)="addTrueFalseForm()"></i>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+
+            <div class="col-md-12 info-section">
+              <h2 id="multiplechoice">Choix multiple</h2>
+              <form class="row" [formGroup]="addmultiplechoise">
+                <div class="col-md-12"
+                  formArrayName="itemRowsMultipleChoise">
+
+                  <div *ngFor="let itemrow of
+                    addmultiplechoise.controls.itemRowsMultipleChoise['controls'];
+                    let
+                    i=index" [formGroupName]="i" class="question_field"
+                    style="padding:
+                    24px;">
+                    <div class="row text-left options"
+                      data-aos="zoom-in">
+                      <div class="">
+                        <h3>Question Choix multiple N° {{i+1}}.</h3>
+                      </div>
+                      <div class="question col-md-12">
+                        <div class="field">
+                          <label for="question_name" id="question_name{{i+1}}"
+                            class="control-label">Enoncé de la
+                            question</label>
+                          <textarea name="question_name" id="question_name"
+                            rows="3" cols="40"
+                            class="form-control" formControlName="question_name"
+                            placeholder="Enoncé par question"
+                            required>
+                          </textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-md-8 col-xs-10">
+                        <div class="">
+                          <h4>Cochez la / les bonne(s) réponse(s)</h4>
+                        </div>
+
+
+                        <div class="table-responsive">
+                          <table class="table">
+                            <tbody formArrayName="itemMultipleChoices">
+                              <tr class="" *ngFor="let item of
+                                itemrow.controls.itemMultipleChoices.controls;let
+                                index_choice=index"
+                                [formGroupName]="index_choice">
+                                <td>
+                                  <label class="font-weight-normal" for="choix"
+                                    id="choice{{index_choice}}"
+                                    class="control-label">Réponse
+                                    {{index_choice + 1}} :
+                                  </label>
+                                  <input type="text" name="choice"
+                                    id="choice{{index_choice+1}}"
+                                    placeholder="Saisir la réponse"
+                                    class="form-control"
+                                    formControlName="choice"
+                                    required>
+                                </td>
+                                <td style="vertical-align: bottom">
+                                  <mat-checkbox
+                                    formControlName="isResponse">
+                                  </mat-checkbox>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div class="addQuestion col-sm-6 text-center my-10"
+                            (click)="addItemOnMultipleChoice(i)">
+                            <a
+                              class="btn btn-primary"
+                              translate>
+                              Ajouter un nouveau choix
+                            </a>
+                          </div>
+                          <div class="addQuestion col-sm-6 text-center my-10"
+                            (click)="removeItemOnMultipleChoice(i)">
+                            <a
+                              class="btn btn-danger"
+                              translate>
+                              Supprimer le dernier choix
+                            </a>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="option">
+                          <label for="timing"
+                            id="timing{{i}}">Durée pour cette question :
+                          </label>
+                          <input type="number" name="timing" id="timing"
+                            class=""
+                            placeholder="Ex: 5"
+                            formControlName="timing"
+                            required>
+
+                          <select
+                            class=""
+                            id="unit"
+                            formControlName="unit"
+                            required>
+                            <option value="s" selected>seconde(s)</option>
+                            <option value="mn">minute(s)</option>
+                          </select>
+
+                          <label class="font-weight-normal" for="point"
+                            id="point{{i}}">Point pour cette question :
+                          </label>
+                          <input type="number" name="point" id="point"
+                            class="form-control"
+                            placeholder="Ex: 5" maxlength="2"
+                            formControlName="point"
+                            required>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <a class="btn btn-danger"
+                          (click)="deleteRowMultipleChoiseForm(i)">Supprimer</a>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="plus">
+                    <i class="fa fa-plus" (click)="addMultipleChoiseForm()"></i>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+
+
+            <div class="col-md-12 info-section">
+              <h2 id="classement">Classement hiérarchique</h2>
+              <form class="row" [formGroup]="addclassement">
+                <div class="col-md-12"
+                  formArrayName="itemRowsClassement">
+                  <div *ngFor="let itemrow of
+                    addclassement.controls.itemRowsClassement['controls']; let
+                    i=index" [formGroupName]="i" class="question_field"
+                    style="padding:
+                    24px;">
+                    <div class="row text-left options"
+                      data-aos="zoom-in">
+                      <div class="">
+                        <h3>Question Classement hiérarchique N° {{i+1}}.</h3>
+                      </div>
+                      <div class="question col-md-12">
+                        <div class="field">
+                          <label for="question_name" id="question_name{{i+1}}"
+                            class="control-label">Enoncé de la
+                            question</label>
+                          <textarea name="question_name" id="question_name"
+                            rows="3" cols="40"
+                            class="form-control" formControlName="question_name"
+                            placeholder="Enoncé par question"
+                            required>
+                          </textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-md-8 col-xs-12">
+                        <div class="">
+                          <h4>Saisissez suivant le bon rang</h4>
+                        </div>
+                        <div formArrayName="itemClassementChoices">
+                          <div class="option" *ngFor="let item of
+                            itemrow.controls.itemClassementChoices.controls;let
+                            index_choice=index" [formGroupName]="index_choice">
+                            <label class="font-weight-normal" for="choix1"
+                              id="classementChoice{{i}}{{index_choice+1}}">{{index_choice+1}}
+                              :
+                            </label>
+                            <input type="text" name="choix1"
+                              id="choix{{i}}{{index_choice+1}}"
+                              class="form-control"
+                              placeholder="Saisir la réponse"
+                              formControlName="choice"
+                              required>
+                          </div>
+                        </div>
+                        <div class="addItem col-sm-6"
+                          (click)="addItemOnClassementChoice(i)">
+                          <a
+                            class="btn btn-primary"
+                            translate>
+                            Ajouter un nouveau choix
+                          </a>
+                        </div>
+                        <div class="addlangue col-sm-6"
+                          (click)="removeItemOnClassementChoice(i)">
+                          <a
+                            class="btn btn-danger"
+                            translate>
+                            Supprimer le dernier choix
+                          </a>
+                        </div>
+                      </div>
+
+                      <div class="col-md-3 col-xs-12">
+                        <div class="option">
+                          <label for="timing"
+                            id="timing{{i}}">Durée pour cette question :
+                          </label>
+                          <input type="number" name="timing" id="timing"
+                            class=""
+                            placeholder="Ex: 5"
+                            formControlName="timing"
+                            required>
+
+                          <select
+                            class=""
+                            id="unit"
+                            formControlName="unit"
+                            required>
+                            <option value="s" selected>seconde(s)</option>
+                            <option value="mn">minute(s)</option>
+                          </select>
+
+                          <label class="font-weight-normal" for="point"
+                            id="point{{i}}">Point pour cette question :
+                          </label>
+                          <input type="number" name="point" id="point"
+                            class="form-control"
+                            placeholder="Ex: 5" maxlength="2"
+                            formControlName="point"
+                            required>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <a class="btn btn-danger"
+                          (click)="deleteRowClassementForm(i)">Supprimer</a>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="plus">
+                    <i class="fa fa-plus" (click)="addClassementForm()"></i>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="col-md-12 info-section">
+              <h2 id="redaction">Rédaction</h2>
+              <form class="row" [formGroup]="addredaction">
+                <div class="col-md-12"
+                  formArrayName="itemRowsRedaction">
+                  <div *ngFor="let itemrow of
+                    addredaction.controls.itemRowsRedaction['controls']; let
+                    i=index" [formGroupName]="i" class="question_field"
+                    style="padding:
+                    24px;">
+                    <div class="row text-left options"
+                      data-aos="zoom-in">
+                      <div class="">
+                        <h3>Question Rédaction N° {{i+1}}.</h3>
+                      </div>
+                      <div class="question col-md-12">
+                        <div class="field">
+                          <label for="question_name" id="question_name{{i+1}}"
+                            class="control-label">Enoncé de la
+                            question</label>
+                          <textarea name="question_name" id="question_name"
+                            rows="3" cols="40"
+                            class="form-control" formControlName="question_name"
+                            placeholder="Enoncé par question"
+                            required>
+                          </textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-md-8 col-xs-12">
+                        <div class="">
+                          <h4>Notation manuelle des grilles élaborées :</h4>
+                        </div>
+                        <!--
+                        <div class="field">
+                          <label for="texte" id="texte{{i+1}}"
+                            class="control-label">Ecrivez
+                            ici votre texte</label>
+                          <textarea name="texte" id="texte" rows="15" cols="40"
+                            class="form-control" formControlName="texte"
+                            placeholder="Enoncé par question"></textarea>
+                        </div>
+-->
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr class="">
+                                <th>Note</th>
+                                <th>Notation max.</th>
+                              </tr>
+                            </thead>
+                            <tbody formArrayName="itemRedactionChoices">
+                              <tr class="" *ngFor="let item of
+                                itemrow.controls.itemRedactionChoices.controls;let
+                                index_choice=index"
+                                [formGroupName]="index_choice">
+                                <td>
+                                  <input type="text"
+                                    name="choix{{i}}{{index_choice}}"
+                                    id="choix{{i}}{{index_choice}}"
+                                    class="form-control"
+                                    placeholder="Ex: Compréhension écrite"
+                                    formControlName="choice"
+                                    required>
+                                </td>
+                                <td>
+                                  <input
+                                    type="number"
+                                    formControlName="response"
+                                    required>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div class="addQuestion col-sm-6"
+                            (click)="addItemOnRedactionChoice(i)">
+                            <a
+                              class="btn btn-primary"
+                              translate>
+                              Ajouter un nouveau choix
+                            </a>
+                          </div>
+                          <div class="addlangue col-sm-6"
+                            (click)="removeItemOnRedactionChoice(i)">
+                            <a
+                              class="btn btn-danger"
+                              translate>
+                              Supprimer le dernier choix
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-3 col-xs-12">
+                        <div class="option">
+                          <label for="timing"
+                            id="timing{{i}}">Durée pour cette question :
+                          </label>
+                          <input type="number" name="timing" id="timing"
+                            class=""
+                            placeholder="Ex: 5"
+                            formControlName="timing"
+                            required>
+
+                          <select
+                            class=""
+                            id="unit"
+                            formControlName="unit"
+                            required>
+                            <option value="s">seconde(s)</option>
+                            <option value="mn" selected>minute(s)</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <a class="btn btn-danger"
+                          (click)="deleteRowRedactionForm(i)">Supprimer</a>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="plus">
+                    <i class="fa fa-plus" (click)="addRedactionForm()"></i>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="col-md-12 info-section">
+              <h2 id="audio">Audio</h2>
+              <form class="row" [formGroup]="addaudio">
+                <div class="col-md-12"
+                  formArrayName="itemRowsAudio">
+
+                  <div *ngFor="let itemrow of
+                    addaudio.controls.itemRowsAudio['controls'];
+                    let i=index" [formGroupName]="i" class="question_field"
+                    style="padding:
+                    24px;">
+                    <div class="row text-left options"
+                      data-aos="zoom-in">
+                      <div class="">
+                        <h3>Question Orale N° {{i+1}}.</h3>
+                      </div>
+                      <div class="question col-md-12">
+                        <div class="field">
+                          <label for="question_name" id="question_name{{i+1}}"
+                            class="control-label">Enoncé de la
+                            question</label>
+                          <textarea name="question_name" id="question_name"
+                            rows="3" cols="40"
+                            class="form-control" formControlName="question_name"
+                            placeholder="Enoncé par question"
+                            required>
+                          </textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-md-8 col-xs-12">
+
+                        <!--
+                        <mat-form-field>
+                          <mat-label>Choisir le type de réponse que vous voulez
+                            recevoir
+                          </mat-label>
+                          <mat-select 
+                          	formControlName="audioRep"
+                          	required>
+                            <mat-option *ngFor="let type of audioType"
+                              [value]="type.value" [checked]="type.value ==
+                              addaudio.value.itemRowsAudio[i].audioRep">
+                              {{type.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+
+                        <div class=""
+                          *ngIf="addaudio.value.itemRowsAudio[i].audioRep ==
+                          '1'">
+                          <h4>Importer votre enregistrement vocal</h4>
+                          <label for="fileAudio" class="btn btn-success"><i
+                              class="fa
+                              fa-microphone"></i> Importer votre enregistrement
+                            vocal</label>
+                          <input id="fileAudio" multiple class="input-file"
+                            type="file"
+                            name="fileAudio" [ngStyle]="{'display':
+                            addaudio.value.itemRowsAudio[i].audio != '' ?
+                            'block' : 'none' }"
+                            (change)="onSelectedAudio($event)"
+                            formControlName="audio">
+                        </div>
+                         <div class=""
+                          *ngIf="addaudio.value.itemRowsAudio[i].audioRep ==
+                          '2'">
+                          <h4>Cliquer sur le bouton enregistrer pour commencer</h4>
+                          <app-record></app-record>
+                        </div> -->
+                        <div class="">
+                          <h4>Notation manuelle des grilles élaborées :</h4>
+                        </div>
+
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr class="">
+                                <th>Note</th>
+                                <th>Notation max.</th>
+                              </tr>
+                            </thead>
+                            <tbody formArrayName="itemAudioChoices">
+                              <tr class="" *ngFor="let item of
+                                itemrow.controls.itemAudioChoices.controls;let
+                                index_choice=index"
+                                [formGroupName]="index_choice">
+                                <td>
+                                  <input type="text"
+                                    name="choix{{i}}{{index_choice}}"
+                                    id="choix{{i}}{{index_choice}}"
+                                    class="form-control"
+                                    placeholder="Ex: Compréhension écrite"
+                                    formControlName="choice"
+                                    required>
+                                </td>
+                                <td>
+                                  <input
+                                    type="number"
+                                    formControlName="response"
+                                    required>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div class="addQuestion col-sm-6"
+                            (click)="addItemOnAudioChoice(i)">
+                            <a
+                              class="btn btn-primary"
+                              translate>
+                              Ajouter un nouveau choix
+                            </a>
+                          </div>
+                          <div class="addlangue col-sm-6"
+                            (click)="removeItemOnAudioChoice(i)">
+                            <a
+                              class="btn btn-danger"
+                              translate>
+                              Supprimer le dernier choix
+                            </a>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="col-md-3 col-xs-12">
+                        <div class="option">
+                          <label for="timing"
+                            id="timing{{i}}">Durée pour cette question :
+                          </label>
+                          <input type="number" name="timing" id="timing"
+                            class=""
+                            placeholder="Ex: 5"
+                            formControlName="timing"
+                            required>
+
+                          <select
+                            class=""
+                            id="unit"
+                            formControlName="unit"
+                            required>
+                            <option value="s">seconde(s)</option>
+                            <option value="mn" selected>minute(s)</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <a class="btn btn-danger"
+                          (click)="deleteRowAudioForm(i)">Supprimer</a>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="plus">
+                    <i class="fa fa-plus" (click)="addAudioForm()"></i>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- video -->
+            <div class="col-md-12 info-section">
+              <h2 id="video">Video</h2>
+              <form class="row" [formGroup]="addvideo">
+                <div class="col-md-12"
+                  formArrayName="itemRowsVideo">
+
+                  <div *ngFor="let itemrow of
+                    addvideo.controls.itemRowsVideo['controls'];
+                    let i=index" [formGroupName]="i" class="question_field"
+                    style="padding:
+                    24px;">
+                    <div class="row text-left options"
+                      data-aos="zoom-in">
+                      <div class="">
+                        <h3>Question Orale N° {{i+1}}.</h3>
+                      </div>
+                      <div class="question col-md-12">
+                        <div class="field">
+                          <label for="question_name" id="question_name{{i+1}}"
+                            class="control-label">Enoncé de la
+                            question</label>
+                          <textarea name="question_name" id="question_name"
+                            rows="3" cols="40"
+                            class="form-control" formControlName="question_name"
+                            placeholder="Enoncé par question"
+                            required>
+                          </textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-md-8 col-xs-12">
+                        <!--
+
+                        <mat-form-field>
+                          <mat-label>Choisir la type de réponse que vous voulez
+                            recevoir
+                          </mat-label>
+                          <mat-select 
+                          	formControlName="videoRep"
+                          	required>
+                            <mat-option *ngFor="let type of videoType"
+                              [value]="type.value" [checked]="type.value ==
+                              addvideo.value.itemRowsVideo[i].videoRep">
+                              {{type.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <div class=""
+                          *ngIf="addvideo.value.itemRowsVideo[i].videoRep ==
+                          '1'">
+                          <h4>Importer votre video</h4>
+                          <label for="fileVideo" class="btn btn-success"><i
+                              class="fa
+                              fa-microphone"></i> Importer votre video</label>
+                          <input id="fileVideo" multiple class="input-file"
+                            type="file"
+                            name="fileVideo" [ngStyle]="{'display':
+                            addvideo.value.itemRowsVideo[i].video != '' ?
+                            'block' : 'none' }"
+                            (change)="onSelectedVideo($event)"
+                            formControlName="video">
+                        </div>
+                         <div class=""
+                          *ngIf="addvideo.value.itemRowsVideo[i].videoRep ==
+                          '2'">
+                          <h4>Cliquer sur le bouton enregistrer pour commencer</h4>
+                          <app-record></app-record>
+                        </div> 
+                      -->
+                        <div class="">
+                          <h4>Notation manuelle des grilles élaborées :</h4>
+                        </div>
+
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr class="">
+                                <th>Note</th>
+                                <th>Notation max.</th>
+                              </tr>
+                            </thead>
+                            <tbody formArrayName="itemVideoChoices">
+                              <tr class="" *ngFor="let item of
+                                itemrow.controls.itemVideoChoices.controls;let
+                                index_choice=index"
+                                [formGroupName]="index_choice">
+
+                                <td>
+                                  <input type="text"
+                                    name="choix{{i}}{{index_choice}}"
+                                    id="choix{{i}}{{index_choice}}"
+                                    class="form-control"
+                                    placeholder="Ex: Compréhension écrite"
+                                    formControlName="choice"
+                                    required>
+                                </td>
+                                <td>
+                                  <input
+                                    type="number"
+                                    formControlName="response"
+                                    required>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div class="addQuestion col-sm-6"
+                            (click)="addItemOnVideoChoice(i)">
+                            <a
+                              class="btn btn-primary"
+                              translate>
+                              Ajouter un nouveau choix
+                            </a>
+                          </div>
+                          <div class="addlangue col-sm-6"
+                            (click)="removeItemOnVideoChoice(i)">
+                            <a
+                              class="btn btn-danger"
+                              translate>
+                              Supprimer le dernier choix
+                            </a>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="col-md-3 col-xs-12">
+                        <div class="option">
+                          <label for="timing"
+                            id="timing{{i}}">Durée pour cette question :
+                          </label>
+                          <input type="number" name="timing" id="timing"
+                            class=""
+                            placeholder="Ex: 5"
+                            formControlName="timing"
+                            required>
+
+                          <select
+                            class=""
+                            id="unit"
+                            formControlName="unit"
+                            required>
+                            <option value="s">seconde(s)</option>
+                            <option value="mn" selected>minute(s)</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <a class="btn btn-danger"
+                          (click)="deleteRowVideoForm(i)">Supprimer</a>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="plus">
+                    <i class="fa fa-plus" (click)="addVideoForm()"></i>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div
+              class="row col-md-12 validate"
+              [ngClass]="{ 'validator': addtruefalse.invalid ||
+              addmultiplechoise.invalid ||
+              addclassement.invalid || addredaction.invalid || addaudio.invalid
+              ||
+              addvideo.invalid }">
+              <a
+                mat-raised-button
+                color="primary"
+                (click)="save()">
+                Enregistrer
+              </a>
+              <a
+                mat-raised-button
+                color="primary"
+                (click)="preValidate()">
+                Publier
+              </a>
+            </div>
+            <div class="col-md-12">
+              <p
+                class="text-danger text-center"
+                *ngIf="addtruefalse.invalid || addmultiplechoise.invalid ||
+                addclassement.invalid || addredaction.invalid ||
+                addaudio.invalid ||
+                addvideo.invalid">
+                Il y a encore des champs non remplis
+              </p>
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

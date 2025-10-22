@@ -1,0 +1,268 @@
+.create-test-body
+{
+	//padding-top: 70px;
+	.create-test-subheader
+	{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 3% 0;
+		.col-md-10
+		{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			h1
+			{
+				color: var(--c-orange);
+			}
+			img
+			{
+				height: 65px;
+				padding-right: 5%;
+			}
+		}
+		.col-md-2
+		{
+			display: flex;
+			justify-content: flex-end;
+			padding-right: 5%;
+			a
+			{
+				position: relative;
+				margin: 10px;
+				i
+				{
+					font-size: 4rem;
+					color: #000000b8;
+					text-shadow: 0 0 5px red;
+					cursor: pointer;
+					position: relative;
+				}
+				.badge
+				{
+					right: -10px;
+					position: absolute;
+					bottom: -10px;
+					background-color: #f00;
+				}
+			}
+		}
+	}
+	.create-test-title
+	{
+		h1
+		{
+			color: var(--c-orange);
+			background-color: #555;
+			padding: 20px;
+			text-align: center;
+			font-weight: bold;
+		}
+	}
+	.create-test-info
+	{
+		padding: 25px;
+		.mat-form-field
+		{
+			label
+			{
+				font-size: 1.5rem;
+			}
+		}
+		.form-group
+		{
+			margin-top: 15px;
+			.btn
+			{
+				border-color: var(--c-orange);
+				color: var(--c-orange);
+			}
+		}
+		.question_field
+		{
+			//background-color: #3333;
+			border-radius: 10px; 
+			padding: 10px;
+			border: 2px solid #fff;
+			box-shadow: 0 0 10px #3333;
+			margin: 15px auto;
+			
+			.question
+			{
+				margin: 10px;
+			}
+			.btn
+			{
+				margin: 10px auto;
+			}
+		}
+		.info-section
+		{
+			//min-height: 100vh;
+			padding: 20px;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			border: 2px solid var(--c-orange-2);
+			border-radius: 20px;
+			margin: 10px auto;
+			.option
+			{
+				display: flex;
+				flex-direction: column;
+			}
+		}
+	}
+}
+button.va
+{    margin: 0 auto;
+	padding: 10px;
+	border: 1px;
+	font-size: 18px;
+	text-shadow: 0px 0px 5px #000a;
+}
+.va:hover{
+	color: #fff;
+	background-color: #449d44;
+	border-color: #398439;
+}
+::ng-deep.mat-option
+{
+	p, h1, h2, h3, h4, h5, h6
+	{
+		font-size: 1.5rem !important;
+		font-weight: normal !important;
+		color: #333 !important;
+		margin: 5px 0 !important;
+	}
+}
+
+.questionType
+{
+	display: flex;
+	flex-direction: column;
+	.boutons
+	{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	a
+	{
+		margin: 10px;
+		width: 280px;
+		height: 83px;
+		background-color: var(--c-orange);
+		border-color: var(--c-orange);
+		white-space: normal;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: all 1s;
+	}
+	a:hover
+	{
+		background-color: var(--c-orange-dark);
+	}
+}
+
+.form-group
+{
+	width: 100%;
+}
+.form-control
+{
+	font-size: 16px;
+}
+
+.dg-list {
+  width: 500px;
+  max-width: 100%;
+  border: solid 1px #ccc;
+  min-height: 60px;
+  display: block;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.dg-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.dg-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.dg-custom-placeholder {
+  background: #ccc;
+  border: dotted 3px #999;
+  min-height: 60px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.plus
+{
+	text-align: center;
+	margin: 10px;
+	cursor: pointer;
+	.fa-plus
+	{
+    color: #000;
+		font-size: 5rem;
+	}
+}
+
+.mat-radio-button {
+	margin: 10px;
+}
+.validate
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@media (max-width: 768px) {
+	.create-test-subheader
+	{
+		flex-direction: column;
+	}
+	.validate
+	{
+  	flex-direction: column;
+  	a
+  	{
+  		margin-bottom: 10px;
+  	}
+	}
+}
+

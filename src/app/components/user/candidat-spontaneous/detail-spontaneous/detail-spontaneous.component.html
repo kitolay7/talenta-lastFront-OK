@@ -1,0 +1,125 @@
+<div id="detail">
+	<div class="wave">
+		<svg viewBox="0 0 1440 320">
+			<path fill="#0099ff" fill-opacity="1"
+				d="M0,96L30,117.3C60,139,120,181,180,170.7C240,160,300,96,360,90.7C420,85,480,139,540,154.7C600,171,660,149,720,154.7C780,160,840,192,900,181.3C960,171,1020,117,1080,122.7C1140,128,1200,192,1260,192C1320,192,1380,128,1410,96L1440,64L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path>
+		</svg>
+	</div>
+	<div *ngIf="!loading" class="loader-div">
+		<mat-spinner></mat-spinner>
+	</div>
+	<div class="container-fluid account-body" *ngIf="loading">
+        <app-subheader></app-subheader>
+		<div class="col-md-12 my-10" style="margin-left: 20px;">
+			<button
+				routerLink="/listingSpontaneous"
+				mat-raised-button
+				color="primary">
+				<i class="fa fa-chevron-left"></i>  Retour
+			</button>
+		</div>
+		<h1 class="subheader" style="font-family: var(--ff-candara)">Details du candidat</h1>
+		<div class="col-md-12">
+			<div class="text-center title col-md-12">
+				<div class="col-md-12">
+					<h1>
+						{{profileData.lastName + ' ' + profileData.firstName}}
+					</h1>
+				</div>
+			</div>
+			<div class="content col-md-12">
+				<h4>Téléphone : 
+					<span class="rose">
+						{{profileData.numTel}}
+					</span>
+				</h4>
+				<h4>Adresse Email : 
+					<span class="rose">
+						{{profileData.email}}
+					</span>
+				</h4>
+				<h4>N° Skype : 
+					<span class="rose">
+						{{profileData.idSkype}}
+					</span>
+				</h4>
+				<h4>N° Whatsapp : 
+					<span class="rose">
+						{{profileData.idWhatsapp}}
+					</span>
+				</h4>
+				<h4>
+					Voyage hors du pays d'origine : 
+					<span class="rose">
+						{{profileData.originCountry ? 'Oui' : 'Non'}}
+					</span>
+				</h4>
+				<h4>
+					Pays actuel : 
+					<span class="rose">
+						{{profileData.actualCountry}}
+					</span>
+				</h4>
+				<h4>
+					Ville actuel : 
+					<span class="rose">
+						{{profileData.actualCity}}
+					</span>
+				</h4>
+				<h4>
+					Secteur d'activité : 
+					<span class="rose">
+						{{profileData.secteur}}
+					</span>
+				</h4>
+				<h4>
+					Compétences : 
+					<span class="rose" *ngFor="let comp of profileData.competences">
+						{{comp.name}}, 
+					</span>
+				</h4>
+				<h4>
+					Educations : 
+				</h4>
+				
+                <table id="educTable" class="table table-bordered
+                  table-condensed table-striped list">
+                  <tbody>
+                    <tr *ngFor="let educ of profileData.education">
+                      <td><span class="thead">Nom, Addresse, Pays de l'Institut
+                          / École: </span>{{educ.titre}}</td>
+                      <td><span class="thead">Spécialisation: </span>{{educ.specialisation}}</td>
+                      <td><span class="thead">Diplôme: </span>{{educ.diplome}}</td>
+                      <td>
+                      	<span class="thead">Durée: </span>
+                      	{{educ.startDate | date:'shortDate':'UTC':'fr'}}
+                        - {{educ.endDate | date:'shortDate':'UTC':'fr'}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+				<h4>
+					Professions : 
+				</h4>
+				
+                <table id="productTable" class="table table-bordered
+                  table-condensed table-striped list">
+                  <tbody>
+                    <tr *ngFor="let prof of profileData.professions">
+                      <td><span class="thead">Titre: </span>{{prof.titre}}</td>
+                      <td><span class="thead">Nom, Addresse, Pays de la Société:
+                        </span>{{prof.nomSociete}}</td>
+                      <td><span class="thead">Résumé: </span>{{prof.resume}}</td>
+                      <td>
+                      	<span class="thead">Durée: </span>
+                      	{{prof.startDate | date:'shortDate':'UTC':'fr'}} -
+                        {{prof.endDate | date:'shortDate':'UTC':'fr'}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+				
+			</div>
+		</div>
+	</div>
+</div>

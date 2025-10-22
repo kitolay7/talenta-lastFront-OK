@@ -1,0 +1,114 @@
+//@import "~styles.scss";
+
+#fiche-poste {
+  padding-top: 150px;
+  padding-bottom: 50px;
+  //margin: 0 5%;
+	position: relative;
+  .col-md-8
+  {
+  	.title
+  	{
+  		h1
+  		{
+  			text-transform: uppercase;
+  			*
+  			{
+  				color: #333;
+  			}
+  			img
+  			{
+  				//width: 120px;
+					height: 110px;
+					//border-radius: 50%;
+					//margin-right: 20px;
+					//float: left;
+					object-fit: cover;
+  			}
+  			span
+  			{
+  				p
+  				{
+  					font-size: 36px !important;
+  				}
+  			}
+  		}
+  		h3
+  		{
+  			text-transform: uppercase;
+  			.rose
+  			{
+  				color: var(--c-orange-dark);
+  			}
+  		}
+  	}
+  	.content
+  	{
+  		ul
+  		{
+  			list-style: inside circle;
+  		}
+  		ol
+  		{
+  			list-style: inside;
+  		}
+  		.texte
+  		{
+  			text-align: justify;
+  			white-space: pre-line;
+  			line-height: 1.5;
+  			color: #333;
+  		}
+  		h4
+  		{
+  			color: midnightblue;
+			border-bottom: 1px solid midnightblue;
+			margin-top: 20px;
+  		}
+  	}
+  }
+  .col-md-4
+  {
+  	.wait
+  	{
+		height: 250px;
+		width: 100%;
+  		h3
+  		{
+			color: var(--clr-orange);
+			text-shadow: 1px 1px 2px #0003;
+  		}
+  	}
+  	.texte
+  	{
+  		text-align: justify;
+  		white-space: pre-line;
+  		line-height: 1.5;
+  		color: #333;
+  		ul
+  		{
+  			list-style: inside circle !important;
+  		}
+  		ol
+  		{
+  			list-style: inside !important;
+  		}
+  	}
+  	video
+  	{
+  		width: 100%;
+  		margin-bottom: 20px;
+  	}
+  	.carousel
+  	{
+  		width: 100%;
+  	}
+  	.slide
+  	{
+  		img
+  		{
+  			object-fit: contain;
+  		}
+  	}
+  }
+}

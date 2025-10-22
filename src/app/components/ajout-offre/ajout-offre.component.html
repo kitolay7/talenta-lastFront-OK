@@ -1,0 +1,300 @@
+<div
+	*ngIf="spinner"
+	class="loader-div">
+	Ajout en Cours
+	<div class="loader">Loading...</div>
+</div>
+<div class="container-fluid">
+	<div class="row" style="padding-top: 70px;">
+		<!-- <div class="ajout-offre-body container"> -->
+		<div class="ajout-offre-body">
+			<app-subheader [title]="title"></app-subheader>
+			<!--
+			<div class="forward_button">
+				<button
+					routerLink="/myaccount"
+					mat-raised-button
+					color="primary">
+					<i class="fa fa-chevron-left"></i> Retour
+				</button>
+			</div>
+			-->
+			<!-- <h1 class="subheader" style="font-family: var(--ff-candara)">Ajout offre
+				d'emploi</h1> -->
+			<div class="row ajout-offre-content">
+				<div class="col-md-12">
+					<form [formGroup]="formAdd">
+						<div class="upload-image col-md-4 col-xs-12 text-center">
+							<!-- <img
+							[src]="blobUrl" alt="logo"
+							class="logo"> -->
+							<!-- <div class="progress" *ngIf="progressImg> 0">
+							<div
+								class="progress-bar progress-bar-striped"
+								role="progressbar"
+								attr.aria-valuenow="{{ progressImg }}"
+								aria-valuemin="0"
+								aria-valuemax="100"
+								[ngStyle]="{ width: progressImg + '%' }">
+								{{ progressImg }} %
+							</div>
+						</div>
+						<label for="fileAvatar" class="image4 btn btn-success"
+							style="display: inherit">
+							<i class="fa fa-briefcase"></i> Ajouter logo de l'entreprise (.jpg, .png)
+						</label>
+						<input
+							id="fileAvatar"
+							(change)="onSelectedImg($event)"
+							multiple
+							class="input-file"
+							type="file"
+							name="image_link_profile"
+							accept=".jpg, .png"> -->
+						</div>
+						<div class="row">
+							<div class="col-md-8 col-xs-12 form-horizontal">
+								<div class="form-group">
+									<label for="title" class="col-sm-3 col-xs-12 control-label">Intitulé du
+										poste à pourvoir * </label>
+									<div class="col-sm-8 col-xs-12">
+										<ckeditor
+											id="title"
+											[config]="configTitre"
+											[editor]="EditorTitre"
+											(ready)="onReady($event)"
+											formControlName="title"
+											name="title">
+										</ckeditor>
+									</div>
+								</div>
+								<div class="form-group" *ngIf="isAtalia">
+									<label for="title" class="col-sm-3 col-xs-12 control-label">Importation du Test * </label>
+									<div class="col-sm-8 col-xs-12">
+										<div class="progress" *ngIf="progressFile> 0">
+											<div
+											  class="progress-bar progress-bar-striped"
+											  role="progressbar"
+											  attr.aria-valuenow="{{ progressFile }}"
+											  aria-valuemin="0"
+											  aria-valuemax="100"
+											  [ngStyle]="{ width: progressFile + '%' }">
+											  {{ progressFile }} %
+											</div>
+										</div>
+										<div *ngIf="test">
+											<p style="font-size: 1rem;"><b>Fichier chargé </b> : <u><i>{{ testU.name }}</i></u></p>
+										</div>
+										
+										<input
+											id="file"
+											(change)="onSelectedFile($event)"
+											class="input-file"
+											style="display: none"
+											type="file"
+											accept=".docx">
+										
+										<label
+											for="file"
+											class="btn btn-primary">
+											<i class="fa fa-paperclip"></i>
+											Parcourir votre fichier (.docx)
+										</label>
+										
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="description"
+										class="col-sm-3 col-xs-12 control-label">
+										Présentation de l’entreprise * 
+									</label>
+									<div class="col-sm-8 col-xs-12">
+										<textarea name="description"
+											class="form-control"
+											formControlName="description"
+											rows="10"
+											placeholder="Présentation de l’entreprise:"
+											required>
+										</textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="contexte" class="col-sm-3 col-xs-12
+										control-label">
+										Le contexte du recrutement * 
+									</label>
+									<div class="col-sm-8 col-xs-12">
+										<textarea name="contexte"
+											class="form-control"
+											formControlName="contexte"
+											rows="10"
+											placeholder="Le contexte du recrutement:"
+											required>
+										</textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="mission" class="col-sm-3 col-xs-12
+										control-label">
+										Les missions * 
+									</label>
+									<div class="col-sm-8 col-xs-12">
+										<ckeditor
+											id="mission"
+											[config]="configMission"
+											[editor]="EditorMission"
+											formControlName="mission"
+											(ready)="onReady($event)"
+											name="mission">
+										</ckeditor>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="qualification" class="col-sm-3
+										col-xs-12 control-label">
+										Les qualifications requises * 
+									</label>
+									<div class="col-sm-8 col-xs-12">
+										<ckeditor
+											id="qualification"
+											[config]="configQualification"
+											[editor]="EditorQualification"
+											formControlName="qualification"
+											(ready)="onReady($event)"
+											name="qualification">
+										</ckeditor>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 col-xs-12">
+								<div class="form-group col-md-12 col-xs-12">
+									<mat-form-field>
+										<mat-label>Choisir le lieu du travail : </mat-label>
+										<mat-select
+											formControlName="pays"
+											required>
+											<mat-option
+												*ngFor="let pay of country"
+												[value]="pay.name">
+												{{pay.name}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+								</div>
+								<div class="form-group col-md-12 col-xs-12">
+									<mat-form-field>
+										<mat-label>Secteur d'activité : </mat-label>
+										<mat-select
+											formControlName="secteur"
+											required>
+											<mat-option
+												*ngFor="let activity of secteurs"
+												[value]="activity">
+												{{activity}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+								</div>
+								<div class="form-group col-md-12 col-xs-12">
+									<mat-form-field>
+										<mat-label>Passer un entretien si bonnes réponses : </mat-label>
+										<mat-select
+											formControlName="grille"
+											required>
+											<mat-option
+												*ngFor="let bonne of bonnereponses"
+												[value]="bonne.value">
+												{{bonne.title}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+								</div>
+								<div class="upload-image form-group col-md-12 col-xs-12">
+									<div class="progress" *ngIf="progressVid> 0">
+										<div
+											class="progress-bar progress-bar-striped"
+											role="progressbar"
+											attr.aria-valuenow="{{ progressVid }}"
+											aria-valuemin="0"
+											aria-valuemax="100"
+											[ngStyle]="{ width: progressVid + '%' }">
+											{{ progressVid }} %
+										</div>
+									</div>
+									<video
+										*ngIf="seeVideo" width="320"
+										height="240" controls autoplay>
+										<source [src]="video">
+									</video>
+									<div *ngIf="video">
+										<p>Vidéo chargé : {{ videoU.name }}</p>
+									</div>
+									<label
+										for="fileVideo"
+										class="image4 btn btn-success">
+										<i class="fa fa-video-camera"></i>
+										Ajouter une petite Video (.mp4, .avi) Taille Max : 25 Mo
+									</label>
+									<input
+										id="fileVideo"
+										(change)="onSelectedVideo($event)"
+										multiple
+										class="input-file"
+										type="file"
+										accept=".avi, .mp4">
+								</div>
+								<div class="form-group col-md-12 col-xs-12">
+									<mat-form-field>
+										<mat-label>Contrat : </mat-label>
+										<mat-select
+											formControlName="post"
+											required>
+											<mat-option
+												*ngFor="let p of posts"
+												[value]="p.name">
+												{{p.name}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+								</div>
+								<div class="custom-message form-group">
+									<label
+										for="message"
+										class="col-sm-12 col-xs-12 control-label">
+										Messages
+									</label>
+									<ckeditor
+										id="message"
+										[config]="configMessage"
+										[editor]="EditorMessage"
+										formControlName="message"
+										(ready)="onReady($event)"
+										name="message"
+										class="col-sm-12 col-xs-12"></ckeditor>
+								</div>
+							</div>
+							<div
+								class="col-md-12 validate"
+								[ngClass]="{ 'validator': formAdd.invalid }">
+								<button
+									(click)="valider()"
+									mat-raised-button
+									color="primary"
+									*ngIf="!spinner">
+									VALIDER
+								</button>
+							</div>
+							<div class="col-md-12">
+								<p
+									class="text-danger text-center"
+									*ngIf="formAdd.invalid">
+									Il y a encore des champs non remplis
+								</p>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

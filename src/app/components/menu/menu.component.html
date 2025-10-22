@@ -1,0 +1,54 @@
+<!--
+<div class="container">
+	<div class="mobNone">
+		<h3>{{username}}</h3>
+	</div>
+	<div class="list-group">
+		<ul>
+			<li class="" [ngClass]="{'active': id === 4 }" id="4" *ngIf="true">
+				<a mat-stroked-button color="primary" (click)="goTo('/ajout-offre', 4)">
+					Ajouter offre d'emploi
+				</a>
+			</li>
+			<li class="" [ngClass]="{'active': id === 0 }" id="0" *ngIf="!isMyaccount">
+				<a mat-stroked-button color="primary" (click)="goTo('/create-test', 0)">
+					Créer un nouveau test
+				</a>
+			</li>
+			<li class="" [ngClass]="{'active': id === 1 }" id="1" *ngIf="!isMyaccount">
+				<a mat-stroked-button color="primary" (click)="goTo('/test', 1)">
+					Test en cours
+				</a>
+			</li>
+			<li class="" [ngClass]="{'active': id === 2 }" id="2" *ngIf="!isMyaccount">
+				<a mat-stroked-button color="primary" (click)="goTo('/projet', 2)">
+					Projet
+				</a>
+			</li>
+			<li class="" [ngClass]="{'active': id === 3 }" id="3" *ngIf="false">
+				<a mat-stroked-button color="primary" (click)="goTo('/logout', 3)">Se Déconnecter</a>
+			</li>
+		</ul>
+	</div>
+
+</div>
+-->
+
+<div class="text-center menu-candidat">
+  <a class="btn btn-info" (click)="editForm()"><i class="fa fa-edit"></i><span class="hider"> Editer mes informations</span></a>
+  &nbsp;&nbsp;&nbsp;
+  <a class="btn btn-info" (click)="fichedeposte()"><i class="fa fa-clipboard"></i><span class="hider"> Fiche de poste</span></a>
+  &nbsp;&nbsp;&nbsp;
+  <a class="btn btn-info" (click)="postuler()"><i class="fa fa-file-text"></i><span class="hider"> Faire le test</span></a>
+</div>
+
+<a 
+	class="disconnect" 
+	(click)="logout()" 
+	tooltip="Se déconnecter" 
+	container="body" 
+	containerClass="deconnectionClass"
+	placement="bottom"
+	>
+	<i class="fa fa-sign-out"></i>
+</a>

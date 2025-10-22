@@ -1,0 +1,57 @@
+<div *ngIf="!loading" class="loader-div">
+	<mat-spinner></mat-spinner>
+</div>
+<div class="container-fluid" id="detail">
+	<div class="row" *ngIf="loading">
+		<div class="account-body">
+			<app-subheader [title]="title"></app-subheader>
+			<div class="forward_button">
+				<button
+					routerLink="/gestion_candidats"
+					mat-raised-button
+					color="primary">
+					<i class="fa fa-chevron-left"></i> Retour
+				</button>
+			</div>
+			<!-- <div class="col-md-12 my-10" style="margin-left: 20px;">
+            <button
+              routerLink="/gestion_candidats"
+              mat-raised-button
+              color="primary">
+              <i class="fa fa-chevron-left"></i>  Retour
+            </button>
+          </div>
+    		  <h1 class="subheader" style="font-family: var(--ff-candara)">Details du candidat</h1> -->
+			<div class="col-md-12 account-content" style="margin-top: 16px;">
+				<div class="text-center title col-md-12">
+					<div class="col-md-12">
+						<h1>
+							{{profileData.profile.firstName + ' ' + profileData.profile.lastName}}
+						</h1>
+					</div>
+				</div>
+				<div class="content col-md-12">
+					<h4>Ville : </h4>
+					<p class="texte">{{profileData.profile.ville}}</p>
+					<h4>Pays : </h4>
+					<p class="texte">{{profileData.profile.pays}}</p>
+					<h4>Téléphone : </h4>
+					<p class="texte">{{profileData.profile.numTel}}</p>
+					<h4>Addresse email : </h4>
+					<p class="texte">{{profileData.email}}</p>
+					<h4>Métier actuel : </h4>
+					<p class="texte">{{profileData.profile.metierActuel}}</p>
+					<h4>Année d'experience : </h4>
+					<p class="texte">{{profileData.profile.anneesExperiences}}</p>
+					<h4>Niveau d'étude : </h4>
+					<p class="texte">{{profileData.profile.niveauEtudes}}</p>
+					<h4>Diplôme : </h4>
+					<p class="texte">{{profileData.profile.diplomes}}</p>
+					<h4>Spécialisations : </h4>
+					<p class="texte">{{profileData.profile.specialisations}}</p>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

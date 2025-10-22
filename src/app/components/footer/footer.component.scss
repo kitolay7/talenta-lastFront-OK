@@ -1,0 +1,23 @@
+footer .logo-ft {                                                                                                                                                                               
+    display: flex;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #fff !important;
+    font-size: 21px;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-shadow: none;
+    letter-spacing: 1px;
+    justify-content: flex-start;
+    align-items: baseline;
+    img
+    {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    footer .logo-ft {
+        justify-content: center;
+    }
+}

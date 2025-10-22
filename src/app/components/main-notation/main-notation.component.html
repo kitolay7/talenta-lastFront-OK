@@ -1,0 +1,115 @@
+<div class="container-fluid" id="main-notation" style="margin-top:80px;position:
+  relative;">
+  <div class="wave">
+    <svg viewBox="0 0 1440 320">
+      <path fill="#0099ff" fill-opacity="1"
+        d="M0,96L30,117.3C60,139,120,181,180,170.7C240,160,300,96,360,90.7C420,85,480,139,540,154.7C600,171,660,149,720,154.7C780,160,840,192,900,181.3C960,171,1020,117,1080,122.7C1140,128,1200,192,1260,192C1320,192,1380,128,1410,96L1440,64L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path>
+    </svg>
+  </div>
+  <div class="main-notation">
+    <app-subheader></app-subheader>
+    <div class="col-md-12 my-10" style="margin-left: 20px;">
+      <button
+        [routerLink]="['/offre/'+offreId+'/users']"
+        mat-raised-button
+        color="primary">
+        <i class="fa fa-chevron-left"></i> Retour
+      </button>
+    </div>
+    <h1 class="text-center subheader">LES REPONSES DE {{name}}</h1>
+    <hr />
+    <div class="tableFixHead" [formGroup]="inputNote">
+      <table class="table table-striped table-hover table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th>Points Max.</th>
+            <th>Type</th>
+            <th width="444px">Ennoncé</th>
+            <th>Réponse</th>
+            <th>Point obtenu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let response of responseQuiz; let index=index">
+            <td>{{response.grid}}</td>
+            <td>{{response.question.type_question.wording}}</td>
+            <td>{{response.question.enunciate}}</td>
+            <td *ngIf="response.question.TypeQuestionId <5; else mediaContent"
+              [innerHTML]="response.answers"></td>
+            <ng-template #mediaContent>
+              <audio controls *ngIf="response.question.TypeQuestionId === 5">
+                <source [src]="urlblob + response.answers"
+                  type="audio/webm">
+              </audio>
+              <video controls *ngIf="response.question.TypeQuestionId === 6"
+                style="width:260px">
+                <source [src]="urlblob + response.answers"
+                  type="video/mp4">
+              </video>
+            </ng-template>
+            <td>
+              <div *ngIf="response.question.TypeQuestionId>3 ;else
+                noInput">
+
+                <div class="row" *ngFor="let details_note of
+                  response.details_notes">
+                  <div class="col-lg-3">
+                    {{details_note.criteria_point_question.wording}}
+                  </div>
+                  <br />
+                  <div class="col-lg-8">
+                    <br />
+                    <input
+                      class="col-lg-2"
+                      type="text"
+                      id="rq"
+                      placeholder="ex:5"
+                      class="form-control"
+                      maxlength="2"
+					  formControlName="note_p"
+                      [(ngModel)]="details_note.note">
+                  </div>
+                  <div class="col-lg-2">
+                    &nbsp;/{{details_note.criteria_point_question.point}}
+                  </div>
+                  <br />
+                </div>
+              </div>
+              <ng-template #noInput>{{response.pointWin}}</ng-template>
+            </td>
+            <!-- <ng-template *ngIf="response.question.TypeQuestionId>3 ;else
+              noInput">
+              <ng-template *ngFor="let details_note of
+                response.details_notes">
+                <td>{{details_note.criteria_point_question.wording}}</td>
+                <td><input type="text"
+                    id="rq"
+                    placeholder="ex:5"
+                    class="form-control"
+                    maxlength="2"
+                    [(ngModel)]="details_note.note"></td>
+                <td>/{{details_note.criteria_point_question.point}}</td>
+              </ng-template>
+            </ng-template>
+            <ng-template #noInput>{{response.pointWin}}</ng-template> -->
+          </tr>
+        </tbody>
+      </table>	  
+      <div class="col-md-12 text-center my-10" [ngClass]="{ 'validator': inputNote.invalid }">
+        <button
+          (click)="editResponseMultiple()"
+          mat-raised-button
+          color="primary">
+          Valider
+        </button>
+      </div>
+	  <div class="col-md-12">
+		<p
+			class="text-danger text-center"
+			*ngIf="inputNote.invalid">
+			Bien remplir tous les champs !!!
+		</p>
+	  </div>
+    </div>
+  </div>
+</div>

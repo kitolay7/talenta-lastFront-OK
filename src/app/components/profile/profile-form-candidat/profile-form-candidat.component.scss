@@ -1,0 +1,27 @@
+
+.text-red {
+  color: red;
+}
+.btn-center {
+  text-align: center;
+}
+.btn-center * {
+  text-align: center;
+  margin: 5px auto;
+}
+.btn-info
+{
+	white-space: normal;
+	p
+	{
+		color: #fff;
+	}
+}
+
+@media (max-width: 767px) {
+	.menu-candidat
+	{
+		display: flex;
+		flex-direction: column;
+	}
+}

@@ -1,0 +1,33 @@
+.table-responsive
+{
+	width: 90%;
+	margin: 0 auto;
+	table
+	{
+		tbody
+		{
+			tr
+			{
+				cursor: pointer;
+				td
+				{
+					vertical-align: middle;
+				}
+			}
+		}
+	}
+}
+.secteur
+{
+	width: 80%;
+	margin: 0 auto;
+	color: #fff;
+	padding: 20px;
+	box-shadow: 1px 4px 9px -4px #0007;
+	background: linear-gradient(336deg, var(--c-red) 10%, var(--c-orange-1) 100%); 
+}
+.item
+{
+	cursor: pointer;
+	line-height: 3rem;
+}

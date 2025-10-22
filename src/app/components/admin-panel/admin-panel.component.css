@@ -1,0 +1,145 @@
+/* =========================
+   Panel d'administration
+   ========================= */
+   .admin-panel {
+    margin: 75px auto 40px;                 /* marge top pour laisser l’en-tête */
+    width: min(640px, 92vw);
+    background: #fff;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow:
+      0 10px 20px rgba(2, 8, 23, 0.08),
+      0 4px 8px rgba(2, 8, 23, 0.05),
+      inset 0 0 0 1px rgba(2, 8, 23, 0.04);
+    animation: ap-floatIn 320ms ease-out both;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
+    color: #0f172a; /* slate-900 */
+  }
+  
+  .admin-panel h2 {
+    margin: 0 0 16px;
+    font-size: 1.3rem;
+    letter-spacing: 0.2px;
+    text-align: center;
+  }
+  
+  /* Rangée des contrôles : label + select + bouton */
+  .admin-panel label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: #334155; /* slate-600 */
+  }
+  
+  /* Regrouper select + bouton sur une seule ligne au-dessus de 520px */
+  .admin-panel #feature-select,
+  .admin-panel button {
+    width: 100%;
+  }
+  
+  @media (min-width: 520px) {
+    .admin-panel .controls {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+    .admin-panel #feature-select { width: 100%; }
+    .admin-panel button { width: auto; padding-inline: 18px; }
+  }
+  
+  /* Comme le HTML fourni n'a pas .controls, on le simule via le parent */
+  .admin-panel {
+    display: grid;
+    gap: 10px;
+  }
+  
+  /* Select (apparence moderne) */
+  .admin-panel select {
+    appearance: none;               /* masque la flèche par défaut */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    padding: 12px 40px 12px 14px;   /* espace pour une pseudo-flèche */
+    font-size: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+    outline: none;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+    background-image:
+      linear-gradient(45deg, transparent 50%, #64748b 50%),
+      linear-gradient(135deg, #64748b 50%, transparent 50%),
+      linear-gradient(to right, transparent, transparent);
+    background-position:
+      calc(100% - 24px) calc(50% - 4px),
+      calc(100% - 16px) calc(50% - 4px),
+      calc(100% - 2.4em) 50%;
+    background-size: 8px 8px, 8px 8px, 1px 2.2em;
+    background-repeat: no-repeat;
+  }
+  
+  .admin-panel select:hover { border-color: #cbd5e1; }
+  .admin-panel select:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.25);
+  }
+  
+  /* Bouton Appliquer */
+  .admin-panel button {
+    border: 0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #2563eb, #0ea5e9);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 80ms ease, filter 160ms ease, box-shadow 160ms ease;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+  }
+  
+  .admin-panel button:hover {
+    filter: brightness(1.05);
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.32);
+  }
+  .admin-panel button:active { transform: translateY(1px); }
+  
+  /* Focus clavier global */
+  .admin-panel :focus-visible {
+    outline: 3px solid rgba(14, 165, 233, 0.5);
+    outline-offset: 2px;
+  }
+  
+  /* Petite animation d’entrée */
+  @keyframes ap-floatIn {
+    from { opacity: 0; transform: translateY(6px) scale(0.99); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  
+  /* Mode sombre (auto) */
+  @media (prefers-color-scheme: dark) {
+    .admin-panel {
+      background: #0f172a;
+      color: #e2e8f0;
+      box-shadow:
+        0 10px 24px rgba(2, 8, 23, 0.6),
+        inset 0 0 0 1px rgba(148, 163, 184, 0.08);
+    }
+    .admin-panel label { color: #cbd5e1; }
+    .admin-panel select {
+      background-color: #0b1220;
+      border-color: #1f2937;
+      color: #e5e7eb;
+      background-image:
+        linear-gradient(45deg, transparent 50%, #94a3b8 50%),
+        linear-gradient(135deg, #94a3b8 50%, transparent 50%),
+        linear-gradient(to right, transparent, transparent);
+    }
+    .admin-panel select:hover { border-color: #334155; }
+    .admin-panel select:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25);
+    }
+  }
+  

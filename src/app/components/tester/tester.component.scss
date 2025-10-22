@@ -1,0 +1,16 @@
+#tester {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 100px;
+}
+
+.text-red {
+  color: red;
+}
+.btn-center {
+  text-align: center;
+}
+.btn-center * {
+  text-align: center;
+  margin: 5px auto;
+}

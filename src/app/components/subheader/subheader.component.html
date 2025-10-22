@@ -1,0 +1,57 @@
+<div class="row account-subheader">
+	<div class="col-md-10 col-sm-12">
+		<img
+			routerLink="/myaccount"
+			class="logoRecruteur"
+			[src]="blobUrl" />
+		<h1 class="subheader" style="font-family: var(--ff-lucida)">{{title}}</h1>
+	</div>
+	<div class="col-md-2 col-sm-12">
+		<!--
+		<a
+			[tooltipHtml]="notification"
+			triggers=""
+			container="body"
+			containerClass="notif"
+			placement="bottom"
+			#not="bs-tooltip"
+			(click)="not.toggle()">
+			<i class="fa fa-bell"></i>
+			<span class="badge label label-danger">
+				{{infoNotifications.length}}
+			</span>
+		</a>
+	    -->
+		<a
+			routerLink="/myaccount"
+			[ngClass]="{ 'hidden': isHomeR }">
+			<i class="fa fa-home"></i>
+		</a>
+	</div>
+</div>
+
+<ng-template #notification>
+	<div class="notif-content">
+		<div class="head">
+			<h3>Notifications</h3>
+			<a href="">Effacer</a>
+		</div>
+		<hr>
+		<div class="list">
+			<ul>
+				<li
+					class="row"
+					*ngFor="let i of infoNotifications">
+					<div class="col-2 icon">
+						<i class="fa fa-info"></i>
+					</div>
+					<div class="col-10 body">
+						<h4>Nouveau candidat</h4>
+						<p>Un nouveau candidat a postuler pour l'offre : "Titre de l'offre"</p>
+						<p>Cliquer pour voir le détail.</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</ng-template>
