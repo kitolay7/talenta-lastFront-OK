@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AdminAuthService } from '../../services/admin-auth.service';
 
 @Component({
@@ -8,6 +8,23 @@ import { AdminAuthService } from '../../services/admin-auth.service';
   styleUrls: ['./admin-login.component.css']
 })
 export class AdminLoginComponent {
+  username = ''; password = '';
+  errorMessage: string | null = null;
+  showPassword = false;
+
+  constructor(private auth: AdminAuthService, private router: Router, private route: ActivatedRoute) {}
+
+  login() {
+    if (this.username === 'admin' && this.password === '@dm!n2O25') {
+      this.auth.login(); // ✅ persiste
+      const redirect = this.route.snapshot.queryParamMap.get('redirect') || '/administration';
+      this.router.navigateByUrl(redirect, { replaceUrl: true });
+    } else {
+      alert('Identifiants invalides');
+      this.errorMessage = 'Nom d\'utilisateur ou mot de passe incorrect.';
+    }
+  }
+  /*
   username: string = '';
   password: string = '';
   showPassword = false;
@@ -22,4 +39,5 @@ export class AdminLoginComponent {
       this.errorMessage = 'Nom d\'utilisateur ou mot de passe incorrect.';
     }
   }
+  */
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, UrlTree  } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule, BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -96,6 +96,25 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import {HeaderAdminAuthComponent} from './components/admin-login/header-admin-auth/header-admin-auth.component';
 import {HeaderAdminComponent} from './components/admin-login/header-admin/header-admin.component';
+import { AdminAuthService } from './services/admin-auth.service';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
+
+/*
+export const adminGuard = (): boolean | UrlTree => {
+  const auth = inject(AdminAuthService);
+  const router = inject(Router);
+  // Autoriser le panel uniquement si connecté
+  return auth.isLoggedIn() || router.parseUrl('/admin-login');
+};
+
+export const adminLoginGuard = (): boolean | UrlTree => {
+  const auth = inject(AdminAuthService);
+  const router = inject(Router);
+  // Autoriser la page de login uniquement si NON connecté
+  return !auth.isLoggedIn() || router.parseUrl('/administration');
+};
+*/
 
 const config: SocketIoConfig = { url: environment.baseUrl, options: {} };
 const appRoutes: Routes = [
@@ -138,7 +157,7 @@ const appRoutes: Routes = [
   { path: 'postulation/users/:userId/offres/:offreId/details', component: MainNotationComponent, canActivate: [AuthGuard] },
   { path: 'user/reset/:token', component: ResetComponent },
   { path: 'confirmation/:token/:role', component: ConfirmationComponent },
-  { path: 'administration', component: AdminPanelComponent, canActivate: [AdminGuard] },
+  { path: 'administration', component: AdminPanelComponent },
   { path: 'admin-login', component: AdminLoginComponent },
   
   {

@@ -12,6 +12,6 @@ export class HeaderAdminComponent {
 
   logout(): void {
     this.auth.logout();
-    this.router.navigate(['/admin-login']); // retour sur la page de login admin
+    this.router.navigate(['/admin-login'], { replaceUrl: true }); // retour sur la page de login admin
   }
 }

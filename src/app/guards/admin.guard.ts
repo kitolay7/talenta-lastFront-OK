@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { AdminAuthService } from '../services/admin-auth.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -10,6 +10,11 @@ import { tap } from 'rxjs/operators';
 export class AdminGuard implements CanActivate {
   constructor(private adminAuth: AdminAuthService, private router: Router) {}
 
+  canActivate(): boolean | UrlTree {
+    return this.adminAuth.isLoggedIn() ? true : this.router.parseUrl('/admin-login');
+  }
+
+  /*
   canActivate(): Observable<boolean> {
     return this.adminAuth.isAdmin().pipe(
       tap(isAdmin => {
@@ -19,4 +24,5 @@ export class AdminGuard implements CanActivate {
       })
     );
   }
+    */
 }
