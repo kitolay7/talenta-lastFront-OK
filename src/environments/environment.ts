@@ -5,9 +5,10 @@
 export const environment = {
   production: false,
   //baseUrl: 'http://154.126.92.194:8181/'
-  baseUrl: 'http://localhost:8181/'
+  baseUrl: 'http://localhost:8181/',
   //baseUrl: 'https://back.talenta.mg/'	
   //baseUrl: 'https://talenta-sourcing-back.herokuapp.com/'
+  //baseUrlAdmin: 'http://localhost:4200'
 };
 
 /*

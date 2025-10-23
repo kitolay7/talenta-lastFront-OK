@@ -1,11 +1,42 @@
-<div class="admin-panel">
-    <h2>Panel d'administration</h2>
-    <label for="feature-select">Activer les questionnaires :</label>
-    <select id="feature-select" [(ngModel)]="selectedMode">
-      <option value="audio">Audio seulement</option>
-      <option value="video">Vidéo seulement</option>
-      <option value="all">Tous</option>
-      <option value="none">Désactivé</option>
-    </select>
-    <button (click)="updateFeatures()">Appliquer</button>
+<div class="admin-panel card shadow">
+  <h2>Paramètres des questionnaires</h2>
+  <p class="muted">
+    Choisissez quels types de questions sont <strong>autorisés</strong> dans <em>Create Test</em>.
+  </p>
+
+  <div class="form">
+    <div class="radio-group">
+      <label>
+        <input type="radio" name="mode" [(ngModel)]="selectedMode" value="all" />
+        <span>Tous les types (V/F, QCM, Classement, Rédaction, Audio, Vidéo)</span>
+      </label>
+
+      <label>
+        <input type="radio" name="mode" [(ngModel)]="selectedMode" value="av" />
+        <span>Audio & Vidéo uniquement</span>
+      </label>
+
+      <label>
+        <input type="radio" name="mode" [(ngModel)]="selectedMode" value="none" />
+        <span>Désactivé (aucun type autorisé)</span>
+      </label>
+    </div>
+
+    <button class="btn primary" (click)="updateFeatures()" [disabled]="saving">
+      {{ saving ? 'Enregistrement...' : 'Appliquer' }}
+    </button>
+
+    <div class="status" *ngIf="savedAt">
+      ✅ Sauvegardé à {{ savedAt | date:'short' }}
+    </div>
   </div>
+
+  <hr>
+
+  <div class="help">
+    <p class="muted">
+      <strong>Note :</strong> ce réglage agit sur les boutons de sélection de type dans
+      la page <em>Create Test</em> (les boutons V/F, QCM, Classement, Rédaction, Audio, Vidéo).
+    </p>
+  </div>
+</div>

@@ -92,7 +92,6 @@
 					</form>
 
 					<div *ngIf="showQuest">
-						<!--
 						<div class="questionType col-lg-12">
 							<h2>Choisissez le type de question :</h2>
 							<div class="boutons">
@@ -109,57 +108,8 @@
 							</div>
 						</div>
 
-						-->
-						<div class="questionType col-lg-12">
-						<h2>Choisissez le type de question :</h2>
 
-						<!-- Indication d’état -->
-						<div class="alert alert-info" *ngIf="mode !== 'all'">
-							<ng-container *ngIf="mode === 'av'">
-							Mode actif : <strong>Audio & Vidéo uniquement</strong>. Les autres types sont désactivés.
-							</ng-container>
-							<ng-container *ngIf="mode === 'none'">
-							Mode actif : <strong>Désactivé</strong>. Aucun type ne peut être ajouté.
-							</ng-container>
-						</div>
-
-						<div class="boutons">
-							<!-- Non-AV visibles seulement si 'all' -->
-							<a class="btn btn-lg btn-primary"
-							(click)="addForm(1)"
-							*ngIf="allowNonAV"
-							[class.disabled]="allDisabled">Vrai ou Faux</a>
-
-							<a class="btn btn-lg btn-primary"
-							(click)="addForm(2)"
-							*ngIf="allowNonAV"
-							[class.disabled]="allDisabled">Choix multiples à une seule ou plusieurs bonnes réponses</a>
-
-							<a class="btn btn-lg btn-primary"
-							(click)="addForm(3)"
-							*ngIf="allowNonAV"
-							[class.disabled]="allDisabled">A classement hiérarchique</a>
-
-							<a class="btn btn-lg btn-primary"
-							(click)="addForm(4)"
-							*ngIf="allowNonAV"
-							[class.disabled]="allDisabled">Rédaction</a>
-
-							<!-- AV visibles si 'all' ou 'av' -->
-							<a class="btn btn-lg btn-primary"
-							(click)="addForm(5)"
-							*ngIf="allowAV"
-							[class.disabled]="allDisabled">Audio</a>
-
-							<a class="btn btn-lg btn-primary"
-							(click)="addForm(6)"
-							*ngIf="allowAV"
-							[class.disabled]="allDisabled">Vidéo</a>
-						</div>
-						</div>
-
-						<div class="col-md-12 info-section" *ngIf="allowNonAV"
-							[class.disabled]="allDisabled">
+						<div class="col-md-12 info-section">
 							<h2 id="truefalse">Vrai ou Faux</h2>
 							<form class="row" [formGroup]="addtruefalse">
 								<div class="col-md-12"
@@ -248,8 +198,7 @@
 						</div>
 
 
-						<div class="col-md-12 info-section" *ngIf="allowNonAV"
-							[class.disabled]="allDisabled">
+						<div class="col-md-12 info-section">
 							<h2 id="multiplechoice">Choix multiple</h2>
 							<form class="row" [formGroup]="addmultiplechoise">
 								<div class="col-md-12"
@@ -378,8 +327,7 @@
 
 
 
-						<div class="col-md-12 info-section" *ngIf="allowNonAV"
-							[class.disabled]="allDisabled">
+						<div class="col-md-12 info-section">
 							<h2 id="classement">Classement hiérarchique</h2>
 							<h3>Glissez déposez</h3>
 							<form class="row" [formGroup]="addclassement">
@@ -489,8 +437,7 @@
 							</form>
 						</div>
 
-						<div class="col-md-12 info-section" *ngIf="allowNonAV"
-							[class.disabled]="allDisabled">
+						<div class="col-md-12 info-section">
 							<h2 id="redaction">Rédaction</h2>
 							<form class="row" [formGroup]="addredaction">
 								<div class="col-md-12"
@@ -616,8 +563,7 @@
 							</form>
 						</div>
 
-						<div class="col-md-12 info-section" *ngIf="allowAV"
-							[class.disabled]="allDisabled">
+						<div class="col-md-12 info-section">
 							<h2 id="audio">Audio</h2>
 							<form class="row" [formGroup]="addaudio">
 								<div class="col-md-12"
@@ -767,8 +713,7 @@
 						</div>
 
 						<!-- video -->
-						<div class="col-md-12 info-section" *ngIf="allowAV"
-							[class.disabled]="allDisabled">
+						<div class="col-md-12 info-section">
 							<h2 id="video">Video</h2>
 							<form class="row" [formGroup]="addvideo">
 								<div class="col-md-12"

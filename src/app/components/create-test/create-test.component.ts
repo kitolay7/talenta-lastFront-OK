@@ -18,6 +18,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@ang
 import { RecordComponent } from '../record/record.component';
 import { ResponseQuizz } from 'src/app/models/response-quizz';
 import { BehaviorSubject } from 'rxjs';
+import { AdminFeatureService, QuizMode } from 'src/app/services/admin-feature.service';
 
 
 @Component({
@@ -27,6 +28,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CreateTestComponent implements OnInit {
 	title = "AU CŒUR D’UN RECRUTEMENT DE QUALITE";
+	mode: QuizMode = 'all';
 	offres: Offres[] = [];
 	trueorFalse = [
 		{
@@ -91,6 +93,7 @@ export class CreateTestComponent implements OnInit {
 		private userServ: UserService,
 		private toastr: ToastrService,
 		private router: Router,
+		private feature: AdminFeatureService
 
 	) {
 		this.isLoading = true;
@@ -121,6 +124,8 @@ export class CreateTestComponent implements OnInit {
 	}
 	ngOnInit(): void {
 		// this.showQuest = false;
+		this.feature.ensureLoaded();
+		this.feature.mode$.subscribe(m => this.mode = m);
 		this.allReponse.push({ id: 0, reponse: '', isReponse: false })
 		// get offres
 		// get current user
@@ -156,8 +161,14 @@ export class CreateTestComponent implements OnInit {
 
 	public addtruefalse: FormGroup;
 
+	// Helpers utilisés dans le template
+	get allowNonAV(): boolean { return this.mode === 'all'; }
+	get allowAV(): boolean { return this.mode === 'all' || this.mode === 'av'; }
+	get allDisabled(): boolean { return this.mode === 'none'; }
+
+
 	get formArrTrueFalse() {
-		return this.addtruefalse.get('itemRowsTrueFalse') as FormArray;
+			return this.addtruefalse.get('itemRowsTrueFalse') as FormArray;
 	}
 	selecteitem(item) {
 		this.trueorFalse.forEach((res: any) => {
