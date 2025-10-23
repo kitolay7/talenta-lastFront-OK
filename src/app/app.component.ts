@@ -36,8 +36,8 @@ export class AppComponent {
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe(e => {
         const url = e.urlAfterRedirects;
-        this.isAdminRoute = url.startsWith('/admin');
-        this.isAdminLoginRoute = (url === '/admin') || url.startsWith('/admin/login');
+        this.isAdminRoute = url.startsWith('/administration');//url.startsWith('/administration');
+        this.isAdminLoginRoute = (url === '/admin-login'); //|| url.startsWith('/admin-login');
       });
     
     if (this.getAdmin.getValue() !== null) {

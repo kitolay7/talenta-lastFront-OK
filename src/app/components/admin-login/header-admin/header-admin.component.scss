@@ -1,0 +1,15 @@
+.admin-navbar {
+    position: sticky; top: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 16px; background: #0f172a; color: #fff;
+  }
+  .links { list-style: none; display: flex; gap: 12px; margin: 0; padding: 0; }
+  a { color: #e2e8f0; text-decoration: none; }
+  a.active { color: #38bdf8; font-weight: 600; }
+  
+  .logout {
+    background: #ef4444; color: #fff; border: 0; border-radius: 6px;
+    padding: 8px 12px; cursor: pointer;
+  }
+  .logout:hover { opacity: .9; }
+  

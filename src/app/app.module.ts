@@ -95,6 +95,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import {HeaderAdminAuthComponent} from './components/admin-login/header-admin-auth/header-admin-auth.component';
+import {HeaderAdminComponent} from './components/admin-login/header-admin/header-admin.component';
 
 const config: SocketIoConfig = { url: environment.baseUrl, options: {} };
 const appRoutes: Routes = [
@@ -137,7 +138,7 @@ const appRoutes: Routes = [
   { path: 'postulation/users/:userId/offres/:offreId/details', component: MainNotationComponent, canActivate: [AuthGuard] },
   { path: 'user/reset/:token', component: ResetComponent },
   { path: 'confirmation/:token/:role', component: ConfirmationComponent },
-  { path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard] },
+  { path: 'administration', component: AdminPanelComponent, canActivate: [AdminGuard] },
   { path: 'admin-login', component: AdminLoginComponent },
   
   {
@@ -194,7 +195,9 @@ const appRoutes: Routes = [
     AppComponent,
     AdminLoginComponent,
     AdminPanelComponent,
-    HeaderAdminAuthComponent
+    HeaderAdminAuthComponent,
+    HeaderAdminComponent
+    
   ],
   imports: [
     HomeModule,

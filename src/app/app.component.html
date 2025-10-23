@@ -1,12 +1,12 @@
 <div *ngIf="isLogin" style="height: 100%;">
   <!--<app-header></app-header>-->
-  <app-header-admin-auth *ngIf="isAdminRoute"></app-header-admin-auth>
+  <app-header-admin-auth *ngIf="isAdminLoginRoute"></app-header-admin-auth>
 
   <!-- Admin connecté -->
-  <app-header-admin *ngIf="isAdminRoute && !isAdminLoginRoute"></app-header-admin>
+  <app-header-admin *ngIf="isAdminRoute"></app-header-admin>
 
   <!-- Site public -->
-  <app-header *ngIf="!isAdminRoute"></app-header>
+  <app-header *ngIf="!isAdminRoute && !isAdminLoginRoute"></app-header>
   
   <div style="display:flex;flex-direction:column;justify-content:
     space-between;height:100%">

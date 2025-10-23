@@ -17,7 +17,7 @@ export class AdminLoginComponent {
 
   login() {
     if (this.adminAuth.login(this.username, this.password)) {
-      this.router.navigate(['/admin']);
+      this.router.navigate(['/administration']);
     } else {
       this.errorMessage = 'Nom d\'utilisateur ou mot de passe incorrect.';
     }
