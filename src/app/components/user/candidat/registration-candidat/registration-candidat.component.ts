@@ -5,11 +5,11 @@ import { of, from } from 'rxjs';
 import { UserService } from '../../../../services/user.service';
 import { User } from '../../../../models/user';
 import { HelperService } from '../../../../services/helper.service';
-import { Profile } from 'src/app/models/profile';
+import { Profile } from '../../../../../../src/app/models/profile';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { PostulationService } from 'src/app/services/postulation.service';
-import { OffreService } from 'src/app/services/offre.service';
+import { PostulationService } from '../../../../../../src/app/services/postulation.service';
+import { OffreService } from '../../../../../../src/app/services/offre.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -87,6 +87,7 @@ export class RegistrationCandidatComponent implements OnInit {
       codeFC: new FormControl('', Validators.required),
       commFC: new FormControl('', Validators.required),
       acceptFC: new FormControl('', Validators.required),
+      cv: new FormControl('', Validators.required)
     });
     
   }
@@ -101,7 +102,8 @@ export class RegistrationCandidatComponent implements OnInit {
       	username: this.formRegister.controls.pseudoFC.value,
         email: this.formRegister.controls.email.value,
         password: this.formRegister.controls.password.value,
-        roles: ['candidat']
+        roles: ['candidat'],
+        cv: this.formRegister.controls.cv.value
       },
 
       // profile

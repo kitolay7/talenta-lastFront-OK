@@ -206,6 +206,16 @@
 					</mat-error>
 				</mat-form-field>
 				<br>
+				<!-- Utilisation de mat-label mais sans mat-form-field pour input type file -->
+				<div class="file-upload-container">
+					<mat-label>Télécharger votre CV *</mat-label>
+					<input type="file" formControlName="cv" accept=".pdf,.docx" required />
+					<mat-error *ngIf="formRegister.controls.cv.invalid && (formRegister.controls.cv.dirty || formRegister.controls.cv.touched)">Ce champ est obligatoire.</mat-error>
+				</div>
+
+
+				<br>
+				
 				<p>* J'accepte de recevoir les communications Talenta Sourcing par
 					e-mail : </p>
 				<mat-radio-group formControlName="commFC">
