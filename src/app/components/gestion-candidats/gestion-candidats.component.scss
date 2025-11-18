@@ -41,3 +41,14 @@
 }
 @media (max-width: 768px) {
 }
+
+h4.rejetes-title {
+  background-color: #dc3545; /* Fond rouge pour signifier le rejet */
+  color: white; /* Texte en blanc */
+  padding: 8px 15px; /* Espacement intérieur */
+  border-radius: 5px; /* Coins arrondis */
+  margin-top: 20px; /* Marge au-dessus */
+  margin-bottom: 15px; /* Marge en dessous */
+  font-weight: 600; /* Gras */
+  font-size: 1.25rem; /* Taille de police légèrement plus grande */
+}

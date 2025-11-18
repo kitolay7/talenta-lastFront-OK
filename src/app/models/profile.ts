@@ -11,6 +11,10 @@ export class Profile {
   niveauEtudes: string;
   diplomes: string;
   specialisations: string;
+  // === NOUVEAU ===
+  cvPath?: string;
+  cvOriginalName?: string;
+  // ================
 
   constructor(data: any) {
     data = data || {};
@@ -26,6 +30,9 @@ export class Profile {
     this.niveauEtudes = data.niveauEtudes;
     this.diplomes = data.diplomes;
     this.specialisations = data.specialisations;
+
+    this.cvPath = data.cvPath;
+    this.cvOriginalName = data.cvOriginalName;
   }
 
   public getData() {

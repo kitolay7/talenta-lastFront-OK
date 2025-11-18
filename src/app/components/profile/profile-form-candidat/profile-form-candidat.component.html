@@ -254,6 +254,34 @@
       </div>
     </div>
   </form>
+
+  <hr>
+
+<h3>Mon CV</h3>
+
+<div *ngIf="hasCv" class="mb-3">
+  <p>CV actuellement enregistré :</p>
+  <a *ngIf="cvUrl" [href]="cvUrl" target="_blank">
+    {{ cvName || 'Télécharger mon CV' }}
+  </a>
+</div>
+
+<div class="form-group">
+  <label for="cvInput">Télécharger / Mettre à jour mon CV *</label>
+  <input
+    id="cvInput"
+    type="file"
+    (change)="onCvSelected($event)"
+    accept=".pdf,.doc,.docx"
+    class="form-control" />
+  <button
+    type="button"
+    class="btn btn-primary mt-2"
+    (click)="uploadCv()">
+    Enregistrer mon CV
+  </button>
+</div>
+<!--
   <p>
     Maintenant, vous allez effectuer un quiz de présélection. Vous avez besoin
     d’environ <strong>30 minutes</strong>, d’une connexion internet, d’un
@@ -268,4 +296,5 @@
         "Je fais le test plus tard" en haut</span>
       </p>
   </div>
+-->
 </div>

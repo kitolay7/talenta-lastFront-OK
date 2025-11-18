@@ -119,6 +119,15 @@ export class UserService {
     return this.http.get(this.url + 'api/test/userinfo/' + a);
   }
 
+  // === NOUVEAU : upload du CV candidat ===
+  uploadCandidateCv(userId: number, file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('cv', file);
+    const headers = new HttpHeaders().set('x-access-token', localStorage.getItem('Token') || '');
+    return this.http.post(this.url + 'users/' + userId + '/uploadCv', formData, { headers });
+  }
+  // =======================================
+
   currentUser(): Observable<any> {
     if (!this.userActif) {
       console.log(`not already created`);

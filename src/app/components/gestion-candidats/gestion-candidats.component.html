@@ -1,64 +1,196 @@
 <div *ngIf="!loading" class="loader-div">
-	<mat-spinner></mat-spinner>
+  <mat-spinner></mat-spinner>
 </div>
-<div class="container-fluid" id="account">
-	<div class="row" style="padding-top: 80px;" *ngIf="loading">
-		<div class="account-body">
-			<app-subheader [title]="title"></app-subheader>
-			<!--
-			<div class="forward_button">
-				<button
-					routerLink="/myaccount"
-					mat-raised-button
-					color="primary">
-					<i class="fa fa-chevron-left"></i> Retour
-				</button>
-			</div>
-			-->
-			<!-- <div class="col-md-12 my-10" style="margin-left: 20px;">
-				<button
-					routerLink="/myaccount"
-					mat-raised-button
-					color="primary">
-					<i class="fa fa-chevron-left"></i> Retour
-				</button>
-			</div>
-			<h1 class="subheader" style="font-family: var(--ff-lucida)">LA GESTION DES
-				CANDIDATURES</h1> -->
-			<div class="col-md-12 account-content" style="margin-top: 16px;">
-				<div class="col-md-8 col-sm-12">
-					<h3>Enregistrements trouvés : {{allCandidats.length}} candidats</h3>
-				</div>
 
-				<div class="table-responsive w-100">
-					<table class="table table-hover table-striped">
-						<thead>
-							<tr class="info">
-								<th>N°</th>
-								<th>Offre</th>
-								<th>Contrat</th>
-								<th>Date de dépot</th>
-								<th>Nom et Prénoms</th>
-								<th>Score</th>
-								<th>Status</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="" *ngFor="let candidat of allCandidats; let id=index"
-								[routerLink]="['/detail_candidat/' + candidat.userId]">
-								<td>{{id + 1}}</td>
-								<td class="titreO" [innerHTML]="candidat.offre.titre"></td>
-								<td>{{candidat.offre.post}}</td>
-								<td>{{candidat.offre.publicationDate | date:'shortDate':'UTC':'fr'}}</td>
-								<td>{{candidat.user.profile.firstName + ' ' +
-									candidat.user.profile.lastName}}</td>
-								<td>{{candidat.note}}</td>
-								<td>{{candidat.decision}}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="container-fluid" id="account">
+  <div class="row" style="padding-top: 80px;" *ngIf="loading">
+    <div class="account-body">
+      <app-subheader [title]="title"></app-subheader>
+
+      <div class="forward_button">
+        <button
+          routerLink="/myaccount"
+          mat-raised-button
+          color="primary">
+          <i class="fa fa-chevron-left"></i> Retour
+        </button>
+      </div>
+
+      <!-- Étape 1 : sélection de l'offre -->
+      <div class="col-md-12 my-3">
+        <h3>Sélectionner une offre à analyser</h3>
+
+        <div class="form-row align-items-end">
+          <div class="form-group col-md-6">
+            <label>Offre</label>
+            <select
+              class="form-control"
+              [(ngModel)]="selectedOffreId"
+              (change)="onOffreChange()">
+              <option [ngValue]="null">-- Choisir une offre --</option>
+              <option *ngFor="let offre of offres" [ngValue]="offre.id">
+                {{ offre.titre | stripHtml }} ({{ offre.post }})
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Étape 2 : Tri automatique des CV pour l'offre sélectionnée -->
+      <div class="col-md-12 my-3" *ngIf="selectedOffreId">
+        <h3>
+          Premier tri automatique des CV
+          <small *ngIf="selectedOffreLibelle">
+            – {{ selectedOffreLibelle | stripHtml  }}
+          </small>
+        </h3>
+
+        <div class="alert alert-info" *ngIf="selectedOffreCandidats.length === 0">
+          Aucun candidat n'est encore associé à cette offre.
+        </div>
+
+        <ng-container *ngIf="selectedOffreCandidats.length > 0">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Diplômes / certificats recherchés</label>
+              <input
+                class="form-control"
+                [(ngModel)]="diplomeCritere"
+                placeholder="ex : Bac+3, Master, etc.">
+            </div>
+            <div class="form-group col-md-2">
+              <label>Expérience min. (années)</label>
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="experienceMinCritere">
+            </div>
+            <div class="form-group col-md-6">
+              <label>Fonctions (séparées par des virgules)</label>
+              <input
+                class="form-control"
+                [(ngModel)]="fonctionsCritere"
+                placeholder="ex : Développeur Angular, Chef de projet, ...">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Prompt personnalisé (optionnel)</label>
+            <textarea
+              class="form-control"
+              rows="3"
+              [(ngModel)]="customPrompt"
+              placeholder="Ajoutez ici vos consignes spécifiques de tri si besoin.">
+            </textarea>
+          </div>
+
+          <button
+            class="btn btn-primary"
+            (click)="filtrerCvsAvecGpt()"
+            [disabled]="filtering">
+            {{ filtering ? 'Analyse en cours...' : 'Lancer le tri automatique pour cette offre' }}
+          </button>
+        </ng-container>
+      </div>
+
+      <div class="col-md-12" *ngIf="gptResult">
+  <h4>Résultat du tri automatique</h4>
+  
+  <!-- Tableau des candidats retenus -->
+  <h4 *ngIf="gptResult.retenus.length" style="background-color: #007bff; color: white; padding: 8px 15px;
+  border-radius: 5px; 
+  margin-top: 20px; 
+  margin-bottom: 15px; 
+  font-weight: 600; 
+  font-size: 1.25rem;">Rétention des candidats</h4>
+  <table *ngIf="gptResult.retenus.length" class="table table-success">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Raison</th>
+        <th>CV</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let candidat of gptResult.retenus">
+        <td>{{ candidat.nom }}</td>
+        <td>{{ candidat.prenom }}</td>
+        <td>{{ gptResult.retenus[0]?.raison }}</td>
+        <td><a [href]="candidat.cvUrl" target="_blank">Télécharger CV</a></td>
+        <td>{{ candidat.score }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Tableau des candidats rejetés -->
+  <h4 *ngIf="gptResult.rejetes.length" class="rejetes-title">Candidats rejetés</h4>
+  <table *ngIf="gptResult.rejetes.length" class="table table-danger">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Raison</th>
+        <th>CV</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let candidat of gptResult.rejetes">
+        <td>{{ candidat.nom }}</td>
+        <td>{{ candidat.prenom }}</td>
+        <td>{{ gptResult.rejetes[0]?.raison }}</td>
+        <td><a [href]="candidat.cvUrl" target="_blank">Télécharger CV</a></td>
+        <td>{{ candidat.score }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+<!--
+      <!-- Liste des candidats (filtrée par offre si sélectionnée) 
+      <div class="col-md-12 account-content" style="margin-top: 16px;">
+        <div class="col-md-8 col-sm-12">
+          <h3>
+            Enregistrements trouvés :
+            {{ (selectedOffreId ? selectedOffreCandidats : allCandidats).length }} candidats
+          </h3>
+        </div>
+
+        <div class="table-responsive w-100">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr class="info">
+                <th>N°</th>
+                <th>Offre</th>
+                <th>Contrat</th>
+                <th>Date de dépot</th>
+                <th>Nom et Prénoms</th>
+                <th>Score</th>
+                <th>Status</th>
+				<th>CV URL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class=""
+                *ngFor="let candidat of (selectedOffreId ? selectedOffreCandidats : allCandidats); let id=index"
+                [routerLink]="['/detail_candidat/' + candidat.userId]">
+                <td>{{ id + 1 }}</td>
+                <td class="titreO" [innerHTML]="candidat.offre.titre"></td>
+                <td>{{ candidat.offre.post }}</td>
+                <td>{{ candidat.offre.publicationDate | date:'shortDate':'UTC':'fr' }}</td>
+                <td>{{ candidat.user.profile.firstName + ' ' + candidat.user.profile.lastName }}</td>
+                <td>{{ candidat.note }}</td>
+                <td>{{ candidat.decision }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    -->
+    </div>
+  </div>
 </div>

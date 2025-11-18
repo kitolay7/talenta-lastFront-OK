@@ -99,6 +99,8 @@ import {HeaderAdminComponent} from './components/admin-login/header-admin/header
 import { AdminAuthService } from './services/admin-auth.service';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { TriCvOffreComponent } from './components/tri-cv-offre/tri-cv-offre.component';
+import { StripHtmlPipe } from './pipes/strip-html.pipe';
 
 /*
 export const adminGuard = (): boolean | UrlTree => {
@@ -215,7 +217,9 @@ const appRoutes: Routes = [
     AdminLoginComponent,
     AdminPanelComponent,
     HeaderAdminAuthComponent,
-    HeaderAdminComponent
+    HeaderAdminComponent,
+    TriCvOffreComponent,
+    StripHtmlPipe
     
   ],
   imports: [

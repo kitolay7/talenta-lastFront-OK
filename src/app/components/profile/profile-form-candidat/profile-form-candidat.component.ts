@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 import { from, of } from 'rxjs';
 import { UserService } from '../../../services/user.service';
 import { Profile } from '../../../models/profile';
-import { OffreService } from 'src/app/services/offre.service';
+import { OffreService } from '../../../../../src/app/services/offre.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../../../src/environments/environment';
 
 @Component({
   selector: 'app-profile-form-candidat',
@@ -47,6 +48,13 @@ export class ProfileFormCandidatComponent implements OnInit {
   public idUser: Observable<any> = of([]);
   public idOffre: Observable<any> = of([]);
   email: any;
+
+  //profileData: any;
+  cvFile: File | null = null;
+  hasCv = false;
+  cvUrl: string | null = null;
+  cvName: string | null = null;
+
   constructor(
     private userS: UserService,
     private router: Router,
@@ -161,8 +169,61 @@ openConformite(): void{
       this.diplomas = this.profileData.profile.diplomes;
       this.diplomasSpecialities = this.profileData.profile.specialisations;
       this.email= this.profileData.email;
+
+      const profile = data.profile || {};
+      this.hasCv = !!profile.cvPath;
+      if (this.hasCv) {
+        this.cvUrl = environment.baseUrl + 'cv/' + profile.cvPath;
+        this.cvName = profile.cvOriginalName || 'CV';
+      }
+
       this.spinner = true;
       console.log('DATA : '+this.firstname, this.lastName, this.profileData, this.isCandidat);
     })
+    /*
+     this.idUser.subscribe((data: any) => {
+      this.idU = data;
+      if (this.idU) {
+        this.userS.getProfilData(this.idU).subscribe((resp: any) => {
+          this.profileData = resp;
+          const profile = resp.profile || {};
+          this.hasCv = !!profile.cvPath;
+          if (this.hasCv) {
+            this.cvUrl = environment.baseUrl + 'cv/' + profile.cvPath;
+            this.cvName = profile.cvOriginalName || 'CV';
+          }
+          this.spinner = true;
+        });
+      }
+    });
+    */
+
   }
+
+  onCvSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.cvFile = file;
+    }
+  }
+
+  uploadCv() {
+    if (!this.cvFile) {
+      this.toastr.error('Veuillez sélectionner un fichier CV.', '', { timeOut: 3000 });
+      return;
+    }
+    this.userS.uploadCandidateCv(this.idU, this.cvFile).subscribe((res: any) => {
+      if (!res.error) {
+        this.toastr.success('Votre CV a été enregistré.', '', { timeOut: 3000 });
+        this.hasCv = true;
+        this.cvUrl = environment.baseUrl + 'cv/' + res.cvPath;
+        this.cvName = res.cvOriginalName || 'CV';
+      } else {
+        this.toastr.error(res.message || 'Erreur lors de l’enregistrement du CV.', '', { timeOut: 4000 });
+      }
+    }, err => {
+      this.toastr.error(err.error?.message || 'Erreur lors de l’enregistrement du CV.', '', { timeOut: 4000 });
+    });
+  }
+
 }

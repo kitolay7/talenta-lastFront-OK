@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from '../../../../../src/app/services/user.service';
 
 @Component({
   selector: 'app-postulation',

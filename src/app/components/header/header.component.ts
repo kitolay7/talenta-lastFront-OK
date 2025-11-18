@@ -813,6 +813,7 @@ export class HeaderComponent implements OnInit {
       Object.assign({}, { class: 'deposerClass', size: 'lg', ignoreBackdropClick: true })
     );
   }
+  /*
   goTo(path, b) {
     if (path.includes('candidat/registration')) {
       console.log(b.id)
@@ -845,7 +846,60 @@ export class HeaderComponent implements OnInit {
       this.router.navigateByUrl(path);
       this.closeOffre()
     }
+  }*/
+
+    goTo(path, b) {
+    if (path.includes('candidat/registration')) {
+      console.log(b.id)
+      if (localStorage.getItem('idUser') === null) {
+        this.offreService.setOffre(b.id);
+        this.router.navigateByUrl('candidat/registration');
+        this.closeOffre();
+      } else {
+        this.offreService.setOffre(b.id);
+        const userId = parseInt(localStorage.getItem('idUser'), 10);
+
+        // === NOUVEAU : contrôle CV côté front ===
+        this.userServ.getProfilData(userId).subscribe((data: any) => {
+          const profile = data.profile || {};
+          if (!profile.cvPath) {
+            this.toastr.error(
+              "Vous devez d'abord télécharger votre CV dans votre profil candidat avant de postuler.",
+              '',
+              { timeOut: 4000 }
+            );
+            this.router.navigateByUrl('/candidat/profile');
+            return;
+          }
+
+          // CV OK -> on postule
+          this.postulationService.postule({ userId: userId, offreId: b.id }).subscribe(response => {
+            console.log(response);
+            this.toastr.success(response.message, '', {
+              timeOut: 2000
+            });
+            this.router.navigateByUrl(path);
+            this.closeOffre();
+          }, error => {
+            this.toastr.error(
+              error.error.message === "Validation error" ?
+                "Vous avez déjà postulé à cette offre" :
+                error.error.message,
+              '',
+              { timeOut: 4000 }
+            );
+          });
+        });
+        // =======================================
+      }
+    } else {
+        this.offreService.setOffre(b.id);
+        this.router.navigateByUrl(path);
+        this.closeOffre()
+    }
   }
+
+
   goToURL(a, template) {
     if (a.name.includes('Se connecter')) {
       this.openModal(template, 'recruteur');

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from '../../../../src/app/services/user.service';
+import { environment } from '../../../../src/environments/environment';
 
 @Component({
   selector: 'app-detail-candidat',
@@ -13,6 +14,8 @@ export class DetailCandidatComponent implements OnInit {
   profileData: any;
   idU: any;
   loading = false;
+  cvUrl: string | null = null;
+  cvName: string | null = null;
 
   constructor(
     private userS: UserService,
@@ -24,7 +27,11 @@ export class DetailCandidatComponent implements OnInit {
       this.idU = params.idCandidat;
       this.userS.getProfilData(this.idU).subscribe((data: any) => {
         this.profileData = data;
-        console.log(this.profileData)
+        const profile = data.profile || {};
+        if (profile.cvPath) {
+          this.cvUrl = environment.baseUrl + 'cv/' + profile.cvPath;
+          this.cvName = profile.cvOriginalName || 'CV du candidat';
+        }
         this.loading = true;
       })
     });

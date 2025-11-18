@@ -50,6 +50,16 @@
 					<h4>Spécialisations : </h4>
 					<p class="texte">{{profileData.profile.specialisations}}</p>
 
+					<h4>CV du candidat :</h4>
+					<p class="texte" *ngIf="cvUrl; else noCv">
+					<a [href]="cvUrl" target="_blank">
+						{{ cvName }}
+					</a>
+					</p>
+					<ng-template #noCv>
+					<p class="texte">Aucun CV n'est enregistré pour ce candidat.</p>
+					</ng-template>
+
 				</div>
 			</div>
 		</div>
