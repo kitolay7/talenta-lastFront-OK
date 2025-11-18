@@ -36,65 +36,78 @@
         </div>
       </div>
 
+      
+
       <!-- Étape 2 : Tri automatique des CV pour l'offre sélectionnée -->
+      
       <div class="col-md-12 my-3" *ngIf="selectedOffreId">
-        <h3>
-          Premier tri automatique des CV
-          <small *ngIf="selectedOffreLibelle">
-            – {{ selectedOffreLibelle | stripHtml  }}
-          </small>
-        </h3>
+        <div>
+          <h3>
+            Premier tri automatique des CV
+            <small *ngIf="selectedOffreLibelle">
+              – {{ selectedOffreLibelle | stripHtml  }}
+            </small>
+          </h3>
 
-        <div class="alert alert-info" *ngIf="selectedOffreCandidats.length === 0">
-          Aucun candidat n'est encore associé à cette offre.
+          <div class="alert alert-info" *ngIf="selectedOffreCandidats.length === 0">
+            Aucun candidat n'est encore associé à cette offre.
+          </div>
+
+          <ng-container *ngIf="selectedOffreCandidats.length > 0">
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label>Diplômes / certificats recherchés</label>
+                <input
+                  class="form-control"
+                  [(ngModel)]="diplomeCritere"
+                  placeholder="ex : Bac+3, Master, etc.">
+              </div>
+              <div class="form-group col-md-2">
+                <label>Expérience min. (années)</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="experienceMinCritere">
+              </div>
+              <div class="form-group col-md-6">
+                <label>Fonctions (séparées par des virgules)</label>
+                <input
+                  class="form-control"
+                  [(ngModel)]="fonctionsCritere"
+                  placeholder="ex : Développeur Angular, Chef de projet, ...">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Prompt personnalisé (optionnel)</label>
+              <textarea
+                class="form-control"
+                rows="3"
+                [(ngModel)]="customPrompt"
+                placeholder="Ajoutez ici vos consignes spécifiques de tri si besoin.">
+              </textarea>
+            </div>
+
+            <button
+              class="btn btn-primary"
+              (click)="filtrerCvsAvecGpt()"
+              [disabled]="filtering">
+              {{ filtering ? 'Analyse en cours...' : 'Lancer le tri automatique pour cette offre' }}
+            </button>
+          </ng-container>
+          </div>
+      </div>
+
+      <div class="col-md-12 my-3" *ngIf="gptResult">
+        <div class="candidatures-block">
+          <h4>
+            Nombre de candidatures : {{ gptResult.length }}
+          </h4>
         </div>
-
-        <ng-container *ngIf="selectedOffreCandidats.length > 0">
-          <div class="form-row">
-            <div class="form-group col-md-4">
-              <label>Diplômes / certificats recherchés</label>
-              <input
-                class="form-control"
-                [(ngModel)]="diplomeCritere"
-                placeholder="ex : Bac+3, Master, etc.">
-            </div>
-            <div class="form-group col-md-2">
-              <label>Expérience min. (années)</label>
-              <input
-                type="number"
-                class="form-control"
-                [(ngModel)]="experienceMinCritere">
-            </div>
-            <div class="form-group col-md-6">
-              <label>Fonctions (séparées par des virgules)</label>
-              <input
-                class="form-control"
-                [(ngModel)]="fonctionsCritere"
-                placeholder="ex : Développeur Angular, Chef de projet, ...">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Prompt personnalisé (optionnel)</label>
-            <textarea
-              class="form-control"
-              rows="3"
-              [(ngModel)]="customPrompt"
-              placeholder="Ajoutez ici vos consignes spécifiques de tri si besoin.">
-            </textarea>
-          </div>
-
-          <button
-            class="btn btn-primary"
-            (click)="filtrerCvsAvecGpt()"
-            [disabled]="filtering">
-            {{ filtering ? 'Analyse en cours...' : 'Lancer le tri automatique pour cette offre' }}
-          </button>
-        </ng-container>
       </div>
 
       <div class="col-md-12" *ngIf="gptResult">
-  <h4>Résultat du tri automatique</h4>
+      <h4>Résultat du tri automatique</h4>
   
   <!-- Tableau des candidats retenus -->
   <h4 *ngIf="gptResult.retenus.length" style="background-color: #007bff; color: white; padding: 8px 15px;
@@ -102,35 +115,34 @@
   margin-top: 20px; 
   margin-bottom: 15px; 
   font-weight: 600; 
-  font-size: 1.25rem;">Rétention des candidats</h4>
+  font-size: 1.25rem;">Retenus : <b>({{ gptResult.retenus.length }})</b></h4>
   <table *ngIf="gptResult.retenus.length" class="table table-success">
     <thead>
       <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
+        <th>Rang</th>
+        <th>Nom et prénoms</th>
         <th>Raison</th>
         <th>CV</th>
-        <th>Score</th>
+        <!--<th>Score</th>-->
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let candidat of gptResult.retenus">
-        <td>{{ candidat.nom }}</td>
-        <td>{{ candidat.prenom }}</td>
-        <td>{{ gptResult.retenus[0]?.raison }}</td>
-        <td><a [href]="candidat.cvUrl" target="_blank">Télécharger CV</a></td>
-        <td>{{ candidat.score }}</td>
+      <tr *ngFor="let candidat of gptResult.retenus; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ candidat.nom }}</td>        
+        <td>{{ candidat.raison }}</td>
+        <td><a [href]="candidat.cvUrl" target="_blank">Voir le CV</a></td>
+        <!--<td>{{ candidat.score }}</td>-->
       </tr>
     </tbody>
   </table>
 
   <!-- Tableau des candidats rejetés -->
-  <h4 *ngIf="gptResult.rejetes.length" class="rejetes-title">Candidats rejetés</h4>
+  <h4 *ngIf="gptResult.rejetes.length" class="rejetes-title">Rejetés : <b>({{ gptResult.rejetes.length }})</b></h4>
   <table *ngIf="gptResult.rejetes.length" class="table table-danger">
     <thead>
       <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
+        <th>Nom et prénoms</th>
         <th>Raison</th>
         <th>CV</th>
         <th>Score</th>
@@ -139,9 +151,8 @@
     <tbody>
       <tr *ngFor="let candidat of gptResult.rejetes">
         <td>{{ candidat.nom }}</td>
-        <td>{{ candidat.prenom }}</td>
-        <td>{{ gptResult.rejetes[0]?.raison }}</td>
-        <td><a [href]="candidat.cvUrl" target="_blank">Télécharger CV</a></td>
+        <td>{{ candidat.raison }}</td>
+        <td><a [href]="candidat.cvUrl" target="_blank">Voir le CV</a></td>
         <td>{{ candidat.score }}</td>
       </tr>
     </tbody>

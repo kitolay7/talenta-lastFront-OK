@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { OffreService } from 'src/app/services/offre.service';
-import { environment } from 'src/environments/environment';
+import { OffreService } from '../../../src/app/services/offre.service';
+import { environment } from '../../../src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from '../../../src/app/services/user.service';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';

@@ -1,8 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OffreService } from 'src/app/services/offre.service';
-import { UserService } from 'src/app/services/user.service';
-import { PostulationService } from 'src/app/services/postulation.service';
+import { OffreService } from '../../../../src/app/services/offre.service';
+import { UserService } from '../../../../src/app/services/user.service';
+import { PostulationService } from '../../../../src/app/services/postulation.service';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';

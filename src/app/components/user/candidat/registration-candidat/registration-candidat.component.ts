@@ -19,6 +19,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class RegistrationCandidatComponent implements OnInit {
   formRegister: FormGroup;
+  cvFile: File | null = null;
   formLogin: FormGroup;
   email: string;
   password: string;
@@ -87,7 +88,7 @@ export class RegistrationCandidatComponent implements OnInit {
       codeFC: new FormControl('', Validators.required),
       commFC: new FormControl('', Validators.required),
       acceptFC: new FormControl('', Validators.required),
-      cv: new FormControl('', Validators.required)
+      //cv: new FormControl('', Validators.required)
     });
     
   }
@@ -103,7 +104,8 @@ export class RegistrationCandidatComponent implements OnInit {
         email: this.formRegister.controls.email.value,
         password: this.formRegister.controls.password.value,
         roles: ['candidat'],
-        cv: this.formRegister.controls.cv.value
+        cvPath: null
+        //cv: this.formRegister.controls.cv.value || 'CV_NON_UPLOAD'
       },
 
       // profile
@@ -150,6 +152,11 @@ export class RegistrationCandidatComponent implements OnInit {
           console.log(err)
         });
     // candidat.getData();
+  }
+
+   onCvSelected(event: any): void {
+    this.cvFile = event.target.files[0];
+    console.log('Fichier CV sélectionné :', this.cvFile);
   }
 
   checkMail(controls) {

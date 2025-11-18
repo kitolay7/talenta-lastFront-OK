@@ -52,3 +52,103 @@ h4.rejetes-title {
   font-weight: 600; /* Gras */
   font-size: 1.25rem; /* Taille de police légèrement plus grande */
 }
+
+.candidatures-block {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #007bff;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.candidatures-block h4 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.candidatures-block .badge {
+  font-size: 1.2rem;
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 12px;
+}
+
+/* Bloc "Premier tri automatique des CV" */
+.tri-block {
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.tri-block h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.tri-block .form-group label {
+  font-weight: 600;
+}
+
+.tri-block .form-control {
+  margin-top: 5px;
+}
+
+/* Bouton du tri automatique */
+.tri-block button {
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Alertes */
+.alert-info {
+  margin-top: 20px;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+
+/* En-têtes des résultats */
+.result-header {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.retenus-header {
+  background-color: #28a745;
+}
+
+.rejetes-header {
+  background-color: #dc3545;
+}
+
+/* Tableaux de résultats */
+.result-table {
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.result-table th, .result-table td {
+  text-align: center;
+}
+
+.result-table a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.result-table a:hover {
+  text-decoration: underline;
+}

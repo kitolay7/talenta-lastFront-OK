@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OffreService } from 'src/app/services/offre.service';
-import { environment } from 'src/environments/environment';
+import { OffreService } from '../../../../src/app/services/offre.service';
+import { environment } from '../../../../src/environments/environment';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Location } from '@angular/common';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from '../../../../src/app/services/user.service';
 
 
 

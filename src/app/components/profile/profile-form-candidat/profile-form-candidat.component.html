@@ -31,6 +31,48 @@
     </a>
     -->
   </div>
+
+  <h3>Mon CV</h3>
+
+<div *ngIf="hasCv" class="mb-3">
+  <p>CV actuellement enregistré :</p>
+  <a *ngIf="cvUrl" [href]="cvUrl" target="_blank">
+    {{ cvName || 'Télécharger mon CV' }}
+  </a>
+</div>
+
+<div class="form-group" *ngIf="!hasCv">
+  <label for="cvInput">Vous devez telecharger votre CV avant de postuler à une offre *</label>
+  <input
+    id="cvInput"
+    type="file"
+    (change)="onCvSelected($event)"
+    accept=".pdf,.doc,.docx"
+    class="form-control" />
+  <button
+    type="button"
+    class="btn btn-primary mt-2"
+    (click)="uploadCv()">
+    Enregistrer mon CV
+  </button>
+</div>
+
+<div class="form-group" *ngIf="hasCv">
+  <label for="cvInput">Mettre à jour votre CV.</label>
+  <input
+    id="cvInput"
+    type="file"
+    (change)="onCvSelected($event)"
+    accept=".pdf,.doc,.docx"
+    class="form-control" />
+  <button
+    type="button"
+    class="btn btn-primary mt-2"
+    (click)="uploadCv()">
+    Enregistrer mon CV
+  </button>
+</div>
+
   <form>
     <div class="form-group">
       <div class="container">
@@ -257,30 +299,7 @@
 
   <hr>
 
-<h3>Mon CV</h3>
 
-<div *ngIf="hasCv" class="mb-3">
-  <p>CV actuellement enregistré :</p>
-  <a *ngIf="cvUrl" [href]="cvUrl" target="_blank">
-    {{ cvName || 'Télécharger mon CV' }}
-  </a>
-</div>
-
-<div class="form-group">
-  <label for="cvInput">Télécharger / Mettre à jour mon CV *</label>
-  <input
-    id="cvInput"
-    type="file"
-    (change)="onCvSelected($event)"
-    accept=".pdf,.doc,.docx"
-    class="form-control" />
-  <button
-    type="button"
-    class="btn btn-primary mt-2"
-    (click)="uploadCv()">
-    Enregistrer mon CV
-  </button>
-</div>
 <!--
   <p>
     Maintenant, vous allez effectuer un quiz de présélection. Vous avez besoin

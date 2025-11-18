@@ -154,6 +154,8 @@ export class GestionCandidatsComponent implements OnInit {
       content: c 
     }));
 
+    console.log('Cvs to filter:', cvs);
+
     this.cvService.filterCvs(criteria, cvs).subscribe({
       next: (res) => {
         this.gptResult = res.filteredCvs;
