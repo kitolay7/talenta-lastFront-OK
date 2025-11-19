@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { OffreService } from 'src/app/services/offre.service';
-import { UserService } from 'src/app/services/user.service';
+import { OffreService } from '../../../../src/app/services/offre.service';
+import { UserService } from '../../../../src/app/services/user.service';
 
 @Component({
   selector: 'app-listing-offre-candidat',

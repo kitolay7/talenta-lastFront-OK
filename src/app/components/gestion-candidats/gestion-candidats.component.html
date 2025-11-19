@@ -101,7 +101,7 @@
       <div class="col-md-12 my-3" *ngIf="gptResult">
         <div class="candidatures-block">
           <h4>
-            Nombre de candidatures : {{ gptResult.length }}
+            Nombre de candidatures : {{ gptResult.retenus.length + gptResult.rejetes.length }}
           </h4>
         </div>
       </div>
