@@ -16,6 +16,7 @@
     	box-shadow: 0 15px 20px -5px #000;
 		margin: 20px auto;
     }
+	
     .row .jumbotron
     {
     	border-radius: 0;
@@ -32,6 +33,93 @@
     	background: var(--c-orange);
     	p {color: #fff;}
     }
+
+	.jumbotron-about {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f9fafb, #f1f5f9);
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.logo-talenta {
+    width: 40%;
+    max-width: 320px;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+.jumbotron-about h3 {
+    font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;              /* un peu plus gras */
+    font-size: 2rem;               /* plus grand (≈ 32px) */
+    line-height: 1.6;              /* bon confort de lecture */
+    color: #222;                   /* un peu plus contrasté */
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+
+.word-rotator {
+    display: inline-block;
+    position: relative;
+    min-width: 150px;   /* pour éviter que le texte ne bouge en largeur */
+    height: 2em;        /* hauteur du “cadre” */
+    vertical-align: bottom;
+	line-height: 1.6;
+}
+
+/* Tous les mots sont empilés au même endroit */
+.word-rotator .word {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+	margin-top: 8px;
+    transform: translateY(10px);
+    //padding: 4px 12px;
+    //border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    //background: #ffffff;
+    color: #d35400;
+    //box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    white-space: nowrap;
+
+    /* chaque mot suit le même cycle de 9s */
+    animation: rotateWords 6s ease-in-out infinite;
+}
+
+/* Décalage dans le temps pour chaque mot */
+.word-rotator .word.simple {
+    animation-delay: 2s;
+}
+.word-rotator .word.fast {
+    animation-delay: 4s;
+}
+.word-rotator .word.efficient {
+    animation-delay: 6s;
+}
+
+/* Animation : apparition/fade + petit mouvement vertical */
+@keyframes rotateWords {
+    0%, 10% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    15%, 45% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    50%, 100% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+
     .wait { height: 400px; }
     .middleAbout {
         display: flex;
