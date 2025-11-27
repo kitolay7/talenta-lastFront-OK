@@ -167,6 +167,33 @@
 	}
 }
 
+.highlight-keyword {
+    font-weight: 700;
+    color: black;//#d35400;
+    //background: linear-gradient(120deg, #ffe9c7 0%, #fff4e4 100%);
+    padding: 2px 6px;
+    //border-radius: 999px;
+    //box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    position: relative;
+}
+
+/* léger effet de “pulse” pour attirer l’œil (optionnel) */
+.highlight-keyword {
+    animation: pulseHighlight 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseHighlight {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+}
+
+
 
 ::ng-deep.tooltipClass
 {
