@@ -8,9 +8,20 @@
       <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"
         data-aos-offset="0">LANCEZ-VOUS EN TOUTE
         SIMPLICITE</h2>
+      <!--
       <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000"
         data-aos-offset="0">COMMENCEZ VOTRE RECHERCHE</h3>
+      -->
     </div>
+
+    <div class="home-cta" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000"
+        data-aos-offset="0">
+      <a class="btn-cta" [routerLink]="'/candidat/registration'">
+        COMMENCEZ VOTRE RECHERCHE
+      </a>
+    </div>
+
+
     <div class="down hvr-wobble-vertical-infinite" data-aos="fade"
       data-aos-duration="2000" data-aos-delay="0">
       <a (click)="scrollTo('offre')">
@@ -24,21 +35,7 @@
     </div>
 
     <div id="offre" class="container page-section">
-      <div class="row">
-        <div class="col-md-4 col-xs-12" data-aos="zoom-in-up"
-          data-aos-duration="1000" data-aos-delay="0"
-          data-aos-offset="0">
-          <div class="service-item">
-            <div class="icon hvr-icon-sink" mat-raised-button>
-              <i class="fa fa-map-marker hvr-icon"></i>
-            </div>
-            <h4>QUEBEC</h4>
-            <div class="line-dec"></div>
-            <div class="primary-blue-button">
-              <a (click)="seeModal(offre, 'Quebec')">OFFRES D'EMPLOIS</a>
-            </div>
-          </div>
-        </div>
+      <div class="row">       
         <div class="col-md-4 col-xs-12" data-aos="zoom-in-up"
           data-aos-duration="1000" data-aos-delay="250"
           data-aos-offset="0">
@@ -46,13 +43,29 @@
             <div class="icon hvr-icon-sink">
               <img src="assets/img/tana.png" style="width: 30px;">
             </div>
-            <h4>ANTANANARIVO</h4>
+            <h4>MADAGASCAR</h4>
             <div class="line-dec"></div>
             <div class="primary-blue-button">
               <a (click)="seeModal(offre, 'Antananarivo')">OFFRES D'EMPLOIS</a>
             </div>
           </div>
         </div>
+
+         <div class="col-md-4 col-xs-12" data-aos="zoom-in-up"
+          data-aos-duration="1000" data-aos-delay="0"
+          data-aos-offset="0">
+          <div class="service-item">
+            <div class="icon hvr-icon-sink" mat-raised-button>
+              <i class="fa fa-map-marker hvr-icon"></i>
+            </div>
+            <h4>INTERNATIONAL</h4>
+            <div class="line-dec"></div>
+            <div class="primary-blue-button">
+              <a (click)="seeModal(offre, 'Quebec')">OFFRES D'EMPLOIS</a>
+            </div>
+          </div>
+        </div>
+
         <div class="col-md-4 col-xs-12" data-aos="zoom-in-up"
           data-aos-duration="1000" data-aos-delay="500"
           data-aos-offset="0">
@@ -1479,7 +1492,7 @@
                   Envoyer
                 </a>
               </p>
-              <p align="center">Appelez-nous au 034 36 311 46.</p>
+              <p align="center">Appelez-nous au +261 34 20  500 61.</p>
             </form>
           </tab>
         </tabset>
