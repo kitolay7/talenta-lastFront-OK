@@ -151,6 +151,14 @@
     transition: opacity 0.2s ease;
 }
 
+/* Affichage de l’infobulle au hover */
+.btn-cta:hover::after,
+.btn-cta:focus::after,
+.btn-cta:hover::before,
+.btn-cta:focus::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-2px);
+}
 
 
 /* Pour mobile : bouton pleine largeur si tu veux */

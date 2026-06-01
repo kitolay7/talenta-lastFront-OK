@@ -186,9 +186,9 @@
             class="form-control input"
             [(ngModel)]="term2">
             <option
-              *ngFor="let activity of secteurs"
+              *ngFor="let activity of secteurs; let i = index"
               [value]="activity">
-              {{activity}}
+              {{ i === 0 ? 'TOUS' : activity }}
             </option>
           </select>
         </div>
